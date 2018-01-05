@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="PHP,Yii," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="管理平台 &amp;gt; 权限管理 &amp;gt; 授权管理 开发环境：homestead: Ubuntu + Nginx + PHP7 + MysqlYii: yii2-app-advanced 本人使用的是 yii2-app-advanced 版本来进行开发，如果使用 yii2-app-basic，请修改相应的命名空间。由于本人表单使用原生 html，所以在书写的时候要格外注意 csrf 的设置，不然的话">
+<meta name="keywords" content="PHP,Yii">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Yii2 RBAC 授权管理（三）">
+<meta property="og:url" content="http://github.com/flyerboy/2016/12/17/yii_rbac_assign/index.html">
+<meta property="og:site_name" content="Flyerboy">
+<meta property="og:description" content="管理平台 &amp;gt; 权限管理 &amp;gt; 授权管理 开发环境：homestead: Ubuntu + Nginx + PHP7 + MysqlYii: yii2-app-advanced 本人使用的是 yii2-app-advanced 版本来进行开发，如果使用 yii2-app-basic，请修改相应的命名空间。由于本人表单使用原生 html，所以在书写的时候要格外注意 csrf 的设置，不然的话">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-12-19T07:14:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Yii2 RBAC 授权管理（三）">
+<meta name="twitter:description" content="管理平台 &amp;gt; 权限管理 &amp;gt; 授权管理 开发环境：homestead: Ubuntu + Nginx + PHP7 + MysqlYii: yii2-app-advanced 本人使用的是 yii2-app-advanced 版本来进行开发，如果使用 yii2-app-basic，请修改相应的命名空间。由于本人表单使用原生 html，所以在书写的时候要格外注意 csrf 的设置，不然的话">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://github.com/flyerboy/2016/12/17/yii_rbac_assign/"/>
+
+
+
+
+
+  <title>Yii2 RBAC 授权管理（三） | Flyerboy</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?2131bb08175ee5a07cfa26e983412456";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Flyerboy</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/17/yii_rbac_assign/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Flyerboy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/face.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Flyerboy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Yii2 RBAC 授权管理（三）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-17T20:00:00+08:00">
+                2016-12-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>管理平台 &gt; 权限管理 &gt; 授权管理</strong></p>
+<p>开发环境：<br>homestead: Ubuntu + Nginx + PHP7 + Mysql<br>Yii: yii2-app-advanced</p>
+<p>本人使用的是 <code>yii2-app-advanced</code> 版本来进行开发，如果使用 <code>yii2-app-basic</code>，请修改相应的命名空间。<br>由于本人表单使用原生 <code>html</code>，所以在书写的时候要格外注意 <code>csrf</code> 的设置，不然的话，表单将无法提交成功。</p>
+<p>首先关于 <code>RBAC</code> 的使用方式请参考本人另外一篇文章 <a href="/2016/12/13/yii_rbac/">Yii2 使用 RBAC</a></p>
+<p>实现的 action</p>
+<ol>
+<li>user   // 角色下所有的用户</li>
+<li>addUser  // 给角色组添加用户</li>
+<li>removeUser   // 从角色组删除用户</li>
+<li>permission   // 角色对应权限管理</li>
+</ol>
+<a id="more"></a>
+<h1 id="创建控制器"><a href="#创建控制器" class="headerlink" title="创建控制器"></a>创建控制器</h1><p>由于这次许多方法都是针对用户组操作的，所以这次的方法全部放到 <code>RoleController</code> 这个控制器中，具体请阅读我上一篇文章 <a href="/2016/12/17/yii_rbac_role/">Yii2 RBAC 角色管理</a></p>
+<h1 id="查看角色全部用户"><a href="#查看角色全部用户" class="headerlink" title="查看角色全部用户"></a>查看角色全部用户</h1><p>获取角色对应的全部用户，展示成列表，便于管理<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 控制器方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">actionUser</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $request = Yii::$app-&gt;getRequest();</span><br><span class="line">    $name = $request-&gt;get(<span class="string">'name'</span>, <span class="string">''</span>);</span><br><span class="line">    <span class="comment">// 根据角色名获取对应用户列表，由于 RBAC 底层实现了根据用户组名获取用户 id 列表的方法</span></span><br><span class="line">    <span class="comment">// 参考其 getUserIdsByRole 方法实现</span></span><br><span class="line">    $data = <span class="keyword">$this</span>-&gt;getRoleUser($name);  </span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;render(<span class="string">'user'</span>, [<span class="string">'data'</span> =&gt; $data]);    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">getRoleUser</span><span class="params">($name)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $query = <span class="keyword">new</span> Query();</span><br><span class="line">    $data = $query</span><br><span class="line">            -&gt;select(<span class="string">'a.*,u.id,u.username'</span>)</span><br><span class="line">            -&gt;from([<span class="string">'a'</span> =&gt; <span class="string">'auth_assignment'</span>, <span class="string">'u'</span> =&gt; <span class="string">'user'</span>])</span><br><span class="line">            -&gt;where(<span class="string">"a.user_id=u.id and a.item_name='&#123;$role&#125;'"</span>)</span><br><span class="line">            -&gt;all();</span><br><span class="line">    <span class="keyword">return</span> $data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?php</span></span></span><br><span class="line"><span class="php"><span class="comment"># 模板 backend/views/role/user.php</span></span></span><br><span class="line"><span class="php"></span></span><br><span class="line"><span class="php"><span class="keyword">use</span> <span class="title">yii</span>\<span class="title">helpers</span>\<span class="title">Url</span>;</span></span><br><span class="line"><span class="php"><span class="keyword">$this</span>-&gt;params[<span class="string">'breadcrumbs'</span>][] = [</span></span><br><span class="line"><span class="php">    <span class="string">'label'</span> =&gt; <span class="string">'Role'</span>,</span></span><br><span class="line"><span class="php">    <span class="string">'url'</span> =&gt; Url::to([<span class="string">'role/index'</span>])</span></span><br><span class="line"><span class="php">];</span></span><br><span class="line"><span class="php"><span class="keyword">$this</span>-&gt;params[<span class="string">'breadcrumbs'</span>][] = <span class="string">'Role User List'</span>;</span></span><br><span class="line"><span class="php"><span class="meta">?&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"operate"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&lt;?= Url::to(['role/add-user', 'name' =&gt; $role]) ?&gt;"</span> <span class="attr">class</span>=<span class="string">"btn btn-success"</span>&gt;</span>Add User<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">"table table-bordered table-hover"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">thead</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">th</span>&gt;</span>ID<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">th</span>&gt;</span>Username<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">th</span>&gt;</span>Role<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">th</span>&gt;</span>Operation<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">thead</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></span><br><span class="line">        <span class="php"><span class="meta">&lt;?php</span> <span class="keyword">foreach</span> ($data <span class="keyword">as</span> $row): <span class="meta">?&gt;</span></span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="php"><span class="meta">&lt;?</span>= $row[<span class="string">'id'</span>]; <span class="meta">?&gt;</span></span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="php"><span class="meta">&lt;?</span>= $row[<span class="string">'username'</span>]<span class="meta">?&gt;</span></span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="php"><span class="meta">&lt;?</span>= $row[<span class="string">'item_name'</span>] <span class="meta">?&gt;</span></span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&lt;?= Url::to(['role/delete-user', 'name' =&gt; $role, 'user_id' =&gt; $row['id']]); ?&gt;"</span> </span></span><br><span class="line"><span class="tag">                    <span class="attr">class</span>=<span class="string">"glyphicon glyphicon-trash"</span> <span class="attr">title</span>=<span class="string">"delete"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="php"><span class="meta">&lt;?php</span> <span class="keyword">endforeach</span>; <span class="meta">?&gt;</span></span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="角色添加用户"><a href="#角色添加用户" class="headerlink" title="角色添加用户"></a>角色添加用户</h1><p>我这里实现的是一次将多个用户添加到角色，方便管理<br>首先是讲角色的所有用户删除，再将信息接收到的用户写入到数据库<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 控制器方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">actionAddUser</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $request = Yii::$app-&gt;getRequest();</span><br><span class="line">    $name = $request-&gt;get(<span class="string">'name'</span>, <span class="string">''</span>);</span><br><span class="line">    $auth = Yii::$app-&gt;authManager;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">empty</span>($name) &amp;&amp; $request-&gt;getIsPost()) &#123;</span><br><span class="line">        <span class="comment">// 首先删除该角色的所有用户</span></span><br><span class="line">        $query = <span class="keyword">new</span> Query();</span><br><span class="line">        $query-&gt;createCommand()-&gt;delete(<span class="string">'auth_assignment'</span>, [<span class="string">'item_name'</span> =&gt; $name])-&gt;execute();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 其次将接收到的数组重新添加到权限组</span></span><br><span class="line">        $users = $request-&gt;post(<span class="string">'users'</span>, []);</span><br><span class="line">        <span class="keyword">if</span> ($users) &#123;</span><br><span class="line">            $role = $auth-&gt;getRole($name);</span><br><span class="line">            <span class="keyword">foreach</span> ($users <span class="keyword">as</span> $row) &#123;</span><br><span class="line">                $data[] = [</span><br><span class="line">                    <span class="string">'user_id'</span> =&gt; $row,</span><br><span class="line">                    <span class="string">'item_name'</span> =&gt; $name,</span><br><span class="line">                    <span class="string">'created_at'</span> =&gt; time()</span><br><span class="line">                ];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 采用 yii 自带插入多条数据的方法</span></span><br><span class="line">            $res = $query-&gt;createCommand()</span><br><span class="line">                    -&gt;batchInsert(<span class="string">'auth_assignment'</span>, [<span class="string">'user_id'</span>, <span class="string">'item_name'</span>, <span class="string">'created_at'</span>], $data)</span><br><span class="line">                    -&gt;execute();</span><br><span class="line">            <span class="keyword">if</span> ($res) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;redirect([<span class="string">'role/user'</span>, <span class="string">'name'</span> =&gt; $name]);</span><br><span class="line">            &#125;</span><br><span class="line">            $error = <span class="string">'添加失败'</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        $error = <span class="string">'参数错误&amp;访问方式错误'</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    $roleUser = $auth-&gt;getUserIdsByRole($name); <span class="comment">// 获取当前用户组已有用户 id 列表</span></span><br><span class="line">    $users = User::find()-&gt;all();   <span class="comment">// 全部用户列表</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;render(<span class="string">'add_user'</span>, [</span><br><span class="line">        <span class="string">'users'</span> =&gt; $users,</span><br><span class="line">        <span class="string">'role'</span> =&gt; $name,</span><br><span class="line">        <span class="string">'roleUser'</span> =&gt; $roleUser,</span><br><span class="line">        <span class="string">'error'</span> =&gt; $error</span><br><span class="line">    ]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?php</span></span></span><br><span class="line"><span class="php"><span class="comment"># 模板 backend/views/role/add_user.php</span></span></span><br><span class="line"><span class="php"></span></span><br><span class="line"><span class="php"><span class="keyword">use</span> <span class="title">yii</span>\<span class="title">helpers</span>\<span class="title">Html</span>;</span></span><br><span class="line"><span class="php"><span class="keyword">use</span> <span class="title">yii</span>\<span class="title">helpers</span>\<span class="title">Url</span>;</span></span><br><span class="line"><span class="php"></span></span><br><span class="line"><span class="php"><span class="keyword">$this</span>-&gt;params[<span class="string">'breadcrumbs'</span>][] = [</span></span><br><span class="line"><span class="php">    <span class="string">'label'</span> =&gt; <span class="string">'Role'</span>,</span></span><br><span class="line"><span class="php">    <span class="string">'url'</span> =&gt; Url::to([<span class="string">'role/index'</span>])</span></span><br><span class="line"><span class="php">];</span></span><br><span class="line"><span class="php"><span class="keyword">$this</span>-&gt;params[<span class="string">'breadcrumbs'</span>][] = <span class="string">'Add User'</span>;</span></span><br><span class="line"><span class="php"><span class="meta">?&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">""</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></span><br><span class="line">    <span class="php"><span class="meta">&lt;?php</span> <span class="keyword">foreach</span> ($users <span class="keyword">as</span> $row): <span class="meta">?&gt;</span></span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"checkbox"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">label</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> </span></span><br><span class="line">                "&lt;?php if(in_array($row-&gt;id, $roleUser)) &#123; echo 'checked'; &#125; ?&gt;"</span><br><span class="line">                value="<span class="php"><span class="meta">&lt;?</span>= $row-&gt;id <span class="meta">?&gt;</span></span>" </span><br><span class="line">                name="users[]"&gt;<span class="php"><span class="meta">&lt;?</span>=Html::encode($row-&gt;username); <span class="meta">?&gt;</span></span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="php"><span class="meta">&lt;?php</span> <span class="keyword">endforeach</span>; <span class="meta">?&gt;</span></span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">name</span>=<span class="string">"_csrf-backend"</span> <span class="attr">value</span>=<span class="string">"&lt;?=Yii::$app-&gt;getRequest()-&gt;getCsrfToken(); ?&gt;"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">class</span>=<span class="string">"btn btn-success"</span>&gt;</span>Submit<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="角色删除用户"><a href="#角色删除用户" class="headerlink" title="角色删除用户"></a>角色删除用户</h1><p>将角色中的用户删除，调用 <code>vendor/yiisoft/yii2/rbac/DbManager.php</code> 中的 <code>revoke</code> 方法实现<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 控制器方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">actionDeleteUser</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $userId = Yii::$app-&gt;getRequest()-&gt;get(<span class="string">'user_id'</span>, <span class="number">0</span>);</span><br><span class="line">    $name = Yii::$app-&gt;getRequest()-&gt;get(<span class="string">'name'</span>, <span class="string">''</span>);</span><br><span class="line">    <span class="keyword">if</span> ($userId &amp;&amp; $name) &#123;</span><br><span class="line">        $auth = Yii::$app-&gt;authManager;</span><br><span class="line">        $role = $auth-&gt;getRole($name);  <span class="comment">// 获取角色信息</span></span><br><span class="line">        <span class="keyword">if</span> ($role &amp;&amp; $auth-&gt;revoke($role, $userId)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;redirect([<span class="string">'role/user'</span>, <span class="string">'name'</span> =&gt; $name]);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">die</span>(<span class="string">'角色不存在'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">'参数错误'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="角色权限节点"><a href="#角色权限节点" class="headerlink" title="角色权限节点"></a>角色权限节点</h1><p>管理角色对应权限节点，展示全部权限，并且将角色所属的权限节点选中。<br>POST 方法将重新给角色添加权限节点<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 控制器方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">actionPermission</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $request = Yii::$app-&gt;getRequest();</span><br><span class="line">    $name = $request-&gt;get(<span class="string">'name'</span>, <span class="string">''</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!$name) &#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">'参数错误'</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    $auth = Yii::$app-&gt;authManager;</span><br><span class="line">    $role = $auth-&gt;getRole($name);</span><br><span class="line">    <span class="keyword">if</span> (!$role) &#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">'角色不存在'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> ($request-&gt;getIsPost()) &#123;    <span class="comment">// POST 方式访问的话，处理角色权限</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 处理角色绑定权限</span></span><br><span class="line">        $permissions = $request-&gt;post(<span class="string">'permissions'</span>, []);</span><br><span class="line">        <span class="comment">// 首先删除角色全部权限</span></span><br><span class="line">        $query = <span class="keyword">new</span> Query();</span><br><span class="line">        $query-&gt;createCommand()-&gt;delete(<span class="string">'auth_item_child'</span>, [<span class="string">'parent'</span> =&gt; $name])-&gt;execute();</span><br><span class="line">        <span class="comment">// 其次将权限数组全部绑定到角色</span></span><br><span class="line">        <span class="keyword">if</span> ($permissions) &#123;</span><br><span class="line">            <span class="keyword">foreach</span> ($permissions <span class="keyword">as</span> $row) &#123;</span><br><span class="line">                $permission = $auth-&gt;getPermission($row);</span><br><span class="line">                $auth-&gt;addChild($role, $permission);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;redirect([<span class="string">'role/index'</span>]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    $permissions = $auth-&gt;getPermissions(); <span class="comment">// 获取权限列表</span></span><br><span class="line">    $rolePermissions = $auth-&gt;getPermissionsByRole($name);  <span class="comment">// 获取角色对应权限列表</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;render(<span class="string">'permission'</span>, [</span><br><span class="line">        <span class="string">'permissions'</span> =&gt; $permissions,</span><br><span class="line">        <span class="string">'rolePermissions'</span> =&gt; array_keys($rolePermissions)</span><br><span class="line">    ]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?php</span></span></span><br><span class="line"><span class="php"><span class="comment"># 模板 backend/views/role/permission.php</span></span></span><br><span class="line"><span class="php"></span></span><br><span class="line"><span class="php"><span class="keyword">use</span> <span class="title">yii</span>\<span class="title">helpers</span>\<span class="title">Html</span>;</span></span><br><span class="line"><span class="php"><span class="keyword">use</span> <span class="title">yii</span>\<span class="title">helpers</span>\<span class="title">Url</span>;</span></span><br><span class="line"><span class="php"></span></span><br><span class="line"><span class="php"><span class="keyword">$this</span>-&gt;params[<span class="string">'breadcrumbs'</span>][] = [</span></span><br><span class="line"><span class="php">    <span class="string">'label'</span> =&gt; <span class="string">'Role'</span>,</span></span><br><span class="line"><span class="php">    <span class="string">'url'</span> =&gt; Url::to([<span class="string">'role/index'</span>])</span></span><br><span class="line"><span class="php">];</span></span><br><span class="line"><span class="php"><span class="keyword">$this</span>-&gt;params[<span class="string">'breadcrumbs'</span>][] = <span class="string">'Add Permisssion'</span>;</span></span><br><span class="line"><span class="php"><span class="meta">?&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">""</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></span><br><span class="line">    <span class="php"><span class="meta">&lt;?php</span> <span class="keyword">foreach</span> ($permissions <span class="keyword">as</span> $row): <span class="meta">?&gt;</span></span></span><br><span class="line">        <span class="tag">&lt;<span class="name">label</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> </span></span><br><span class="line">                &lt;?php if(in_array($row-&gt;name, $rolePermissions)) &#123; echo 'checked'; &#125; ?&gt;</span><br><span class="line">                value="<span class="php"><span class="meta">&lt;?</span>= $row-&gt;name <span class="meta">?&gt;</span></span>"</span><br><span class="line">                name="permissions[]"&gt;<span class="php"><span class="meta">&lt;?</span>=Html::encode($row-&gt;description); <span class="meta">?&gt;</span></span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">    <span class="php"><span class="meta">&lt;?php</span> <span class="keyword">endforeach</span>; <span class="meta">?&gt;</span></span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">name</span>=<span class="string">"_csrf-backend"</span> <span class="attr">value</span>=<span class="string">"&lt;?=Yii::$app-&gt;getRequest()-&gt;getCsrfToken(); ?&gt;"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">class</span>=<span class="string">"btn btn-success"</span>&gt;</span>Submit<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这样整个权限管理就结束了。</p>
+<blockquote>
+<p>©版权声明：原创作品，允许转载，转载时请务必以超链接形式标明文章 <strong>原始出处</strong> &amp; <strong>作者信息</strong>。</p>
+</blockquote>
+<p><strong>End</strong></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: block;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="Flyerboy WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="Flyerboy Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/PHP/" rel="tag"># PHP</a>
+          
+            <a href="/tags/Yii/" rel="tag"># Yii</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/17/yii_rbac_role/" rel="next" title="Yii2 RBAC 角色管理（二）">
+                <i class="fa fa-chevron-left"></i> Yii2 RBAC 角色管理（二）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/18/yii_create_widget/" rel="prev" title="Yii2 自定义 Widget">
+                Yii2 自定义 Widget <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/face.jpg"
+               alt="Flyerboy" />
+          <p class="site-author-name" itemprop="name">Flyerboy</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#创建控制器"><span class="nav-number">1.</span> <span class="nav-text">创建控制器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查看角色全部用户"><span class="nav-number">2.</span> <span class="nav-text">查看角色全部用户</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#角色添加用户"><span class="nav-number">3.</span> <span class="nav-text">角色添加用户</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#角色删除用户"><span class="nav-number">4.</span> <span class="nav-text">角色删除用户</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#角色权限节点"><span class="nav-number">5.</span> <span class="nav-text">角色权限节点</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Flyerboy</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Gemini
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

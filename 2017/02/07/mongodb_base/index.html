@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Mongodb,Mongodb学习" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="过完年之后，给自己定了学习计划，打算学习下 mongodb 数据库，那么现在开始学起来~ 基本操作1234&amp;gt; use table;    // 选择数据库&amp;gt; show dbs;     // 查看数据库&amp;gt; show collections;      // 查看 collections&amp;gt; db.demo.drop();       // 删除 collection demo">
+<meta name="keywords" content="Mongodb,Mongodb学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mongodb 学习笔记一">
+<meta property="og:url" content="http://github.com/flyerboy/2017/02/07/mongodb_base/index.html">
+<meta property="og:site_name" content="Flyerboy">
+<meta property="og:description" content="过完年之后，给自己定了学习计划，打算学习下 mongodb 数据库，那么现在开始学起来~ 基本操作1234&amp;gt; use table;    // 选择数据库&amp;gt; show dbs;     // 查看数据库&amp;gt; show collections;      // 查看 collections&amp;gt; db.demo.drop();       // 删除 collection demo">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-02-07T06:20:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mongodb 学习笔记一">
+<meta name="twitter:description" content="过完年之后，给自己定了学习计划，打算学习下 mongodb 数据库，那么现在开始学起来~ 基本操作1234&amp;gt; use table;    // 选择数据库&amp;gt; show dbs;     // 查看数据库&amp;gt; show collections;      // 查看 collections&amp;gt; db.demo.drop();       // 删除 collection demo">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://github.com/flyerboy/2017/02/07/mongodb_base/"/>
+
+
+
+
+
+  <title>Mongodb 学习笔记一 | Flyerboy</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?2131bb08175ee5a07cfa26e983412456";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Flyerboy</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2017/02/07/mongodb_base/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Flyerboy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/face.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Flyerboy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Mongodb 学习笔记一</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-07T12:00:00+08:00">
+                2017-02-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>过完年之后，给自己定了学习计划，打算学习下 <code>mongodb</code> 数据库，那么现在开始学起来~</p>
+<h1 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; use table;    // 选择数据库</span><br><span class="line">&gt; show dbs;     // 查看数据库</span><br><span class="line">&gt; show collections;      // 查看 collections</span><br><span class="line">&gt; db.demo.drop();       // 删除 collection demo</span><br></pre></td></tr></table></figure>
+<h1 id="CRUD-操作"><a href="#CRUD-操作" class="headerlink" title="CRUD 操作"></a>CRUD 操作</h1><h2 id="insert"><a href="#insert" class="headerlink" title="insert"></a>insert</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.demo.insert(&#123;name: &quot;a1&quot;, age: 10&#125;);</span><br><span class="line">&gt; db.demo.insert(&#123;name: &quot;a2&quot;, age: 20&#125;);</span><br><span class="line">&gt; db.demo.insert(&#123;name: &quot;a3&quot;, age: 10&#125;);</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="select"><a href="#select" class="headerlink" title="select"></a>select</h2><p>查询满足条件全部数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.demo.find();</span><br><span class="line">&gt; db.demo.find(&#123;age: 10&#125;);</span><br><span class="line">&gt; db.demo.find(&#123;age: &#123;&quot;$gt&quot;: 10&#125;&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>查询满足条件一条数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.demo.findOne();</span><br><span class="line">&gt; db.demo.findOne(&#123;age: 10&#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="update"><a href="#update" class="headerlink" title="update"></a>update</h2><p>全部更新，将使用第二个参数替换原来的数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.demo.update(&#123;name: &quot;a1&quot;&#125;, &#123;name: &quot;aa&quot;&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>由于上面的语句会替换掉原来的数据，这是就需要出现部分更新操作，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.demo.update(&#123;name: &quot;a1&quot;&#125;, &#123;$set:&#123;name: &quot;aa&quot;&#125;&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>有时会出现更新时数据不存在，就将数据插入到数据库，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.demo.update(&#123;name: &quot;a100&quot;&#125;, &#123;$set:&#123;age: 30&#125;&#125;, true);</span><br></pre></td></tr></table></figure></p>
+<p>比如 <code>collection</code> 中存在 <code>a=1</code> 的数据为 3 条，那么使用 <code>update</code> 的时候，会更新一条，那么想全部更新的话，怎么处理呢？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.demo.insert(&#123;a: 1&#125;);</span><br><span class="line">&gt; db.demo.insert(&#123;a: 1&#125;);</span><br><span class="line">&gt; db.demo.insert(&#123;a: 1&#125;);</span><br><span class="line">&gt; db.demo.update(&#123;a: 1&#125;, &#123;a: 2&#125;);</span><br><span class="line">&gt; db.demo.find(&#123;a: 2&#125;);</span><br><span class="line">&gt; db.demo.update(&#123;a: 1&#125;, &#123;$set:&#123;a: 2&#125;&#125;, false, true);</span><br><span class="line">&gt; db.demo.find(&#123;a: 2&#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h2><p>删除的时候需要注意，这是硬删除，删除后数据将不存在。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.demo.remove(&#123;a: 2&#125;);</span><br><span class="line">&gt; db.demo.find(&#123;a: 2&#125;);</span><br></pre></td></tr></table></figure></p>
+<h1 id="其他操作"><a href="#其他操作" class="headerlink" title="其他操作"></a>其他操作</h1><h2 id="sort"><a href="#sort" class="headerlink" title="sort"></a>sort</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.demo.find().sort(&#123;age: 1&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="pagination"><a href="#pagination" class="headerlink" title="pagination"></a>pagination</h2><p>分页一般的操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.demo.find().skip(10).limit(10);</span><br></pre></td></tr></table></figure></p>
+<h2 id="count"><a href="#count" class="headerlink" title="count"></a>count</h2><p>获取数据条数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.demo.count();</span><br></pre></td></tr></table></figure></p>
+<h2 id="distinct"><a href="#distinct" class="headerlink" title="distinct"></a>distinct</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.demo.distinct(&quot;a&quot;);</span><br></pre></td></tr></table></figure>
+<h1 id="索引管理"><a href="#索引管理" class="headerlink" title="索引管理"></a>索引管理</h1><p>索引主要是为了提高查询速度，下面来看下 <code>mongodb</code> 是怎样管理索引的。</p>
+<h2 id="show-index"><a href="#show-index" class="headerlink" title="show index"></a>show index</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.demo.getIndexes();</span><br></pre></td></tr></table></figure>
+<h2 id="create-index"><a href="#create-index" class="headerlink" title="create index"></a>create index</h2><p>单键索引<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.demo.createIndex(&#123;a: 1&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>自定义名称索引<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.demo.createIndex(&#123;a: 1&#125;, &#123;name: &quot;myIndex&quot;&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>唯一索引<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.demo.createIndex(&#123;n: 1&#125;, &#123;unique: true&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>全文索引<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.demo.createIndex(&#123;title: &quot;text&quot;&#125;);</span><br><span class="line">&gt; db.demo.createIndex(&#123;title: &quot;text&quot;, content: &quot;text&quot;&#125;);</span><br><span class="line">&gt; db.demo.createIndex(&#123;&quot;$**&quot;: &quot;text&quot;&#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="rebuild-index"><a href="#rebuild-index" class="headerlink" title="rebuild index"></a>rebuild index</h2><p>删除掉全部索引并重新创建<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.demo.reIndex();</span><br></pre></td></tr></table></figure></p>
+<h2 id="remove-index"><a href="#remove-index" class="headerlink" title="remove index"></a>remove index</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.demo.dropIndex(&#123;a: 1&#125;);    // 删除某个索引</span><br><span class="line">&gt; db.demo.dropIndexes();    // 删除全部索引</span><br></pre></td></tr></table></figure>
+<h2 id="explain"><a href="#explain" class="headerlink" title="explain"></a>explain</h2><p>分析索引使用情况<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.demo.find().explain();</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>©版权声明：原创作品，允许转载，转载时请务必以超链接形式标明文章 <strong>原始出处</strong> &amp; <strong>作者信息</strong>。</p>
+</blockquote>
+<p><strong>End</strong></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: block;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="Flyerboy WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="Flyerboy Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Mongodb/" rel="tag"># Mongodb</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/22/php_trait/" rel="next" title="PHP trait 学习笔记">
+                <i class="fa fa-chevron-left"></i> PHP trait 学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/13/mysql_join/" rel="prev" title="MySQL & JOIN">
+                MySQL & JOIN <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/face.jpg"
+               alt="Flyerboy" />
+          <p class="site-author-name" itemprop="name">Flyerboy</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本操作"><span class="nav-number">1.</span> <span class="nav-text">基本操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CRUD-操作"><span class="nav-number">2.</span> <span class="nav-text">CRUD 操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#insert"><span class="nav-number">2.1.</span> <span class="nav-text">insert</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#select"><span class="nav-number">2.2.</span> <span class="nav-text">select</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#update"><span class="nav-number">2.3.</span> <span class="nav-text">update</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#delete"><span class="nav-number">2.4.</span> <span class="nav-text">delete</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他操作"><span class="nav-number">3.</span> <span class="nav-text">其他操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#sort"><span class="nav-number">3.1.</span> <span class="nav-text">sort</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pagination"><span class="nav-number">3.2.</span> <span class="nav-text">pagination</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#count"><span class="nav-number">3.3.</span> <span class="nav-text">count</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#distinct"><span class="nav-number">3.4.</span> <span class="nav-text">distinct</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#索引管理"><span class="nav-number">4.</span> <span class="nav-text">索引管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#show-index"><span class="nav-number">4.1.</span> <span class="nav-text">show index</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#create-index"><span class="nav-number">4.2.</span> <span class="nav-text">create index</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rebuild-index"><span class="nav-number">4.3.</span> <span class="nav-text">rebuild index</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#remove-index"><span class="nav-number">4.4.</span> <span class="nav-text">remove index</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#explain"><span class="nav-number">4.5.</span> <span class="nav-text">explain</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Flyerboy</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Gemini
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

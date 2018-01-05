@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="phpredis,PHP,Redis,PHP操作Redis" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="安装 phpredis 扩展下载地址直接源码编译安装。1234phpize./configuremakemake install 编译完毕之后，配置 php.ini ，重启开发环境。1extension=redis.so 如果是 windows 开发环境的话，请 点击这里。">
+<meta name="keywords" content="phpredis,PHP,Redis,PHP操作Redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="phpredis 介绍">
+<meta property="og:url" content="http://github.com/flyerboy/2017/01/03/php_redis/index.html">
+<meta property="og:site_name" content="Flyerboy">
+<meta property="og:description" content="安装 phpredis 扩展下载地址直接源码编译安装。1234phpize./configuremakemake install 编译完毕之后，配置 php.ini ，重启开发环境。1extension=redis.so 如果是 windows 开发环境的话，请 点击这里。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-01-05T02:08:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="phpredis 介绍">
+<meta name="twitter:description" content="安装 phpredis 扩展下载地址直接源码编译安装。1234phpize./configuremakemake install 编译完毕之后，配置 php.ini ，重启开发环境。1extension=redis.so 如果是 windows 开发环境的话，请 点击这里。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://github.com/flyerboy/2017/01/03/php_redis/"/>
+
+
+
+
+
+  <title>phpredis 介绍 | Flyerboy</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?2131bb08175ee5a07cfa26e983412456";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Flyerboy</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2017/01/03/php_redis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Flyerboy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/face.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Flyerboy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">phpredis 介绍</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-03T10:00:00+08:00">
+                2017-01-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="安装-phpredis-扩展"><a href="#安装-phpredis-扩展" class="headerlink" title="安装 phpredis 扩展"></a>安装 phpredis 扩展</h1><p><a href="https://github.com/phpredis/phpredis">下载地址</a><br>直接源码编译安装。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">phpize</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure></p>
+<p>编译完毕之后，配置 <code>php.ini</code> ，重启开发环境。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extension=redis.so</span><br></pre></td></tr></table></figure></p>
+<p>如果是 <code>windows</code> 开发环境的话，请 <a href="http://char101.github.io/phpredis/" target="_blank" rel="external">点击这里</a>。</p>
+<a id="more"></a>
+<h1 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h1><p>下面介绍下 <code>phpredis</code> 基本的操作。</p>
+<h2 id="创建一个客户端"><a href="#创建一个客户端" class="headerlink" title="创建一个客户端"></a>创建一个客户端</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$redis = <span class="keyword">new</span> Redis();</span><br></pre></td></tr></table></figure>
+<h2 id="连接-Redis"><a href="#连接-Redis" class="headerlink" title="连接 Redis"></a>连接 Redis</h2><p>连接分为普通连接和持久连接，其成功返回 <code>TRUE</code> ，失败返回 <code>FALSE</code>。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 普通连接</span></span><br><span class="line">$redis-&gt;connect(<span class="string">'127.0.0.1'</span>, <span class="number">6379</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 持久连接</span></span><br><span class="line">$redis-&gt;pconnect(<span class="string">'127.0.0.1'</span>, <span class="number">6379</span>);</span><br></pre></td></tr></table></figure></p>
+<h2 id="auth"><a href="#auth" class="headerlink" title="auth"></a>auth</h2><p>Redis 授权，传递参数 <code>password</code>，如果成功返回 <code>TRUE</code>，失败返回 <code>FALSE</code>。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$redis-&gt;auth(<span class="string">'pass'</span>);</span><br></pre></td></tr></table></figure></p>
+<h2 id="close"><a href="#close" class="headerlink" title="close"></a>close</h2><p>关闭 Redis<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$redis-&gt;close();</span><br></pre></td></tr></table></figure></p>
+<h2 id="ping"><a href="#ping" class="headerlink" title="ping"></a>ping</h2><p>检测当前服务器状态，成功返回 <code>+PONG</code>，失败抛出错误。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$status = $redis-&gt;ping();</span><br></pre></td></tr></table></figure></p>
+<h2 id="select"><a href="#select" class="headerlink" title="select"></a>select</h2><p>改变数据库。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$redis-&gt;select(<span class="string">'dbname'</span>);</span><br></pre></td></tr></table></figure></p>
+<h2 id="config"><a href="#config" class="headerlink" title="config"></a>config</h2><p>获取或设置 Redis 服务器配置参数，具体配置参数可 <a href="http://redis.io/commands/config-get" target="_blank" rel="external">参考</a>。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$redis-&gt;config(<span class="string">"GET"</span>, <span class="string">"*max-*-entries*"</span>);</span><br></pre></td></tr></table></figure></p>
+<h2 id="dbSize"><a href="#dbSize" class="headerlink" title="dbSize"></a>dbSize</h2><p>获取数据库中 <code>key</code> 的个数。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> $redis-&gt;dbSize();</span><br></pre></td></tr></table></figure></p>
+<h2 id="flushAll"><a href="#flushAll" class="headerlink" title="flushAll"></a>flushAll</h2><p>从全部数据库中一处所有的 <code>key</code>，这个操作比较危险，慎重！<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$redis-&gt;flushAll();</span><br></pre></td></tr></table></figure></p>
+<h2 id="flushDb"><a href="#flushDb" class="headerlink" title="flushDb"></a>flushDb</h2><p>从当前数据库中一处所有 <code>key</code>，这个操作比较危险，慎重！<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$redis-&gt;flushDb();</span><br></pre></td></tr></table></figure></p>
+<h2 id="info"><a href="#info" class="headerlink" title="info"></a>info</h2><p>已数组的形式返回当前 <code>Redis</code> 服务器的信息。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print_r($redis-&gt;info());</span><br></pre></td></tr></table></figure></p>
+<h2 id="resetStat"><a href="#resetStat" class="headerlink" title="resetStat"></a>resetStat</h2><p>重置状态值，这个状态值都是 <code>info</code> 列表中的信息。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$redis-&gt;resetStat();    <span class="comment">// 重置全部</span></span><br><span class="line">$redis-&gt;resetStat(<span class="string">'...'</span>);  <span class="comment">// 可以重置某个值</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="lastSave"><a href="#lastSave" class="headerlink" title="lastSave"></a>lastSave</h2><p>获取最后一次保存数据到硬盘的时间戳。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> $redis-&gt;lastSave();</span><br></pre></td></tr></table></figure></p>
+<h2 id="bgRewriteAOF"><a href="#bgRewriteAOF" class="headerlink" title="bgRewriteAOF"></a>bgRewriteAOF</h2><p>异步执行一个 AOF（AppendOnly File）文件重写操作。<a href="http://www.redis.cn/commands/bgrewriteaof.html" target="_blank" rel="external">介绍</a><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$redis-&gt;bgRewriteAOF();</span><br></pre></td></tr></table></figure></p>
+<h2 id="save"><a href="#save" class="headerlink" title="save"></a>save</h2><p>同步数据到硬盘。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$redis-&gt;save();</span><br></pre></td></tr></table></figure></p>
+<h2 id="bgSave"><a href="#bgSave" class="headerlink" title="bgSave"></a>bgSave</h2><p>异步保存数据到硬盘。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$redis-&gt;bgSave();</span><br></pre></td></tr></table></figure></p>
+<h2 id="time"><a href="#time" class="headerlink" title="time"></a>time</h2><p>获取 <code>Redis</code> 服务器当前时间，返回一个数组。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$res = $redis-&gt;time();</span><br><span class="line">print_r($res);</span><br></pre></td></tr></table></figure></p>
+<h2 id="slaveOf"><a href="#slaveOf" class="headerlink" title="slaveOf"></a>slaveOf</h2><p>设置当前服务器为指定服务器的从属服务器。<br>如果不传参数的话，停止从属服务。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$redis-&gt;slaveOf(<span class="string">'192.168.1.1'</span>, <span class="number">6379</span>);   <span class="comment">// 设置当前服务器为 192.168.1.1 的从属</span></span><br><span class="line">$redis-&gt;slaveOf();  <span class="comment">// 停止当前服务器的从属服务</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>©版权声明：原创作品，允许转载，转载时请务必以超链接形式标明文章 <strong>原始出处</strong> &amp; <strong>作者信息</strong>。</p>
+</blockquote>
+<p><strong>End</strong></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: block;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="Flyerboy WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="Flyerboy Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/PHP/" rel="tag"># PHP</a>
+          
+            <a href="/tags/Redis/" rel="tag"># Redis</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/02/c_note_one/" rel="next" title="C 笔记一">
+                <i class="fa fa-chevron-left"></i> C 笔记一
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/04/php_redis_string/" rel="prev" title="phpredis 字符串操作">
+                phpredis 字符串操作 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/face.jpg"
+               alt="Flyerboy" />
+          <p class="site-author-name" itemprop="name">Flyerboy</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装-phpredis-扩展"><span class="nav-number">1.</span> <span class="nav-text">安装 phpredis 扩展</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本操作"><span class="nav-number">2.</span> <span class="nav-text">基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建一个客户端"><span class="nav-number">2.1.</span> <span class="nav-text">创建一个客户端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连接-Redis"><span class="nav-number">2.2.</span> <span class="nav-text">连接 Redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#auth"><span class="nav-number">2.3.</span> <span class="nav-text">auth</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#close"><span class="nav-number">2.4.</span> <span class="nav-text">close</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ping"><span class="nav-number">2.5.</span> <span class="nav-text">ping</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#select"><span class="nav-number">2.6.</span> <span class="nav-text">select</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#config"><span class="nav-number">2.7.</span> <span class="nav-text">config</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dbSize"><span class="nav-number">2.8.</span> <span class="nav-text">dbSize</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#flushAll"><span class="nav-number">2.9.</span> <span class="nav-text">flushAll</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#flushDb"><span class="nav-number">2.10.</span> <span class="nav-text">flushDb</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#info"><span class="nav-number">2.11.</span> <span class="nav-text">info</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#resetStat"><span class="nav-number">2.12.</span> <span class="nav-text">resetStat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lastSave"><span class="nav-number">2.13.</span> <span class="nav-text">lastSave</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bgRewriteAOF"><span class="nav-number">2.14.</span> <span class="nav-text">bgRewriteAOF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#save"><span class="nav-number">2.15.</span> <span class="nav-text">save</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bgSave"><span class="nav-number">2.16.</span> <span class="nav-text">bgSave</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#time"><span class="nav-number">2.17.</span> <span class="nav-text">time</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slaveOf"><span class="nav-number">2.18.</span> <span class="nav-text">slaveOf</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Flyerboy</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Gemini
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

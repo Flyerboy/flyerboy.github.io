@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="PHP&PDO,PHP PDO 使用" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="摘自 PHP 文档  PHP 数据对象 （PDO） 扩展为PHP访问数据库定义了一个轻量级的一致接口。实现 PDO 接口的每个数据库驱动可以公开具体数据库的特性作为标准扩展功能。 注意利用 PDO 扩展自身并不能实现任何数据库功能；必须使用一个 具体数据库的 PDO 驱动 来访问数据库服务。 PDO 提供了一个 数据访问 抽象层，这意味着，不管使用哪种数据库，都可以用相同的函数（方法）来查询和获取">
+<meta name="keywords" content="PHP&amp;PDO,PHP PDO 使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="熟练使用 PDO 操作 MySQL">
+<meta property="og:url" content="http://github.com/flyerboy/2016/12/27/php_pdo/index.html">
+<meta property="og:site_name" content="Flyerboy">
+<meta property="og:description" content="摘自 PHP 文档  PHP 数据对象 （PDO） 扩展为PHP访问数据库定义了一个轻量级的一致接口。实现 PDO 接口的每个数据库驱动可以公开具体数据库的特性作为标准扩展功能。 注意利用 PDO 扩展自身并不能实现任何数据库功能；必须使用一个 具体数据库的 PDO 驱动 来访问数据库服务。 PDO 提供了一个 数据访问 抽象层，这意味着，不管使用哪种数据库，都可以用相同的函数（方法）来查询和获取">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-12-28T07:49:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="熟练使用 PDO 操作 MySQL">
+<meta name="twitter:description" content="摘自 PHP 文档  PHP 数据对象 （PDO） 扩展为PHP访问数据库定义了一个轻量级的一致接口。实现 PDO 接口的每个数据库驱动可以公开具体数据库的特性作为标准扩展功能。 注意利用 PDO 扩展自身并不能实现任何数据库功能；必须使用一个 具体数据库的 PDO 驱动 来访问数据库服务。 PDO 提供了一个 数据访问 抽象层，这意味着，不管使用哪种数据库，都可以用相同的函数（方法）来查询和获取">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://github.com/flyerboy/2016/12/27/php_pdo/"/>
+
+
+
+
+
+  <title>熟练使用 PDO 操作 MySQL | Flyerboy</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?2131bb08175ee5a07cfa26e983412456";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Flyerboy</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/27/php_pdo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Flyerboy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/face.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Flyerboy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">熟练使用 PDO 操作 MySQL</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-27T20:00:00+08:00">
+                2016-12-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>摘自 PHP 文档</p>
+<blockquote>
+<p>PHP 数据对象 （PDO） 扩展为PHP访问数据库定义了一个轻量级的一致接口。实现 PDO 接口的每个数据库驱动可以公开具体数据库的特性作为标准扩展功能。 注意利用 PDO 扩展自身并不能实现任何数据库功能；必须使用一个 具体数据库的 PDO 驱动 来访问数据库服务。</p>
+<p>PDO 提供了一个 数据访问 抽象层，这意味着，不管使用哪种数据库，都可以用相同的函数（方法）来查询和获取数据。 PDO 不提供 数据库 抽象层；它不会重写 SQL，也不会模拟缺失的特性。如果需要的话，应该使用一个成熟的抽象层。</p>
+</blockquote>
+<p>PDO 支持的数据库驱动可以在 <a href="http://php.net/manual/zh/pdo.drivers.php" target="_blank" rel="external">此处</a> 进行查看。</p>
+<p>下来我使用 <code>MySQL</code> 来演示 <code>PDO</code> 的使用：</p>
+<p>准备一张 <code>InnoDB</code> 引擎的 <code>chapter</code> 表，填充一些测试数据，引擎的选择主要是我们后面要演示事务。表结构如下：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`chapter`</span> (</span><br><span class="line">  <span class="string">`id`</span> <span class="built_in">int</span>(<span class="number">10</span>) <span class="keyword">unsigned</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="string">`title`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">COLLATE</span> utf8_unicode_ci <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`content`</span> <span class="built_in">text</span> <span class="keyword">COLLATE</span> utf8_unicode_ci <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span>;</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h1 id="创建链接"><a href="#创建链接" class="headerlink" title="创建链接"></a>创建链接</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    $db = <span class="keyword">new</span> PDO(<span class="string">"mysql:host=127.0.0.1;dbname=dev"</span>, <span class="string">"root"</span>, <span class="string">""</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span> (<span class="keyword">Exception</span> $e) &#123;</span><br><span class="line">    <span class="keyword">echo</span> $e-&gt;getMessage();</span><br><span class="line">    <span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>参数介绍：</p>
+<ol>
+<li>$dsn 数据源名称或叫做 DSN，包含了请求连接到数据库的信息</li>
+<li>$user 数据库用户名</li>
+<li>$pwd  数据库密码</li>
+</ol>
+<h1 id="新增数据"><a href="#新增数据" class="headerlink" title="新增数据"></a>新增数据</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$sql = <span class="string">"insert into chapter(title,content) values('title', 'content')"</span>;</span><br><span class="line"><span class="comment">// 执行 SQL，返回影响行数</span></span><br><span class="line">$res = $db-&gt;exec($sql);</span><br><span class="line"><span class="keyword">if</span> ($res &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"success"</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"error"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="获取新增数据的-ID"><a href="#获取新增数据的-ID" class="headerlink" title="获取新增数据的 ID"></a>获取新增数据的 ID</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$sql = <span class="string">"insert into chapter(title,content) values('title', 'content')"</span>;</span><br><span class="line">$res = $db-&gt;exec($sql);</span><br><span class="line"><span class="keyword">if</span> ($res &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"ID: "</span> . $db-&gt;lastInsertId();</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"success"</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"error"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$sql = <span class="string">"select * from chapter limit 10"</span>;</span><br><span class="line"><span class="comment">// 执行 SQL，返回 PDOStatement 对象的结果集</span></span><br><span class="line">$res = $db-&gt;query($sql);</span><br><span class="line"><span class="keyword">if</span> ($res) &#123;</span><br><span class="line">    <span class="comment">// 返回一个包含结果集中所有行的数组</span></span><br><span class="line">    <span class="comment">// fetch 获取下一行数据</span></span><br><span class="line">    $data = $res-&gt;fetchAll();</span><br><span class="line">    print_r($data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>fetch 方法第一个参数 <code>fetch_style</code> 说明：<br>在 <code>fetch</code> 方法中有一个重要的参数 <code>$fetch_style</code>,  <code>fetch_style</code> 参数决定 POD 如何返回行,默认值为：PDO::FETCH_BOTH。</p>
+<ul>
+<li>PDO::FETCH_ASSOC：返回一个索引为结果集列名的数组</li>
+<li>PDO::FETCH_OBJ：返回一个属性名对应结果集列名的匿名对象</li>
+<li>PDO::FETCH_NUM：返回一个索引为以0开始的结果集列号的数组</li>
+<li>PDO::FETCH_LAZY：结合使用 PDO::FETCH_BOTH 和 PDO::FETCH_OBJ，创建供用来访问的对象变量名</li>
+<li>PDO::FETCH_BOUND：返回 TRUE ，并分配结果集中的列值给 PDOStatement::bindColumn() 方法绑定的 PHP 变量</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># PDO::FETCH_ASSOC</span></span><br><span class="line">$sql = <span class="string">"select * from chapter where id=?"</span>;</span><br><span class="line">$res = $db-&gt;prepare($sql);</span><br><span class="line">$res-&gt;bindValue(<span class="number">1</span>, <span class="number">3</span>, PDO::PARAM_INT);</span><br><span class="line"><span class="keyword">if</span> ($res-&gt;execute()) &#123;</span><br><span class="line">    $row = $res-&gt;fetch(PDO::FETCH_ASSOC);</span><br><span class="line">    print_r($row);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># PDO::FETCH_OBJ</span></span><br><span class="line">$sql = <span class="string">"select * from chapter where id=?"</span>;</span><br><span class="line">$res = $db-&gt;prepare($sql);</span><br><span class="line">$res-&gt;bindValue(<span class="number">1</span>, <span class="number">3</span>, PDO::PARAM_INT);</span><br><span class="line"><span class="keyword">if</span> ($res-&gt;execute()) &#123;</span><br><span class="line">    $row = $res-&gt;fetch(PDO::FETCH_OBJ);</span><br><span class="line">    print_r($row);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># PDO::FETCH_NUM</span></span><br><span class="line">$sql = <span class="string">"select * from chapter where id=?"</span>;</span><br><span class="line">$res = $db-&gt;prepare($sql);</span><br><span class="line">$res-&gt;bindValue(<span class="number">1</span>, <span class="number">3</span>, PDO::PARAM_INT);</span><br><span class="line"><span class="keyword">if</span> ($res-&gt;execute()) &#123;</span><br><span class="line">    $row = $res-&gt;fetch(PDO::FETCH_NUM);</span><br><span class="line">    print_r($row);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># PDO::FETCH_LAZY</span></span><br><span class="line">$sql = <span class="string">"select * from chapter where id=?"</span>;</span><br><span class="line">$res = $db-&gt;prepare($sql);</span><br><span class="line">$res-&gt;bindValue(<span class="number">1</span>, <span class="number">3</span>, PDO::PARAM_INT);</span><br><span class="line"><span class="keyword">if</span> ($res-&gt;execute()) &#123;</span><br><span class="line">    $row = $res-&gt;fetch(PDO::FETCH_LAZY);</span><br><span class="line">    print_r($row);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># PDO::FETCH_CLASS</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Chapter</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> $id;</span><br><span class="line">    <span class="keyword">public</span> $title;</span><br><span class="line">    <span class="keyword">public</span> $content;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">show</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="keyword">$this</span>-&gt;title . <span class="string">"--title"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$sql = <span class="string">"select * from chapter where id=?"</span>;</span><br><span class="line">$res = $db-&gt;prepare($sql);</span><br><span class="line">$res-&gt;bindValue(<span class="number">1</span>, <span class="number">3</span>, PDO::PARAM_INT);</span><br><span class="line"><span class="keyword">if</span> ($res-&gt;execute()) &#123;</span><br><span class="line">    <span class="comment">// 设置默认的获取模式</span></span><br><span class="line">    $res-&gt;setFetchMode(PDO::FETCH_CLASS, <span class="string">"Chapter"</span>);</span><br><span class="line">    $row = $res-&gt;fetch();</span><br><span class="line">    <span class="keyword">echo</span> $row-&gt;show();</span><br><span class="line">    print_r($row);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># PDO::FETCH_BOUND</span></span><br><span class="line">$sql = <span class="string">"select id,title,content from chapter where id=?"</span>;</span><br><span class="line">$res = $db-&gt;prepare($sql);</span><br><span class="line">$res-&gt;bindValue(<span class="number">1</span>, <span class="number">3</span>, PDO::PARAM_INT);</span><br><span class="line"><span class="keyword">if</span> ($res-&gt;execute()) &#123;</span><br><span class="line">    <span class="comment">// 通过列名到变量，可以通过字段名绑定，也可以通过序号绑定</span></span><br><span class="line">    $res-&gt;bindColumn(<span class="string">'title'</span>, $title);</span><br><span class="line">    $res-&gt;bindColumn(<span class="string">'content'</span>, $content);</span><br><span class="line">    $row = $res-&gt;fetch(PDO::FETCH_BOUND);</span><br><span class="line">    var_dump($row);</span><br><span class="line">    var_dump($title);</span><br><span class="line">    var_dump($content);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>fetchAll 方法第一个参数 <code>fetch_style</code> 说明：<br>其缺省值为 PDO::FETCH_BOTH</p>
+<ul>
+<li>PDO::FETCH_COLUMN：返回指定以0开始索引的列。</li>
+<li>PDO::FETCH_CLASS：返回指定类的实例，映射每行的列到类中对应的属性名。</li>
+<li>PDO::FETCH_FUNC：将每行的列作为参数传递给指定的函数，并返回调用函数后的结果。</li>
+<li>PDO::FETCH_ASSOC：用法和 fetch 一样</li>
+<li>PDO::FETCH_NUM：用法和 fetch 一样</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># PDO::FETCH_COLUMN</span></span><br><span class="line">$sql = <span class="string">"select * from chapter limit 10"</span>;</span><br><span class="line">$res = $db-&gt;query($sql);</span><br><span class="line"><span class="keyword">if</span> ($res) &#123;</span><br><span class="line">    <span class="comment">// 返回指定以0开始索引的列 0:id, 1:title, 2:content</span></span><br><span class="line">    $data = $res-&gt;fetchAll(PDO::FETCH_COLUMN, <span class="number">1</span>);</span><br><span class="line">    print_r($data);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># PDO::FETCH_CLASS</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Chapter</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> $id;</span><br><span class="line">    <span class="keyword">public</span> $title;</span><br><span class="line">    <span class="keyword">public</span> $content;</span><br><span class="line">&#125;</span><br><span class="line">$sql = <span class="string">"select id,title,content from chapter limit 10"</span>;</span><br><span class="line">$res = $db-&gt;query($sql);</span><br><span class="line"><span class="keyword">if</span> ($res) &#123;</span><br><span class="line">    $data = $res-&gt;fetchAll(PDO::FETCH_CLASS, <span class="string">'Chapter'</span>);</span><br><span class="line">    print_r($data);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># PDO::FETCH_FUNC</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span><span class="params">($id, $title, $content)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> $id . <span class="string">":"</span> . $title;</span><br><span class="line">&#125;</span><br><span class="line">$sql = <span class="string">"select id,title,content from chapter limit 10"</span>;</span><br><span class="line">$res = $db-&gt;query($sql);</span><br><span class="line"><span class="keyword">if</span> ($res) &#123;</span><br><span class="line">    $data = $res-&gt;fetchAll(PDO::FETCH_FUNC, <span class="string">'fun'</span>);</span><br><span class="line">    print_r($data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="使用预处理"><a href="#使用预处理" class="headerlink" title="使用预处理"></a>使用预处理</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 写法一</span></span><br><span class="line">$sql = <span class="string">"select * from chapter where id=:id"</span>;</span><br><span class="line"><span class="comment">// 预处理 SQL 语句</span></span><br><span class="line">$res = $db-&gt;prepare($sql);</span><br><span class="line"><span class="comment">// 执行 SQL</span></span><br><span class="line"><span class="keyword">if</span> ($res-&gt;execute([<span class="string">":id"</span> =&gt; <span class="number">1</span>])) &#123;</span><br><span class="line">    <span class="comment">// 获取一行结果集</span></span><br><span class="line">    $row = $res-&gt;fetch();</span><br><span class="line">    print_r($row);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 写法二</span></span><br><span class="line">$sql = <span class="string">"select * from chapter where id=? and status=?"</span>;</span><br><span class="line"><span class="comment">// 预处理 SQL 语句</span></span><br><span class="line">$res = $db-&gt;prepare($sql);</span><br><span class="line"><span class="comment">// 执行一条预处理语句</span></span><br><span class="line"><span class="keyword">if</span> ($res-&gt;execute([<span class="number">2</span>, <span class="number">1</span>])) &#123;</span><br><span class="line">    <span class="comment">// 获取一行结果集</span></span><br><span class="line">    $row = $res-&gt;fetch();</span><br><span class="line">    print_r($row);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意上面的两种书写方式，第一种使用命名占位符，第二种使用符号占位符，下面详细介绍两种的使用方式。</p>
+<h1 id="绑定值到预处理命名占位符"><a href="#绑定值到预处理命名占位符" class="headerlink" title="绑定值到预处理命名占位符"></a>绑定值到预处理命名占位符</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方法一</span></span><br><span class="line">$sql = <span class="string">"select * from chapter where id=:id"</span>;</span><br><span class="line">$res = $db-&gt;prepare($sql);</span><br><span class="line">$id = <span class="number">1</span>;</span><br><span class="line"><span class="comment">// 绑定一个参数到制定的变量名</span></span><br><span class="line">$res-&gt;bindParam(<span class="string">":id"</span>, $id, PDO::PARAM_INT);</span><br><span class="line"><span class="keyword">if</span> ($res-&gt;execute()) &#123;</span><br><span class="line">    <span class="comment">// 获取一行结果集</span></span><br><span class="line">    $row = $res-&gt;fetch();</span><br><span class="line">    print_r($row);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法二</span></span><br><span class="line"></span><br><span class="line">$sql = <span class="string">"select * from chapter where id=:id"</span>;</span><br><span class="line">$res = $db-&gt;prepare($sql);</span><br><span class="line"><span class="comment">// 绑定一个变量到制定的占位符</span></span><br><span class="line">$res-&gt;bindValue(<span class="string">":id"</span>, <span class="number">2</span>, PDO::PARAM_INT);</span><br><span class="line"><span class="keyword">if</span> ($res-&gt;execute()) &#123;</span><br><span class="line">    <span class="comment">// 获取一行结果集</span></span><br><span class="line">    $row = $res-&gt;fetch();</span><br><span class="line">    print_r($row);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意上面两种方法用了不同的方法绑定占位符，<code>bindParam</code> 和 <code>bindValue</code> 这两个方法，那么这两个方法的区别是：<br><code>bindParam</code> 是将 PHP 变量作为引用被绑定，所以这里只能传变量名，而不能传具体的值，并在 <code>execute</code> 调用的时候取其值。<br><code>bindValue</code> 是将值绑定到占位符，可以是具体的值，也可以是变量。</p>
+<h1 id="绑定值到预处理问好占位符"><a href="#绑定值到预处理问好占位符" class="headerlink" title="绑定值到预处理问好占位符"></a>绑定值到预处理问好占位符</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方法一</span></span><br><span class="line">$sql = <span class="string">"select * from chapter where id=?"</span>;</span><br><span class="line">$res = $db-&gt;prepare($sql);</span><br><span class="line">$id = <span class="number">3</span>;</span><br><span class="line">$res-&gt;bindParam(<span class="number">1</span>, $id, PDO::PARAM_INT);</span><br><span class="line"><span class="keyword">if</span> ($res-&gt;execute()) &#123;</span><br><span class="line">    $row = $res-&gt;fetch();</span><br><span class="line">    print_r($row);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法二</span></span><br><span class="line">$sql = <span class="string">"select * from chapter where id=?"</span>;</span><br><span class="line">$res = $db-&gt;prepare($sql);</span><br><span class="line">$res-&gt;bindValue(<span class="number">1</span>, <span class="number">3</span>, PDO::PARAM_INT);</span><br><span class="line"><span class="keyword">if</span> ($res-&gt;execute()) &#123;</span><br><span class="line">    $row = $res-&gt;fetch();</span><br><span class="line">    print_r($row);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当时问号占位符的时候，绑定参数到占位符的时候，使用 1-n 来代表具体的参数位置。</p>
+<h1 id="更新数据"><a href="#更新数据" class="headerlink" title="更新数据"></a>更新数据</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$sql = <span class="string">"update chapter set title='title11' where id=?"</span>;</span><br><span class="line">$res = $db-&gt;prepare($sql);</span><br><span class="line"><span class="keyword">if</span> ($res-&gt;execute([<span class="number">301</span>])) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"update success"</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"updat error"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$sql = <span class="string">"delete from chapter where id=?"</span>;</span><br><span class="line">$res = $db-&gt;prepare($sql);</span><br><span class="line"><span class="keyword">if</span> ($res-&gt;execute([<span class="number">301</span>])) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"delete success"</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"delete error"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="使用事务"><a href="#使用事务" class="headerlink" title="使用事务"></a>使用事务</h1><p>事务在开发中很常用，那么在 PDO 中是如何使用事务的：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 开始一个事务，关闭自动提交</span></span><br><span class="line">$db-&gt;beginTransaction();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 执行一组 SQL 语句</span></span><br><span class="line">$res1 = $db-&gt;exec(<span class="string">"update chapter set title='111' where id=1"</span>);</span><br><span class="line">$res2 = $db-&gt;exec(<span class="string">"update chapter set title='new title' where id=200"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 执行完之后，根据业务判断是否提交还是回滚</span></span><br><span class="line"><span class="keyword">if</span> ($res1 &amp;&amp; $res2) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"success"</span>;</span><br><span class="line">    $db-&gt;commit();</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"error"</span>;</span><br><span class="line">    $db-&gt;rollBack();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="获取错误信息"><a href="#获取错误信息" class="headerlink" title="获取错误信息"></a>获取错误信息</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 这两个方法是 $db 调用的时候出错信息</span></span><br><span class="line">$db-&gt;errorCode(); <span class="comment">// 可以获取执行错误的编码</span></span><br><span class="line">$db-&gt;errorInfo(); <span class="comment">// 可以获取执行错误的信息</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 还有结果集操作错误信息</span></span><br><span class="line">$res-&gt;errorCode(); </span><br><span class="line">$res-&gt;errorInfo();</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>©版权声明：原创作品，允许转载，转载时请务必以超链接形式标明文章 <strong>原始出处</strong> &amp; <strong>作者信息</strong>。</p>
+</blockquote>
+<p><strong>End</strong></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: block;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="Flyerboy WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="Flyerboy Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Mysql/" rel="tag"># Mysql</a>
+          
+            <a href="/tags/PHP/" rel="tag"># PHP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/27/php_reflection_use/" rel="next" title="PHP反射实际应用">
+                <i class="fa fa-chevron-left"></i> PHP反射实际应用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/28/php_magic_method/" rel="prev" title="PHP 魔术方法介绍">
+                PHP 魔术方法介绍 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/face.jpg"
+               alt="Flyerboy" />
+          <p class="site-author-name" itemprop="name">Flyerboy</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#创建链接"><span class="nav-number">1.</span> <span class="nav-text">创建链接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#新增数据"><span class="nav-number">2.</span> <span class="nav-text">新增数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#获取新增数据的-ID"><span class="nav-number">3.</span> <span class="nav-text">获取新增数据的 ID</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查询数据"><span class="nav-number">4.</span> <span class="nav-text">查询数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用预处理"><span class="nav-number">5.</span> <span class="nav-text">使用预处理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#绑定值到预处理命名占位符"><span class="nav-number">6.</span> <span class="nav-text">绑定值到预处理命名占位符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#绑定值到预处理问好占位符"><span class="nav-number">7.</span> <span class="nav-text">绑定值到预处理问好占位符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#更新数据"><span class="nav-number">8.</span> <span class="nav-text">更新数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#删除数据"><span class="nav-number">9.</span> <span class="nav-text">删除数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用事务"><span class="nav-number">10.</span> <span class="nav-text">使用事务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#获取错误信息"><span class="nav-number">11.</span> <span class="nav-text">获取错误信息</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Flyerboy</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Gemini
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

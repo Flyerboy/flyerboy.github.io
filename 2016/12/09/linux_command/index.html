@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Linux," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="grep 文本搜索工具 -i 忽略大小写 -v 不显示匹配行 -c 显示符合条件的行数值 文本搜索支持正则表达式  123cat /etc/passwd | grep root // 显示包含root的所有行cat /etc/passwd | grep -v bash // 显示不包含bansh的所有行grep &apos;search&apos; ./ -r //查看当前目录下文件中有 search 的行 tar">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 最常用一些命令">
+<meta property="og:url" content="http://github.com/flyerboy/2016/12/09/linux_command/index.html">
+<meta property="og:site_name" content="Flyerboy">
+<meta property="og:description" content="grep 文本搜索工具 -i 忽略大小写 -v 不显示匹配行 -c 显示符合条件的行数值 文本搜索支持正则表达式  123cat /etc/passwd | grep root // 显示包含root的所有行cat /etc/passwd | grep -v bash // 显示不包含bansh的所有行grep &apos;search&apos; ./ -r //查看当前目录下文件中有 search 的行 tar">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-12-18T13:15:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux 最常用一些命令">
+<meta name="twitter:description" content="grep 文本搜索工具 -i 忽略大小写 -v 不显示匹配行 -c 显示符合条件的行数值 文本搜索支持正则表达式  123cat /etc/passwd | grep root // 显示包含root的所有行cat /etc/passwd | grep -v bash // 显示不包含bansh的所有行grep &apos;search&apos; ./ -r //查看当前目录下文件中有 search 的行 tar">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://github.com/flyerboy/2016/12/09/linux_command/"/>
+
+
+
+
+
+  <title>Linux 最常用一些命令 | Flyerboy</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?2131bb08175ee5a07cfa26e983412456";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Flyerboy</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/09/linux_command/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Flyerboy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/face.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Flyerboy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux 最常用一些命令</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-09T10:10:00+08:00">
+                2016-12-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="grep-文本搜索工具"><a href="#grep-文本搜索工具" class="headerlink" title="grep 文本搜索工具"></a>grep 文本搜索工具</h1><ul>
+<li>-i 忽略大小写</li>
+<li>-v 不显示匹配行</li>
+<li>-c 显示符合条件的行数值</li>
+<li>文本搜索支持正则表达式</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/passwd | grep root // 显示包含root的所有行</span><br><span class="line">cat /etc/passwd | grep -v bash // 显示不包含bansh的所有行</span><br><span class="line">grep 'search' ./ -r //查看当前目录下文件中有 search 的行</span><br></pre></td></tr></table></figure>
+<h1 id="tar-解压缩"><a href="#tar-解压缩" class="headerlink" title="tar 解压缩"></a>tar 解压缩</h1><ul>
+<li>-x 解压文件</li>
+<li>-z 支持giz方式</li>
+<li>-j 支持bzip2方式</li>
+<li>-v 显示操作过程</li>
+<li>-f 制定文件</li>
+<li>-C 解压到指定目录</li>
+<li>-W 确认压缩文件的正确性</li>
+<li>-t 显示压缩文件的内容</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf file.tar.gz // 解压当前文件</span><br><span class="line">tar zxvf file.tar.gz -C /dir   //  解压文件到指定目录</span><br><span class="line">tar zxvf file.tar.gz file // 将file文件解压出来</span><br><span class="line">tar jxvf file.tar.gz2  // 解压giz2压缩的文件</span><br><span class="line"></span><br><span class="line">tar zcvf file.tar.gz source  // 将source 文件压缩,多个文件用空格隔开</span><br><span class="line">tar jcvf file.tar.gz2 source // 将source文件以giz2方式压缩,多个文件用空格隔开</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="查看压缩文件内容"><a href="#查看压缩文件内容" class="headerlink" title="查看压缩文件内容"></a>查看压缩文件内容</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -ztvf [filename]</span><br></pre></td></tr></table></figure>
+<h3 id="压缩文件"><a href="#压缩文件" class="headerlink" title="压缩文件"></a>压缩文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zcvf xx.tar.gz [filename/dir] //多目录文件用空格隔开</span><br></pre></td></tr></table></figure>
+<h3 id="解压文件"><a href="#解压文件" class="headerlink" title="解压文件"></a>解压文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf file.tar.gz  // 解压到当前目录</span><br><span class="line">tar -zxvf file.tar.gz -C [dir]  //解压到指定的目录下面</span><br></pre></td></tr></table></figure>
+<h1 id="find-查找文件"><a href="#find-查找文件" class="headerlink" title="find 查找文件"></a>find 查找文件</h1><p><em>格式： find [path] -name searchfile ， 文件名支持正则表达式</em></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">find / -name 'root'  // 在根目录下面查找root的文件</span><br><span class="line">find / -perm 777  // 查找权限为777的文件</span><br><span class="line">find /home -user user  // 在home下查找属于user用户的文件</span><br><span class="line">find /home -nouser   // 查找没有属主用户的文件</span><br><span class="line">find /home -group group  // 查找属组为group的文件</span><br><span class="line">find /home -nogroup  // 查找没有属组的文件</span><br><span class="line">find /home -type d  // 查找类型为目录的文件</span><br></pre></td></tr></table></figure>
+<h1 id="scp-文件安全传输"><a href="#scp-文件安全传输" class="headerlink" title="scp 文件安全传输"></a>scp 文件安全传输</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// local-&gt;remote 格式</span><br><span class="line">scp srcfile remote_user@remote_ip:dest_dir</span><br><span class="line">scp -r srcdir remote_user@remote_ip:dest_dir</span><br><span class="line"></span><br><span class="line">// remote-&gt;local 格式</span><br><span class="line">scp remote_user@remote_ip:dest_dir /localdir</span><br><span class="line">scp -r remote_user@remote_ip:dest_dir /localdir</span><br></pre></td></tr></table></figure>
+<h1 id="tail-查看文件最后10行信息"><a href="#tail-查看文件最后10行信息" class="headerlink" title="tail 查看文件最后10行信息"></a>tail 查看文件最后10行信息</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tail -n num file  // 查看制定行数num</span><br><span class="line">tail -f file  // 时时查看写入文件的内容</span><br><span class="line">tailf file // 和上面效果一样</span><br></pre></td></tr></table></figure>
+<h1 id="head-查看文件头10行信息"><a href="#head-查看文件头10行信息" class="headerlink" title="head 查看文件头10行信息"></a>head 查看文件头10行信息</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head -n num file  // 查看制定行数num</span><br></pre></td></tr></table></figure>
+<h1 id="cat查看文件全部内容"><a href="#cat查看文件全部内容" class="headerlink" title="cat查看文件全部内容"></a>cat查看文件全部内容</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cat file  // 将文件全部内容打印到终端</span><br><span class="line">cat -A file // 查看文件的存储结构,主要是空格和换行符</span><br><span class="line">cat -b file  // 显示行号</span><br><span class="line">cat /etc/passwd &gt; file // 创建文件</span><br><span class="line">cat file1 file2 &gt; file //合并文件</span><br></pre></td></tr></table></figure>
+<h1 id="ps查看进程命令"><a href="#ps查看进程命令" class="headerlink" title="ps查看进程命令"></a>ps查看进程命令</h1><ul>
+<li>a 显示所有进程</li>
+<li>c 显示进程的真实名</li>
+<li>-A/-e 显示所有进程</li>
+<li>-au 显示详细进程信息</li>
+<li>-aux 显示所有包含使用者的进程</li>
+<li>f 显示进程间的关系</li>
+<li>-ef 显示全部进程间的关系</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 常用命令</span><br><span class="line">ps -aux</span><br><span class="line">ps -ef</span><br></pre></td></tr></table></figure>
+<h1 id="netstat查看端口命令"><a href="#netstat查看端口命令" class="headerlink" title="netstat查看端口命令"></a>netstat查看端口命令</h1><ul>
+<li>-a 显示全部连接的socket</li>
+<li>-A 列出网络类型</li>
+<li>-n 直接显示ip地址,不用网络地址</li>
+<li>-p 显示socket的识别码和程序名称</li>
+<li>-t 显示tcp传输协议列表</li>
+<li>-u 显示udp传输协议列表</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 常用命令</span><br><span class="line">netstat -a</span><br><span class="line">netstat -atnp</span><br><span class="line">netstat -aunp</span><br><span class="line"><span class="meta">#</span> 还可以配合 grep 使用</span><br></pre></td></tr></table></figure>
+<h1 id="sort-排序"><a href="#sort-排序" class="headerlink" title="sort 排序"></a>sort 排序</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/passwd | sort // 一般都是针对某个结果进行排序</span><br></pre></td></tr></table></figure>
+<h1 id="du-查看使用空间"><a href="#du-查看使用空间" class="headerlink" title="du 查看使用空间"></a>du 查看使用空间</h1><ul>
+<li>-s 显示总计</li>
+<li>-h 以K,M,G单位显示信息</li>
+<li>-m 以MB单位输出</li>
+<li>-k 以KB单位输出</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">du -sh file //查看文件目录总大小</span><br><span class="line">du -c file1 file2 //显示多个文件大小,并显示总和</span><br><span class="line">du -csh dir1 dir2 //显示多个目录总大小,和总和</span><br></pre></td></tr></table></figure>
+<h1 id="pwd-查看路径命令"><a href="#pwd-查看路径命令" class="headerlink" title="pwd 查看路径命令"></a>pwd 查看路径命令</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pwd  // 显示用户所在当前目录的路径</span><br><span class="line">pwd -P  // 显示真实路径,物理路径</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>©版权声明：原创作品，允许转载，转载时请务必以超链接形式标明文章 <strong>原始出处</strong> &amp; <strong>作者信息</strong>。</p>
+</blockquote>
+<p><strong>End</strong></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: block;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="Flyerboy WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="Flyerboy Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/08/linux-acl/" rel="next" title="Linux ACL">
+                <i class="fa fa-chevron-left"></i> Linux ACL
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/09/mysql_bak/" rel="prev" title="MySQL 的备份和恢复">
+                MySQL 的备份和恢复 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/face.jpg"
+               alt="Flyerboy" />
+          <p class="site-author-name" itemprop="name">Flyerboy</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#grep-文本搜索工具"><span class="nav-number">1.</span> <span class="nav-text">grep 文本搜索工具</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tar-解压缩"><span class="nav-number">2.</span> <span class="nav-text">tar 解压缩</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看压缩文件内容"><span class="nav-number">2.0.1.</span> <span class="nav-text">查看压缩文件内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#压缩文件"><span class="nav-number">2.0.2.</span> <span class="nav-text">压缩文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解压文件"><span class="nav-number">2.0.3.</span> <span class="nav-text">解压文件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#find-查找文件"><span class="nav-number">3.</span> <span class="nav-text">find 查找文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#scp-文件安全传输"><span class="nav-number">4.</span> <span class="nav-text">scp 文件安全传输</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tail-查看文件最后10行信息"><span class="nav-number">5.</span> <span class="nav-text">tail 查看文件最后10行信息</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#head-查看文件头10行信息"><span class="nav-number">6.</span> <span class="nav-text">head 查看文件头10行信息</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cat查看文件全部内容"><span class="nav-number">7.</span> <span class="nav-text">cat查看文件全部内容</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ps查看进程命令"><span class="nav-number">8.</span> <span class="nav-text">ps查看进程命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#netstat查看端口命令"><span class="nav-number">9.</span> <span class="nav-text">netstat查看端口命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sort-排序"><span class="nav-number">10.</span> <span class="nav-text">sort 排序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#du-查看使用空间"><span class="nav-number">11.</span> <span class="nav-text">du 查看使用空间</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pwd-查看路径命令"><span class="nav-number">12.</span> <span class="nav-text">pwd 查看路径命令</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Flyerboy</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Gemini
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

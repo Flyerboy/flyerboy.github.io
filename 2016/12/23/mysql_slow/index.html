@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="MySQL慢查询设置和分析" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="测试使用 MySQL 版本为 5.7.13 MySQL 配置首先可以通过命令查看是否开启慢查询日志123456789101112131415161718mysql&amp;gt; SHOW VARIABLES LIKE &amp;apos;slow_query%&amp;apos;;+---------------------+-----------------------------------+| Variable_">
+<meta name="keywords" content="MySQL慢查询设置和分析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL 慢查询设置和分析工具">
+<meta property="og:url" content="http://github.com/flyerboy/2016/12/23/mysql_slow/index.html">
+<meta property="og:site_name" content="Flyerboy">
+<meta property="og:description" content="测试使用 MySQL 版本为 5.7.13 MySQL 配置首先可以通过命令查看是否开启慢查询日志123456789101112131415161718mysql&amp;gt; SHOW VARIABLES LIKE &amp;apos;slow_query%&amp;apos;;+---------------------+-----------------------------------+| Variable_">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-12-23T08:10:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySQL 慢查询设置和分析工具">
+<meta name="twitter:description" content="测试使用 MySQL 版本为 5.7.13 MySQL 配置首先可以通过命令查看是否开启慢查询日志123456789101112131415161718mysql&amp;gt; SHOW VARIABLES LIKE &amp;apos;slow_query%&amp;apos;;+---------------------+-----------------------------------+| Variable_">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://github.com/flyerboy/2016/12/23/mysql_slow/"/>
+
+
+
+
+
+  <title>MySQL 慢查询设置和分析工具 | Flyerboy</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?2131bb08175ee5a07cfa26e983412456";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Flyerboy</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/23/mysql_slow/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Flyerboy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/face.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Flyerboy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MySQL 慢查询设置和分析工具</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-23T10:05:00+08:00">
+                2016-12-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>测试使用 MySQL 版本为 <code>5.7.13</code></p>
+<h1 id="MySQL-配置"><a href="#MySQL-配置" class="headerlink" title="MySQL 配置"></a>MySQL 配置</h1><p>首先可以通过命令查看是否开启慢查询日志<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SHOW VARIABLES LIKE &apos;slow_query%&apos;;</span><br><span class="line">+---------------------+-----------------------------------+</span><br><span class="line">| Variable_name       | Value                             |</span><br><span class="line">|---------------------+-----------------------------------|</span><br><span class="line">| slow_query_log      | ON                                |</span><br><span class="line">| slow_query_log_file | /var/log/mysql/slow.log           |</span><br><span class="line">+---------------------+-----------------------------------+</span><br><span class="line">2 rows in set</span><br><span class="line">Time: 0.005s</span><br><span class="line"></span><br><span class="line">mysql&gt; SHOW VARIABLES LIKE &apos;long_query_time%&apos;;</span><br><span class="line">+-----------------+---------+</span><br><span class="line">| Variable_name   |   Value |</span><br><span class="line">|-----------------+---------|</span><br><span class="line">| long_query_time |       1 |</span><br><span class="line">+-----------------+---------+</span><br><span class="line">1 row in set</span><br><span class="line">Time: 0.004s</span><br></pre></td></tr></table></figure></p>
+<p><code>slow_query_log</code> 表示是否开启慢查询日志，ON 为开启，OFF 为关闭，如果为关闭可以开启。<br><code>slow_query_log_file</code> 表示慢查询日志记录文件<br><code>long_query_time</code> 表示超过多长时间为慢查询，是一个边界值，单位为秒</p>
+<a id="more"></a>
+<h1 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h1><h2 id="临时设置"><a href="#临时设置" class="headerlink" title="临时设置"></a>临时设置</h2><p>在 MySQL 执行 SQL 语句设置，但是如果重启 MySQL 的话将失效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set global slow_query_log = ON;</span><br><span class="line">set long_query_time = 1;</span><br></pre></td></tr></table></figure></p>
+<h2 id="永久设置"><a href="#永久设置" class="headerlink" title="永久设置"></a>永久设置</h2><p>修改配置文件，重启 MySQL, 这种永久生效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">my.cnf</span><br><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line">slow_query_log = ON</span><br><span class="line">slow_query_log_file = /var/log/mysql/slow.log</span><br><span class="line">long_query_time = 1</span><br></pre></td></tr></table></figure></p>
+<h1 id="慢日志格式"><a href="#慢日志格式" class="headerlink" title="慢日志格式"></a>慢日志格式</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Time: 2016-12-22T09:41:17.777439Z</span><br><span class="line"># User@Host: homestead[homestead] @  [192.168.10.1]  Id:  1543</span><br><span class="line"># Query_time: 2.001423  Lock_time: 0.000000 Rows_sent: 1  Rows_examined: 0</span><br><span class="line">use homestead;</span><br><span class="line">SET timestamp=1482399677;</span><br><span class="line">select sleep(2);</span><br></pre></td></tr></table></figure>
+<h1 id="慢查询日志分析工具"><a href="#慢查询日志分析工具" class="headerlink" title="慢查询日志分析工具"></a>慢查询日志分析工具</h1><h2 id="MySQL-自带工具-mysqldumpslow"><a href="#MySQL-自带工具-mysqldumpslow" class="headerlink" title="MySQL 自带工具 mysqldumpslow"></a>MySQL 自带工具 <code>mysqldumpslow</code></h2><p>使用很简单，可以跟 -h 来查看具体的用法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldumpslow /var/log/mysql/slow.log</span><br></pre></td></tr></table></figure></p>
+<p>主要功能是, 统计不同慢 sql 下面这些属性：</p>
+<ul>
+<li>出现次数(Count), </li>
+<li>执行最长时间(Time), </li>
+<li>累计总耗费时间(Time), </li>
+<li>等待锁的时间(Lock), </li>
+<li>发送给客户端的行总数(Rows), </li>
+<li>扫描的行总数(Rows), </li>
+<li>用户以及sql语句本身(抽象了一下格式, 比如 limit 1, 20 用 limit N,N 表示).</li>
+</ul>
+<p>讲一下有用的参数：<br>-s 排序选项：c 查询次数 r 返回记录行数 t 查询时间<br>-t num 只显示 top n 条查询<br>其他参数可以使用 -h 命令进行查看</p>
+<h2 id="使用-mysqlsla-工具-项目地址"><a href="#使用-mysqlsla-工具-项目地址" class="headerlink" title="使用 mysqlsla 工具 项目地址"></a>使用 <code>mysqlsla</code> 工具 <a href="https://github.com/daniel-nichter/hackmysql.com">项目地址</a></h2><p><code>mysqlsla</code> 工具，功能非常强大。数据报表，非常有利于分析慢查询的原因，包括执行频率，数据量，查询消耗等。<br>此工具已停止维护，项目 github 介绍页面推荐使用 percona-toolkit，下面有介绍。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqlsla -lt /var/log/mysql/slow.log</span><br></pre></td></tr></table></figure></p>
+<h2 id="使用-percona-toolkit"><a href="#使用-percona-toolkit" class="headerlink" title="使用 percona-toolkit"></a>使用 percona-toolkit</h2><p>percona-toolkit 是一组高级命令行工具的集合，用来执行各种通过手工执行非常复杂和麻烦的 mysql 和系统任务。这些任务包括：</p>
+<ul>
+<li>检查master和slave数据的一致性</li>
+<li>有效地对记录进行归档</li>
+<li>查找重复的索引</li>
+<li>对服务器信息进行汇总</li>
+<li>分析来自日志和tcpdump的查询</li>
+<li>当系统出问题的时候收集重要的系统信息</li>
+</ul>
+<p>安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. 下载，可以在官网找最新版本</span><br><span class="line">wget https://www.percona.com/downloads/percona-toolkit/2.2.20/deb/percona-toolkit_2.2.20-1.tar.gz</span><br><span class="line">2. 解压</span><br><span class="line">tar zxvf percona-toolkit_2.2.20-1.tar.gz</span><br><span class="line">3. 安装</span><br><span class="line">perl Makefile.PL</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure></p>
+<p>percona-toolkit 工具集下 <code>pt-query-digest</code> 命令可以对慢日志进行分析<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">./pt-query-digest  slow.log</span><br><span class="line"></span><br><span class="line"># 170ms user time, 20ms system time, 26.18M rss, 76.54M vsz</span><br><span class="line"># Current date: Fri Dec 23 02:20:25 2016</span><br><span class="line"># Hostname: dev</span><br><span class="line"># Files: /var/log/mysql/slow.log</span><br><span class="line"># Overall: 3 total, 1 unique, 0.00 QPS, 0.00x concurrency ________________</span><br><span class="line"># Time range: 2016-12-22T09:40:03 to 2016-12-23T02:19:35</span><br><span class="line"># Attribute          total     min     max     avg     96%  stddev  median</span><br><span class="line"># ============     ======= ======= ======= ======= ======= ======= =======</span><br><span class="line"># Exec time             6s      2s      2s      2s      2s       0      2s</span><br><span class="line"># Lock time              0       0       0       0       0       0       0</span><br><span class="line"># Rows sent              3       1       1       1       1       0       1</span><br><span class="line"># Rows examine           0       0       0       0       0       0       0</span><br><span class="line"># Query size            45      15      15      15      15       0      15</span><br><span class="line"></span><br><span class="line">这个部分是总体概要统计信息，对当前 MySQL 的查询性能做一个初步的评估，比如各个指标的最大值(max)，</span><br><span class="line">平均值(min)，95%分布值，中位数(median)，标准偏差(stddev)。这些指标有查询的执行时间（Exec time），</span><br><span class="line">锁占用的时间（Lock time），MySQL 执行器需要检查的行数（Rows examine），</span><br><span class="line">最后返回给客户端的行数（Rows sent），查询的大小 （Query size）。</span><br><span class="line"></span><br><span class="line">后面就会把慢查询的 SQL 展示出来，这样就可以去对 SQL 进行分析优化</span><br></pre></td></tr></table></figure></p>
+<p>详情信息查看 <a href="https://www.percona.com/software/database-tools/percona-toolkit" target="_blank" rel="external">官网</a>，也可以了解其他 <code>percona-toolkit</code> 下的工具。</p>
+<p>可以对日志进行分析，在实际开发中是一个十分有效的功能，可以快速的分析定位到系统 SQL 的瓶颈，便于做出更好的优化。</p>
+<blockquote>
+<p>©版权声明：原创作品，允许转载，转载时请务必以超链接形式标明文章 <strong>原始出处</strong> &amp; <strong>作者信息</strong>。</p>
+</blockquote>
+<p><strong>End</strong></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: block;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="Flyerboy WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="Flyerboy Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Mysql/" rel="tag"># Mysql</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/22/c_socket/" rel="next" title="C & Socket">
+                <i class="fa fa-chevron-left"></i> C & Socket
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/23/laravel_vue/" rel="prev" title="Laravel + Vue 开发单页应用">
+                Laravel + Vue 开发单页应用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/face.jpg"
+               alt="Flyerboy" />
+          <p class="site-author-name" itemprop="name">Flyerboy</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MySQL-配置"><span class="nav-number">1.</span> <span class="nav-text">MySQL 配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设置"><span class="nav-number">2.</span> <span class="nav-text">设置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#临时设置"><span class="nav-number">2.1.</span> <span class="nav-text">临时设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#永久设置"><span class="nav-number">2.2.</span> <span class="nav-text">永久设置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#慢日志格式"><span class="nav-number">3.</span> <span class="nav-text">慢日志格式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#慢查询日志分析工具"><span class="nav-number">4.</span> <span class="nav-text">慢查询日志分析工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL-自带工具-mysqldumpslow"><span class="nav-number">4.1.</span> <span class="nav-text">MySQL 自带工具 mysqldumpslow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-mysqlsla-工具-项目地址"><span class="nav-number">4.2.</span> <span class="nav-text">使用 mysqlsla 工具 项目地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-percona-toolkit"><span class="nav-number">4.3.</span> <span class="nav-text">使用 percona-toolkit</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Flyerboy</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Gemini
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
