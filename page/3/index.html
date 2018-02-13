@@ -95,12 +95,12 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Flyerboy">
+<meta property="og:title" content="Flyertutor">
 <meta property="og:url" content="http://github.com/flyerboy/page/3/index.html">
-<meta property="og:site_name" content="Flyerboy">
+<meta property="og:site_name" content="Flyertutor">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Flyerboy">
+<meta name="twitter:title" content="Flyertutor">
 
 
 
@@ -135,7 +135,7 @@
 
 
 
-  <title>Flyerboy</title>
+  <title>Flyertutor</title>
   
 
 
@@ -183,7 +183,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Flyerboy</span>
+        <span class="site-title">Flyertutor</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -270,16 +270,412 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/23/laravel_vue/">
+    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/27/php_pdo/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Flyerboy">
+      <meta itemprop="name" content="Flyertutor">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/face.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Flyerboy">
+      <meta itemprop="name" content="Flyertutor">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/12/27/php_pdo/" itemprop="url">熟练使用 PDO 操作 MySQL</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-27T20:00:00+08:00">
+                2016-12-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>摘自 PHP 文档</p>
+<blockquote>
+<p>PHP 数据对象 （PDO） 扩展为PHP访问数据库定义了一个轻量级的一致接口。实现 PDO 接口的每个数据库驱动可以公开具体数据库的特性作为标准扩展功能。 注意利用 PDO 扩展自身并不能实现任何数据库功能；必须使用一个 具体数据库的 PDO 驱动 来访问数据库服务。</p>
+<p>PDO 提供了一个 数据访问 抽象层，这意味着，不管使用哪种数据库，都可以用相同的函数（方法）来查询和获取数据。 PDO 不提供 数据库 抽象层；它不会重写 SQL，也不会模拟缺失的特性。如果需要的话，应该使用一个成熟的抽象层。</p>
+</blockquote>
+<p>PDO 支持的数据库驱动可以在 <a href="http://php.net/manual/zh/pdo.drivers.php" target="_blank" rel="external">此处</a> 进行查看。</p>
+<p>下来我使用 <code>MySQL</code> 来演示 <code>PDO</code> 的使用：</p>
+<p>准备一张 <code>InnoDB</code> 引擎的 <code>chapter</code> 表，填充一些测试数据，引擎的选择主要是我们后面要演示事务。表结构如下：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`chapter`</span> (</span><br><span class="line">  <span class="string">`id`</span> <span class="built_in">int</span>(<span class="number">10</span>) <span class="keyword">unsigned</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="string">`title`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">COLLATE</span> utf8_unicode_ci <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`content`</span> <span class="built_in">text</span> <span class="keyword">COLLATE</span> utf8_unicode_ci <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span>;</span><br></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/12/27/php_pdo/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/27/php_reflection_use/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Flyertutor">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/face.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Flyertutor">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/12/27/php_reflection_use/" itemprop="url">PHP反射实际应用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-27T14:00:00+08:00">
+                2016-12-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><a href="/2016/12/25/php_reflection/">上一节</a> 主要系统讲了反射的用法，虽然讲解了用法，但是没有对其在项目中的实际使用做讲解，不学以致用，不如不学。<br>在好多框架底层实现上面使用了反射，所以要理解和分析框架底层源码的话，必须掌握反射，不然的话理解十分的困难。</p>
+<p>下面我们讲下反射在实际开发中的应用。</p>
+<ul>
+<li>自动生成文档</li>
+<li>实现 MVC 架构</li>
+<li>实现单元测试</li>
+<li>配合 DI 容器解决依赖</li>
+<li>…</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/12/27/php_reflection_use/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/25/php_reflection/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Flyertutor">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/face.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Flyertutor">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/12/25/php_reflection/" itemprop="url">PHP反射</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-25T14:00:00+08:00">
+                2016-12-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="反射介绍"><a href="#反射介绍" class="headerlink" title="反射介绍"></a>反射介绍</h1><p>PHP 反射机制，对类、接口、函数、方法和扩展进行反向工程的能力。<br>分析类，接口，函数和方法的内部结构，方法和函数的参数，以及类的属性和方法。</p>
+<p>反射中常用的几个类：</p>
+<ul>
+<li>ReflectionClass 解析类</li>
+<li>ReflectionProperty  类的属性的相关信息</li>
+<li>ReflectionMethod  类方法的有关信息</li>
+<li>ReflectionParameter 取回了函数或方法参数的相关信息</li>
+<li>ReflectionFunction  一个函数的相关信息</li>
+</ul>
+<p>分析类：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> $id;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> $name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> MAX_AGE = <span class="number">200</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> $likes = [];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($id, $name = <span class="string">'li'</span>)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;id = $id;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;name = $name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">study</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'learning...'</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">_foo</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'foo'</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">bar</span><span class="params">($to, $from = <span class="string">'zh'</span>)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'bar'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/12/25/php_reflection/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/23/laravel_vue/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Flyertutor">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/face.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Flyertutor">
     </span>
 
     
@@ -405,13 +801,13 @@
     <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/23/mysql_slow/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Flyerboy">
+      <meta itemprop="name" content="Flyertutor">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/face.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Flyerboy">
+      <meta itemprop="name" content="Flyertutor">
     </span>
 
     
@@ -531,13 +927,13 @@
     <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/22/c_socket/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Flyerboy">
+      <meta itemprop="name" content="Flyertutor">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/face.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Flyerboy">
+      <meta itemprop="name" content="Flyertutor">
     </span>
 
     
@@ -665,13 +1061,13 @@
     <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/21/c_file/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Flyerboy">
+      <meta itemprop="name" content="Flyertutor">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/face.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Flyerboy">
+      <meta itemprop="name" content="Flyertutor">
     </span>
 
     
@@ -796,13 +1192,13 @@
     <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/20/c_mysql/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Flyerboy">
+      <meta itemprop="name" content="Flyertutor">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/face.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Flyerboy">
+      <meta itemprop="name" content="Flyertutor">
     </span>
 
     
@@ -923,13 +1319,13 @@
     <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/19/mysql_index/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Flyerboy">
+      <meta itemprop="name" content="Flyertutor">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/face.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Flyerboy">
+      <meta itemprop="name" content="Flyertutor">
     </span>
 
     
@@ -1055,13 +1451,13 @@
     <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/18/vue_tree/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Flyerboy">
+      <meta itemprop="name" content="Flyertutor">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/face.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Flyerboy">
+      <meta itemprop="name" content="Flyertutor">
     </span>
 
     
@@ -1166,395 +1562,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/18/yii_create_widget/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Flyerboy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/face.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Flyerboy">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/12/18/yii_create_widget/" itemprop="url">Yii2 自定义 Widget</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-18T18:00:00+08:00">
-                2016-12-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="使用-widget"><a href="#使用-widget" class="headerlink" title="使用 widget"></a>使用 widget</h1><p>yii 的小组件是为了实现视图的可重用，例如一些常用的日期组件、弹框插件等，yii 巧妙的使用了 <code>widget</code> 将其封装，在视图中可简单调用，这样良好的封装减少我们开发重复代码，是一种优秀的设计。下面我们做个示例。</p>
-<p>例如面包屑组件的使用<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在视图文件中引入 breadcrumb 组件</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">yii</span>\<span class="title">widgets</span>\<span class="title">Breadcrumbs</span>;</span><br><span class="line"></span><br><span class="line">Breadcrumbs::widget([</span><br><span class="line">    <span class="string">'links'</span> =&gt; [</span><br><span class="line">        [<span class="string">'Home'</span>]</span><br><span class="line">    ]</span><br><span class="line">]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 只是简单的代码就讲 links 数组中的面包屑地址生成一段 html ，这样就减少我们代码量</span></span><br></pre></td></tr></table></figure></p>
-<p>所有的小组件都是继承 <code>yii\base\Widget</code> 类，里面定义了静态的方法 <code>widget</code>，<code>begin</code>，<code>end</code>，在上面例子中使用了 <code>widget</code>，在调用 <code>yii\widgets\ActiveForm</code> 组件的时候，由于有开始标签 <code>form</code> 和闭合标签 <code>&lt;/form&gt;</code>，在标签中间也有相应的输出，<code>yii</code> 也提供了便捷的实现方法，在开始调用 <code>begin</code>，中间书写其他表单元素，最后调用 <code>end</code></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/12/18/yii_create_widget/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/17/yii_rbac_assign/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Flyerboy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/face.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Flyerboy">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/12/17/yii_rbac_assign/" itemprop="url">Yii2 RBAC 授权管理（三）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-17T20:00:00+08:00">
-                2016-12-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><strong>管理平台 &gt; 权限管理 &gt; 授权管理</strong></p>
-<p>开发环境：<br>homestead: Ubuntu + Nginx + PHP7 + Mysql<br>Yii: yii2-app-advanced</p>
-<p>本人使用的是 <code>yii2-app-advanced</code> 版本来进行开发，如果使用 <code>yii2-app-basic</code>，请修改相应的命名空间。<br>由于本人表单使用原生 <code>html</code>，所以在书写的时候要格外注意 <code>csrf</code> 的设置，不然的话，表单将无法提交成功。</p>
-<p>首先关于 <code>RBAC</code> 的使用方式请参考本人另外一篇文章 <a href="/2016/12/13/yii_rbac/">Yii2 使用 RBAC</a></p>
-<p>实现的 action</p>
-<ol>
-<li>user   // 角色下所有的用户</li>
-<li>addUser  // 给角色组添加用户</li>
-<li>removeUser   // 从角色组删除用户</li>
-<li>permission   // 角色对应权限管理</li>
-</ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/12/17/yii_rbac_assign/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/17/yii_rbac_role/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Flyerboy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/face.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Flyerboy">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/12/17/yii_rbac_role/" itemprop="url">Yii2 RBAC 角色管理（二）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-17T18:00:00+08:00">
-                2016-12-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><strong>管理平台 &gt; 权限管理 &gt; 角色 <code>role</code> 管理</strong></p>
-<p>开发环境：<br>homestead: Ubuntu + Nginx + PHP7 + Mysql<br>Yii: yii2-app-advanced</p>
-<p>本人使用的是 <code>yii2-app-advanced</code> 版本来进行开发，如果使用 <code>yii2-app-basic</code>，请修改相应的命名空间。<br>由于本人表单使用原生 <code>html</code>，所以在书写的时候要格外注意 <code>csrf</code> 的设置，不然的话，表单将无法提交成功。</p>
-<p>首先关于 <code>RBAC</code> 的使用方式请参考本人另外一篇文章 <a href="/2016/12/13/yii_rbac/">Yii2 使用 RBAC</a></p>
-<h1 id="创建控制器"><a href="#创建控制器" class="headerlink" title="创建控制器"></a>创建控制器</h1><p>建立 <code>RoleController</code> 控制器来管理角色</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">backend</span>\<span class="title">controllers</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">Yii</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">yii</span>\<span class="title">db</span>\<span class="title">Query</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">common</span>\<span class="title">models</span>\<span class="title">User</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">yii</span>\<span class="title">web</span>\<span class="title">Controller</span></span><br><span class="line"></span><br><span class="line"><span class="title">class</span> <span class="title">RoleController</span> <span class="title">extends</span> <span class="title">Controller</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/12/17/yii_rbac_role/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1594,8 +1601,8 @@
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/face.jpg"
-               alt="Flyerboy" />
-          <p class="site-author-name" itemprop="name">Flyerboy</p>
+               alt="Flyertutor" />
+          <p class="site-author-name" itemprop="name">Flyertutor</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
           
@@ -1605,7 +1612,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">54</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1618,7 +1625,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1664,7 +1671,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Flyerboy</span>
+  <span class="author" itemprop="copyrightHolder">Flyertutor</span>
 </div>
 
 
