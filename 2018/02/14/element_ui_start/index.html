@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Vue,element-ui,Vue Elememt-UI 构建管理后台" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="安装我使用的是 vue-cli 初始化项目，命令如下：123npm i -g vue-climkdir my-project &amp;amp;&amp;amp; cd my-projectvue init webpack 修改 package.json 文件：12345678...&amp;quot;dependencies&amp;quot;: &amp;#123;  &amp;quot;vue&amp;quot;: &amp;quot;^2.5.2&amp;qu">
+<meta name="keywords" content="Vue,element-ui,Vue Elememt-UI 构建管理后台">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue Elememt-UI 构建管理后台">
+<meta property="og:url" content="http://github.com/flyerboy/2018/02/14/element_ui_start/index.html">
+<meta property="og:site_name" content="Flyertutor">
+<meta property="og:description" content="安装我使用的是 vue-cli 初始化项目，命令如下：123npm i -g vue-climkdir my-project &amp;amp;&amp;amp; cd my-projectvue init webpack 修改 package.json 文件：12345678...&amp;quot;dependencies&amp;quot;: &amp;#123;  &amp;quot;vue&amp;quot;: &amp;quot;^2.5.2&amp;qu">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-02-14T05:53:36.501Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue Elememt-UI 构建管理后台">
+<meta name="twitter:description" content="安装我使用的是 vue-cli 初始化项目，命令如下：123npm i -g vue-climkdir my-project &amp;amp;&amp;amp; cd my-projectvue init webpack 修改 package.json 文件：12345678...&amp;quot;dependencies&amp;quot;: &amp;#123;  &amp;quot;vue&amp;quot;: &amp;quot;^2.5.2&amp;qu">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://github.com/flyerboy/2018/02/14/element_ui_start/"/>
+
+
+
+
+
+  <title>Vue Elememt-UI 构建管理后台 | Flyertutor</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?2131bb08175ee5a07cfa26e983412456";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Flyertutor</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2018/02/14/element_ui_start/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Flyertutor">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/face.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Flyertutor">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Vue Elememt-UI 构建管理后台</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-14T11:00:00+08:00">
+                2018-02-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>我使用的是 <code>vue-cli</code> 初始化项目，命令如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm i -g vue-cli</span><br><span class="line">mkdir my-project &amp;&amp; cd my-project</span><br><span class="line">vue init webpack</span><br></pre></td></tr></table></figure></p>
+<p>修改 <code>package.json</code> 文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">&quot;dependencies&quot;: &#123;</span><br><span class="line">  &quot;vue&quot;: &quot;^2.5.2&quot;,</span><br><span class="line">  &quot;vue-router&quot;: &quot;^3.0.1&quot;,</span><br><span class="line">  &quot;element-ui&quot;: &quot;^2.0.7&quot;,  // element-ui</span><br><span class="line">  &quot;axios&quot;: &quot;^0.17.1&quot;  // http 请求库</span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>之后执行 <code>npm install</code> 进行安装依赖，如果安装速度有点慢的话，可以试一下 <code>cnpm</code> ，具体安装和用法自行查找。</p>
+<a id="more"></a>
+<p>简单介绍下项目的目录结构：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">├─build  // 构建配置</span><br><span class="line">├─config  // 配置文件</span><br><span class="line">├─src  // vue 开发源文件目录</span><br><span class="line">├────assets  // css/js 文件</span><br><span class="line">├────components  // vue 组件</span><br><span class="line">├────router   // 路由</span><br><span class="line">├────App.vue   // 启动组件</span><br><span class="line">├────main.js  // 入口文件</span><br><span class="line">├─static  // 静态文件目录</span><br><span class="line">├─test  // 测试目录</span><br></pre></td></tr></table></figure></p>
+<p>之后在项目根目录执行 <code>npm run dev</code> ，打开浏览器输入 <code>http://localhost:8080</code>  就可以查看了。</p>
+<h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><ul>
+<li style="list-style: none"><input type="checkbox"> 登录页面，登录，退出功能</li>
+<li style="list-style: none"><input type="checkbox"> 首页，调用接口渲染列表</li>
+</ul>
+<h1 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h1><p>路由使用的是 <code>vue-router</code>，具体用法可参考 <a href="https://router.vuejs.org/zh-cn/" target="_blank" rel="external">官方文档</a><br>我们这里需要两个路由：<br>src/router/index.js<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">'vue-router'</span></span><br><span class="line"><span class="keyword">import</span> Index <span class="keyword">from</span> <span class="string">'@/components/Index'</span></span><br><span class="line"><span class="keyword">import</span> Login <span class="keyword">from</span> <span class="string">'@/components/Login'</span></span><br><span class="line"></span><br><span class="line">Vue.use(Router)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> routers =  <span class="keyword">new</span> Router(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">'/index'</span>,</span><br><span class="line">      name: <span class="string">'index'</span>,</span><br><span class="line">      component: Index</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">'/login'</span>,</span><br><span class="line">      name: <span class="string">'login'</span>,</span><br><span class="line">      component: Login</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">routers.beforeEach(<span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (to.name !== <span class="string">'login'</span> &amp;&amp; !localStorage.getItem(<span class="string">'token'</span>)) &#123;</span><br><span class="line">    next(&#123;<span class="attr">path</span>: <span class="string">'login'</span>&#125;)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    next()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> routers</span><br></pre></td></tr></table></figure></p>
+<h1 id="登录页面"><a href="#登录页面" class="headerlink" title="登录页面"></a>登录页面</h1><p>src/components/Login.vue<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"login"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-form</span> <span class="attr">name</span>=<span class="string">"aa"</span> <span class="attr">:inline</span>=<span class="string">"true"</span> <span class="attr">label-position</span>=<span class="string">"right"</span> <span class="attr">label-width</span>=<span class="string">"80px"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">el-form-item</span> <span class="attr">label</span>=<span class="string">"用户名"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">el-input</span> <span class="attr">v-model</span>=<span class="string">"user.name"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-input</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">el-form-item</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">el-form-item</span> <span class="attr">label</span>=<span class="string">"密码"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">el-input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">v-model</span>=<span class="string">"user.password"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-input</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">el-form-item</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">el-form-item</span> <span class="attr">label</span>=<span class="string">" "</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">type</span>=<span class="string">"primary"</span> @<span class="attr">click</span>=<span class="string">"login()"</span>&gt;</span>登录<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">el-form-item</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">el-form</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> $http <span class="keyword">from</span> <span class="string">'@/api/'</span></span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> config <span class="keyword">from</span> <span class="string">'@/config'</span></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="undefined">  data () &#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="undefined">      user: &#123;</span></span><br><span class="line"><span class="javascript">        name: <span class="string">''</span>,</span></span><br><span class="line"><span class="javascript">        password: <span class="string">''</span></span></span><br><span class="line"><span class="undefined">      &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  &#125;,</span></span><br><span class="line"><span class="javascript">  mounted: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> token = localStorage.getItem(<span class="string">'token'</span>)</span></span><br><span class="line"><span class="javascript">    <span class="keyword">if</span> (token) &#123;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">this</span>.$router.push(<span class="string">'/index'</span>)</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  &#125;,</span></span><br><span class="line"><span class="undefined">  methods: &#123;</span></span><br><span class="line"><span class="javascript">    login: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">var</span> data = &#123;</span></span><br><span class="line"><span class="javascript">        grant_type: <span class="string">'password'</span>,</span></span><br><span class="line"><span class="undefined">        client_id: config.oauth_client_id,</span></span><br><span class="line"><span class="undefined">        client_secret: config.oauth_secret,</span></span><br><span class="line"><span class="javascript">        username: <span class="keyword">this</span>.user.name,</span></span><br><span class="line"><span class="javascript">        password: <span class="keyword">this</span>.user.password</span></span><br><span class="line"><span class="undefined">      &#125;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">var</span> _this = <span class="keyword">this</span></span></span><br><span class="line"><span class="javascript">      $http.login(data).then(<span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">if</span> (res.status === <span class="number">200</span>) &#123;</span></span><br><span class="line"><span class="undefined">          $http.setToken(res.data.access_token)</span></span><br><span class="line"><span class="undefined">          _this.$message(&#123;</span></span><br><span class="line"><span class="javascript">            showClose: <span class="literal">false</span>,</span></span><br><span class="line"><span class="javascript">            message: <span class="string">'登录成功'</span>,</span></span><br><span class="line"><span class="javascript">            type: <span class="string">'success'</span></span></span><br><span class="line"><span class="undefined">          &#125;)</span></span><br><span class="line"><span class="javascript">          _this.$router.push(<span class="string">'/index'</span>)</span></span><br><span class="line"><span class="javascript">        &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="undefined">          _this.$message(&#123;</span></span><br><span class="line"><span class="javascript">            showClose: <span class="literal">false</span>,</span></span><br><span class="line"><span class="javascript">            message: <span class="string">'登录失败'</span>,</span></span><br><span class="line"><span class="javascript">            type: <span class="string">'error'</span></span></span><br><span class="line"><span class="undefined">          &#125;)</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">      &#125;)</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">.login&#123;</span></span><br><span class="line"><span class="undefined">    width: 300px;</span></span><br><span class="line"><span class="undefined">    margin: 100px auto;</span></span><br><span class="line"><span class="undefined">    background-color: #ffffff;</span></span><br><span class="line"><span class="undefined">    padding: 30px 30px 5px;</span></span><br><span class="line"><span class="undefined">    border-radius: 5px;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="首页"><a href="#首页" class="headerlink" title="首页"></a>首页</h1><p>src/components/Index.vue<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"main"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-table</span></span></span><br><span class="line"><span class="tag">      <span class="attr">stripe</span></span></span><br><span class="line"><span class="tag">      <span class="attr">v-loading</span>=<span class="string">"loading"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">element-loading-background</span>=<span class="string">"#dddddd"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">:data</span>=<span class="string">"tableData"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">style</span>=<span class="string">"width: 100%"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">el-table-column</span></span></span><br><span class="line"><span class="tag">        <span class="attr">prop</span>=<span class="string">"id"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">label</span>=<span class="string">"ID"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">el-table-column</span></span></span><br><span class="line"><span class="tag">        <span class="attr">prop</span>=<span class="string">"name"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">label</span>=<span class="string">"名称"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">el-table</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-pagination</span></span></span><br><span class="line"><span class="tag">      <span class="attr">background</span></span></span><br><span class="line"><span class="tag">      <span class="attr">layout</span>=<span class="string">"prev, pager, next"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">:total</span>=<span class="string">"total"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">class</span>=<span class="string">"page"</span></span></span><br><span class="line"><span class="tag">      @<span class="attr">current-change</span>=<span class="string">"pageList"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">el-pagination</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> $http <span class="keyword">from</span> <span class="string">'@/api/'</span></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="undefined">  data () &#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="undefined">      tableData: [],</span></span><br><span class="line"><span class="undefined">      total: 0,</span></span><br><span class="line"><span class="javascript">      loading: <span class="literal">false</span></span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  &#125;,</span></span><br><span class="line"><span class="javascript">  mounted: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">this</span>.getList()</span></span><br><span class="line"><span class="undefined">  &#125;,</span></span><br><span class="line"><span class="undefined">  methods: &#123;</span></span><br><span class="line"><span class="javascript">    pageList: <span class="function"><span class="keyword">function</span> (<span class="params">page</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">this</span>.search.page = page</span></span><br><span class="line"><span class="javascript">      <span class="keyword">this</span>.getList()</span></span><br><span class="line"><span class="undefined">    &#125;,</span></span><br><span class="line"><span class="javascript">    getList: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">var</span> _this = <span class="keyword">this</span></span></span><br><span class="line"><span class="javascript">      _this.loading = <span class="literal">true</span></span></span><br><span class="line"><span class="javascript">      $http.index().then(<span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">if</span> (res.status === <span class="number">200</span>) &#123;</span></span><br><span class="line"><span class="undefined">          _this.tableData = res.data.data.lists</span></span><br><span class="line"><span class="undefined">          _this.total = res.data.data.total</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="javascript">        _this.loading = <span class="literal">false</span></span></span><br><span class="line"><span class="undefined">      &#125;)</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="App"><a href="#App" class="headerlink" title="App"></a>App</h1><p>src/App.vue<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-row</span> <span class="attr">v-if</span>=<span class="string">"token"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">menus</span> <span class="attr">class</span>=<span class="string">"left-menu"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h3</span> <span class="attr">class</span>=<span class="string">"logo"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/"</span>&gt;</span>Admin<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">menus</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">el-col</span> <span class="attr">:span</span>=<span class="string">"21"</span> <span class="attr">:gutter</span>=<span class="string">"0"</span> <span class="attr">:offset</span>=<span class="string">"3"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">el-breadcrumb</span> <span class="attr">separator-class</span>=<span class="string">"el-icon-arrow-right"</span> <span class="attr">class</span>=<span class="string">"breadcrumb"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">el-breadcrumb-item</span> <span class="attr">:to</span>=<span class="string">"&#123; path: '/' &#125;"</span>&gt;</span>首页<span class="tag">&lt;/<span class="name">el-breadcrumb-item</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">el-breadcrumb-item</span> <span class="attr">class</span>=<span class="string">"active"</span>&gt;</span>列表<span class="tag">&lt;/<span class="name">el-breadcrumb-item</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">el-breadcrumb</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">el-dropdown</span> @<span class="attr">command</span>=<span class="string">"operate"</span> <span class="attr">class</span>=<span class="string">"header"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/static/image/head.jpg"</span> /&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">el-dropdown-menu</span> <span class="attr">slot</span>=<span class="string">"dropdown"</span> <span class="attr">:click</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">el-dropdown-item</span> <span class="attr">command</span>=<span class="string">"/user/profile"</span>&gt;</span>基本资料<span class="tag">&lt;/<span class="name">el-dropdown-item</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">el-dropdown-item</span> <span class="attr">command</span>=<span class="string">"/logout"</span>&gt;</span>安全退出<span class="tag">&lt;/<span class="name">el-dropdown-item</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">el-dropdown-menu</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">el-dropdown</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">router-view</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">el-col</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">el-col</span> <span class="attr">:span</span>=<span class="string">"21"</span> <span class="attr">:gutter</span>=<span class="string">"0"</span> <span class="attr">:offset</span>=<span class="string">"3"</span> <span class="attr">class</span>=<span class="string">"footer"</span>&gt;</span>Copyright © 2017 Flyerboy All Rights Reserved<span class="tag">&lt;/<span class="name">el-col</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;/<span class="name">el-row</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">router-view</span> <span class="attr">v-if</span>=<span class="string">"!token"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> Menus <span class="keyword">from</span> <span class="string">'@/components/Menu'</span></span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="javascript">  name: <span class="string">'App'</span>,</span></span><br><span class="line"><span class="undefined">  data () &#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="javascript">      token: <span class="literal">false</span></span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  &#125;,</span></span><br><span class="line"><span class="javascript">  mounted: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">this</span>.token = localStorage.getItem(<span class="string">'token'</span>) ? <span class="literal">true</span> : <span class="literal">false</span></span></span><br><span class="line"><span class="undefined">  &#125;,</span></span><br><span class="line"><span class="undefined">  watch: &#123;</span></span><br><span class="line"><span class="javascript">    <span class="string">'$route.path'</span>: <span class="function"><span class="keyword">function</span> (<span class="params">$newVal, $oldVal</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">this</span>.token = localStorage.getItem(<span class="string">'token'</span>) ? <span class="literal">true</span> : <span class="literal">false</span></span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  &#125;,</span></span><br><span class="line"><span class="undefined">  methods: &#123;</span></span><br><span class="line"><span class="javascript">     operate: <span class="function"><span class="keyword">function</span> (<span class="params">command</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">if</span> (command === <span class="string">'/logout'</span>) &#123;</span></span><br><span class="line"><span class="javascript">        localStorage.removeItem(<span class="string">'token'</span>)</span></span><br><span class="line"><span class="javascript">        <span class="keyword">this</span>.$router.push(<span class="string">'login'</span>)</span></span><br><span class="line"><span class="javascript">      &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">this</span>.$router.push(command)</span></span><br><span class="line"><span class="undefined">      &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  &#125;,</span></span><br><span class="line"><span class="undefined">  components: &#123;</span></span><br><span class="line"><span class="undefined">    Menus</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">body&#123;</span></span><br><span class="line"><span class="undefined">  margin: 0;</span></span><br><span class="line"><span class="undefined">  padding: 0;</span></span><br><span class="line"><span class="undefined">  background-color: #eeeeee;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined">.header&#123;</span></span><br><span class="line"><span class="undefined">  position: absolute;</span></span><br><span class="line"><span class="undefined">  top: 5px;</span></span><br><span class="line"><span class="undefined">  right: 20px;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined">.header img&#123;</span></span><br><span class="line"><span class="undefined">  width: 38px;</span></span><br><span class="line"><span class="undefined">  height: 38px;</span></span><br><span class="line"><span class="undefined">  border-radius: 20px;</span></span><br><span class="line"><span class="undefined">  border: 1px solid #aaaaaa;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined">#app &#123;</span></span><br><span class="line"><span class="undefined">  font-family: 'Avenir', Helvetica, Arial, sans-serif;</span></span><br><span class="line"><span class="undefined">  -webkit-font-smoothing: antialiased;</span></span><br><span class="line"><span class="undefined">  -moz-osx-font-smoothing: grayscale;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined">.main&#123;</span></span><br><span class="line"><span class="undefined">  padding: 20px;</span></span><br><span class="line"><span class="undefined">  min-height: 600px;</span></span><br><span class="line"><span class="undefined">  margin-bottom: 20px;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined">.main table&#123;</span></span><br><span class="line"><span class="undefined">  background: #ffffff;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined">.left-menu&#123;</span></span><br><span class="line"><span class="undefined">  background-color: #33374B;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined">.logo&#123;</span></span><br><span class="line"><span class="undefined">  padding: 20px 0 15px 20px;</span></span><br><span class="line"><span class="undefined">  font-size: 24px;</span></span><br><span class="line"><span class="undefined">  border-bottom: 2px solid #3a8ee6;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined">.logo a&#123;</span></span><br><span class="line"><span class="undefined">  color: #ffffff;</span></span><br><span class="line"><span class="undefined">  text-decoration: none;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">.left-menu .el-menu&#123;</span></span><br><span class="line"><span class="undefined">  border-right: 0;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined">.breadcrumb&#123;</span></span><br><span class="line"><span class="undefined">  line-height: 40px;</span></span><br><span class="line"><span class="undefined">  padding: 5px 20px;</span></span><br><span class="line"><span class="undefined">  background: #ffffff;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined">.breadcrumb span&#123;</span></span><br><span class="line"><span class="undefined">  color: #069;</span></span><br><span class="line"><span class="undefined">  font-weight: normal;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined">.breadcrumb .active&#123;</span></span><br><span class="line"><span class="undefined">  color: #aaaaaa;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined">.page&#123;</span></span><br><span class="line"><span class="undefined">  margin: 20px 0 0;</span></span><br><span class="line"><span class="undefined">  margin-left: -10px;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined">.page .el-pager li.number&#123;</span></span><br><span class="line"><span class="undefined">  background-color: #ffffff;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined">.el-submenu .el-menu-item&#123;</span></span><br><span class="line"><span class="undefined">  padding-left: 60px !important;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined">.footer&#123;</span></span><br><span class="line"><span class="undefined">  position: fixed;</span></span><br><span class="line"><span class="undefined">  bottom: 0;</span></span><br><span class="line"><span class="undefined">  right: 0;</span></span><br><span class="line"><span class="undefined">  font-size: 12px;</span></span><br><span class="line"><span class="undefined">  color: #888888;</span></span><br><span class="line"><span class="undefined">  padding: 15px 20px;</span></span><br><span class="line"><span class="undefined">  text-align: center;</span></span><br><span class="line"><span class="undefined">  background-color: #ffffff;</span></span><br><span class="line"><span class="undefined">  margin-top: 40px;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="调用-API"><a href="#调用-API" class="headerlink" title="调用 API"></a>调用 API</h1><p>src/api/index.js<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br><span class="line">axios.defaults.baseURL = <span class="string">'http://localhost:8000/'</span></span><br><span class="line">axios.defaults.headers.post[<span class="string">'Content-Type'</span>] = <span class="string">'application/x-www-form-urlencoded'</span></span><br><span class="line">axios.defaults.headers.common[<span class="string">'Authorization'</span>] = <span class="string">'Bearer '</span> + localStorage.getItem(<span class="string">'token'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  setToken: <span class="function"><span class="keyword">function</span> (<span class="params">token</span>) </span>&#123;</span><br><span class="line">    localStorage.setItem(<span class="string">'token'</span>, token)</span><br><span class="line">    axios.defaults.headers.common[<span class="string">'Authorization'</span>] = <span class="string">'Bearer '</span> + token</span><br><span class="line">  &#125;,</span><br><span class="line">  login: <span class="function"><span class="keyword">function</span> (<span class="params">param</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> axios.post(<span class="string">'oauth/token'</span>, param)</span><br><span class="line">  &#125;,</span><br><span class="line">  index: <span class="function"><span class="keyword">function</span> (<span class="params">params</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> axios.get(<span class="string">'api/user/list'</span>, &#123;</span><br><span class="line">      params: params</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="config"><a href="#config" class="headerlink" title="config"></a>config</h1><p>src/config.js 这里配置登录 oauth 需要的 client_id 和 secret<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  oauth_client_id: <span class="number">2</span>,</span><br><span class="line">  oauth_secret: <span class="string">''</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="main-js"><a href="#main-js" class="headerlink" title="main.js"></a>main.js</h1><p>src/main.js<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span></span><br><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">'./router'</span></span><br><span class="line"><span class="keyword">import</span> ElementUI <span class="keyword">from</span> <span class="string">'element-ui'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'element-ui/lib/theme-chalk/index.css'</span></span><br><span class="line"></span><br><span class="line">Vue.use(ElementUI)</span><br><span class="line"></span><br><span class="line">Vue.config.productionTip = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  router,</span><br><span class="line">  components: &#123; App &#125;,</span><br><span class="line">  template: <span class="string">'&lt;App/&gt;'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h1 id="api-接口"><a href="#api-接口" class="headerlink" title="api 接口"></a>api 接口</h1><p>主要用到两个接口，一个是 <code>api/oauth/token</code> 登录获取 token 接口，一个获取列表 <code>api/user/list</code>。<br>第一个接口是用到 laravel oauth，第二个接口直接是一个简单的查询用户列表接口，详细讲会在下一篇文章中讲述。</p>
+<blockquote>
+<p>©版权声明：原创作品，允许转载，转载时请务必以超链接形式标明文章 <strong>原始出处</strong> &amp; <strong>作者信息</strong>。</p>
+</blockquote>
+<p><strong>Happy Coding</strong></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: block;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="Flyertutor WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="Flyertutor Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Vue/" rel="tag"># Vue</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/13/go_flow/" rel="next" title="Go 流程控制">
+                <i class="fa fa-chevron-left"></i> Go 流程控制
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/face.jpg"
+               alt="Flyertutor" />
+          <p class="site-author-name" itemprop="name">Flyertutor</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#目标"><span class="nav-number">2.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#路由"><span class="nav-number">3.</span> <span class="nav-text">路由</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#登录页面"><span class="nav-number">4.</span> <span class="nav-text">登录页面</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#首页"><span class="nav-number">5.</span> <span class="nav-text">首页</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#App"><span class="nav-number">6.</span> <span class="nav-text">App</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#调用-API"><span class="nav-number">7.</span> <span class="nav-text">调用 API</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#config"><span class="nav-number">8.</span> <span class="nav-text">config</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#main-js"><span class="nav-number">9.</span> <span class="nav-text">main.js</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#api-接口"><span class="nav-number">10.</span> <span class="nav-text">api 接口</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Flyertutor</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Gemini
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
