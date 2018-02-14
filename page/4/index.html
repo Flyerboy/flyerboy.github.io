@@ -95,12 +95,12 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Flyerboy">
+<meta property="og:title" content="Flyertutor">
 <meta property="og:url" content="http://github.com/flyerboy/page/4/index.html">
-<meta property="og:site_name" content="Flyerboy">
+<meta property="og:site_name" content="Flyertutor">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Flyerboy">
+<meta name="twitter:title" content="Flyertutor">
 
 
 
@@ -135,7 +135,7 @@
 
 
 
-  <title>Flyerboy</title>
+  <title>Flyertutor</title>
   
 
 
@@ -183,7 +183,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Flyerboy</span>
+        <span class="site-title">Flyertutor</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -270,16 +270,275 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/18/yii_create_widget/">
+    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/19/mysql_index/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Flyerboy">
+      <meta itemprop="name" content="Flyertutor">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/face.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Flyerboy">
+      <meta itemprop="name" content="Flyertutor">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/12/19/mysql_index/" itemprop="url">MySQL 索引的使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-19T21:15:00+08:00">
+                2016-12-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>索引是为了提高查询速度，但相对的会对 <code>insert</code>、 <code>update</code>、 <code>delete</code> 这些更新操作造成影响，所以在选择索引的时候要注意，对其表先进行评审，看其查询频繁还是更新频繁，选择最合适的方法，不要盲目的添加索引。</p>
+<h1 id="查看表索引"><a href="#查看表索引" class="headerlink" title="查看表索引"></a>查看表索引</h1><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show index from table_name</span><br></pre></td></tr></table></figure>
+<h1 id="索引管理"><a href="#索引管理" class="headerlink" title="索引管理"></a>索引管理</h1><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建</span></span><br><span class="line">mysql&gt; create index index_name on table_name(index_field);  -- 单列索引</span><br><span class="line">mysql&gt; create index index_name on table_name(index_field2, index_field2);  -- 多列索引</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 删除</span></span><br><span class="line">mysql&gt; drop index index_name on table_name;</span><br></pre></td></tr></table></figure>
+<h1 id="索引类型"><a href="#索引类型" class="headerlink" title="索引类型"></a>索引类型</h1><ul>
+<li>主键索引 ： 强调字段不为空，且唯一，一般会在主键字段上面添加</li>
+<li>唯一索引 ： 字段可为空，且唯一</li>
+<li>普通索引 ： 一般索引</li>
+<li>全文索引  </li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/12/19/mysql_index/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/18/vue_tree/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Flyertutor">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/face.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Flyertutor">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/12/18/vue_tree/" itemprop="url">Vue 实现节点树</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-18T21:00:00+08:00">
+                2016-12-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>今天公司提了一个需求，需要实现一个节点树的功能，刚好最近在学习 <code>vue</code> ，所以就用其来实现了一个小例。<br>使用 <code>vue2</code> 版本，实现效果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">            root</span><br><span class="line"></span><br><span class="line">    A                   B</span><br><span class="line"></span><br><span class="line">C       D           E        F</span><br></pre></td></tr></table></figure>
+<h1 id="创建-tree-组件"><a href="#创建-tree-组件" class="headerlink" title="创建 tree 组件"></a>创建 tree 组件</h1><p>首先是利用组件实现 <code>tree</code>，主要核心思想就是如果存在 <code>children</code> 节点的话，就递归调用 <code>tree</code> 组件。</p>
+<h2 id="定义组件"><a href="#定义组件" class="headerlink" title="定义组件"></a>定义组件</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> Tree = Vue.extend(&#123;</span><br><span class="line">    name: <span class="string">'tree'</span>,   <span class="comment">// 使用标签时候的名字</span></span><br><span class="line">    template: <span class="string">'#tree'</span>,  <span class="comment">//模板，我这里使用 template 实现，tree 是 template 的 id</span></span><br><span class="line">    props: [<span class="string">'node'</span>, <span class="string">'length'</span>],  <span class="comment">// 组件之间传递的值, node 节点信息，length 当前节点 children 的长度，为了样式管理</span></span><br><span class="line">    computed: &#123;</span><br><span class="line">        cls: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">// 根据 chilren 的长度分配宽度，定义 class</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">this</span>.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="string">'col-md-'</span> + (<span class="number">12</span> / <span class="keyword">this</span>.length);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="string">'col-md-12'</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/12/18/vue_tree/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/18/yii_create_widget/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Flyertutor">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/face.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Flyertutor">
     </span>
 
     
@@ -399,13 +658,13 @@
     <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/17/yii_rbac_assign/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Flyerboy">
+      <meta itemprop="name" content="Flyertutor">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/face.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Flyerboy">
+      <meta itemprop="name" content="Flyertutor">
     </span>
 
     
@@ -533,13 +792,13 @@
     <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/17/yii_rbac_role/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Flyerboy">
+      <meta itemprop="name" content="Flyertutor">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/face.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Flyerboy">
+      <meta itemprop="name" content="Flyertutor">
     </span>
 
     
@@ -662,13 +921,13 @@
     <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/17/yii_rbac_permission/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Flyerboy">
+      <meta itemprop="name" content="Flyertutor">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/face.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Flyerboy">
+      <meta itemprop="name" content="Flyertutor">
     </span>
 
     
@@ -791,13 +1050,13 @@
     <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/17/php_jsonp/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Flyerboy">
+      <meta itemprop="name" content="Flyertutor">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/face.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Flyerboy">
+      <meta itemprop="name" content="Flyertutor">
     </span>
 
     
@@ -922,13 +1181,13 @@
     <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/17/php_array/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Flyerboy">
+      <meta itemprop="name" content="Flyertutor">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/face.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Flyerboy">
+      <meta itemprop="name" content="Flyertutor">
     </span>
 
     
@@ -1047,13 +1306,13 @@
     <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/14/php_session_redis/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Flyerboy">
+      <meta itemprop="name" content="Flyertutor">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/face.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Flyerboy">
+      <meta itemprop="name" content="Flyertutor">
     </span>
 
     
@@ -1187,13 +1446,13 @@
     <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/13/yii_rbac/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Flyerboy">
+      <meta itemprop="name" content="Flyertutor">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/face.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Flyerboy">
+      <meta itemprop="name" content="Flyertutor">
     </span>
 
     
@@ -1299,269 +1558,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/12/vue_router/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Flyerboy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/face.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Flyerboy">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/12/12/vue_router/" itemprop="url">Vue-router 使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-12T10:00:00+08:00">
-                2016-12-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>用 <code>Vue.js + vue-router</code> 创建单页应用，是非常简单的。使用 <code>Vue.js</code> 时，我们就已经把组件组合成一个应用了，当你要把 <code>vue-router</code> 加进来，只需要配置组件和路由映射，然后告诉 <code>vue-router</code> 在哪里渲染它们。</p>
-<p>如果你只是开发简单页面的话，就没必要用到此功能，但是需要开发单页应用的话，<code>vue-router</code> 将是不错的选择</p>
-<p>下面给出一个例子说明 <code>vue-router</code> 的使用</p>
-<p>详细说明，可参考 <a href="https://router.vuejs.org/zh-cn/" target="_blank" rel="external">官方文档</a></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/12/12/vue_router/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/11/c_stack/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Flyerboy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/face.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Flyerboy">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/12/11/c_stack/" itemprop="url">C 语言实现栈</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-11T21:00:00+08:00">
-                2016-12-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><ol>
-<li>栈 <code>stack</code> 是限定仅在尾部进行插入和删除操作的线性表</li>
-<li>我们把允许插入和删除的一端称为栈顶 <code>top</code>，另一端称为栈底 <code>bottom</code>，不包含任何数据的元素为空栈</li>
-<li>栈又称为后进先出 <code>Last in First Out</code> 的线性表，简称 <code>LIFO</code> 结构</li>
-<li>当 <code>top</code> 为空时，表示空栈</li>
-</ol>
-<p>注：</p>
-<ol>
-<li>首先栈是一种特殊的线性表，其具有线性表的关系，前驱和后继，而且特性属性，从栈顶进，从栈顶出</li>
-<li>栈底是固定的，最先进栈的在栈底 <code>bottom</code></li>
-<li>栈的插入操作称为 <strong>入栈</strong> <code>push</code></li>
-<li>栈的删除操作称为 <strong>出栈</strong> <code>pop</code></li>
-</ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/12/11/c_stack/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1601,8 +1597,8 @@
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/face.jpg"
-               alt="Flyerboy" />
-          <p class="site-author-name" itemprop="name">Flyerboy</p>
+               alt="Flyertutor" />
+          <p class="site-author-name" itemprop="name">Flyertutor</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
           
@@ -1612,7 +1608,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">54</span>
+                <span class="site-state-item-count">56</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1625,7 +1621,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1671,7 +1667,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Flyerboy</span>
+  <span class="author" itemprop="copyrightHolder">Flyertutor</span>
 </div>
 
 
