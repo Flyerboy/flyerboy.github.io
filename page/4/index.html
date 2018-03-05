@@ -270,6 +270,137 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/21/c_file/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Flyertutor">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/face.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Flyertutor">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/12/21/c_file/" itemprop="url">C 操作文件函数</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-21T20:00:00+08:00">
+                2016-12-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="打开文件-fopen"><a href="#打开文件-fopen" class="headerlink" title="打开文件 fopen"></a>打开文件 fopen</h1><p>打开一个文件，返回操作文件的指针<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FILE *fopen(const char *path, const char *mode)</span><br></pre></td></tr></table></figure></p>
+<p>参数说明：</p>
+<ol>
+<li>path  文件的路径</li>
+<li>mode  打开模式，也叫打开文件的方式</li>
+</ol>
+<p>模式介绍：<br>r：      只读方式打开，文件必须存在<br>r+：     可读写，必须存在<br>rb+：    打开二进制文件，可以读写<br>rt+：    打开文本文件，可读写<br>w：      只写，文件存在则文件长度清0，文件不存在则建立该文件<br>w+：     可读写，文件存在则文件长度清0，文件不存在则建立该文件<br>a：      附加方式打开只写，不存在建立该文件，存在写入的数据加到文件尾，EOF符保留<br>a+：     附加方式打开可读写，不存在建立该文件，存在写入的数据加到文件尾，EOF符不保留<br>wb：     打开二进制文件，只写<br>wb+：    打开或建立二进制文件，可读写<br>wt+：    打开或建立文本文件，可读写<br>at+：    打开文本文件，可读写，写的数据加在文本末尾<br>ab+：    打开二进制文件，可读写，写的数据加在文件末尾</p>
+<p>由mode字符可知，上述如r、w、a在其后都可以加一个b，表示以二进制形式打开文件</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/12/21/c_file/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/20/c_mysql/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1417,146 +1548,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/14/php_session_redis/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Flyertutor">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/face.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Flyertutor">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/12/14/php_session_redis/" itemprop="url">php 使用 redis 保存 session</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-14T15:00:00+08:00">
-                2016-12-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h1><ul>
-<li>首先要安装phpredis扩展</li>
-<li>配置session支持redis</li>
-<li>启用session</li>
-</ul>
-<h1 id="安装-phpredis-扩展"><a href="#安装-phpredis-扩展" class="headerlink" title="安装 phpredis 扩展"></a>安装 phpredis 扩展</h1><p>参考项目地址中介绍的安装方法 <a href="https://github.com/phpredis/phpredis">地址</a>，其实就是 <code>php</code> 使用 <code>phpize</code> 编译安装扩展的方法</p>
-<h1 id="配置session支持redis"><a href="#配置session支持redis" class="headerlink" title="配置session支持redis"></a>配置session支持redis</h1><ol>
-<li><p>即时配置，直接在php文件中配置，只是运行脚本中生效</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ini_set(<span class="string">'session.save_handler'</span>,<span class="string">'Redis'</span>);</span><br><span class="line">ini_set(<span class="string">'session.save_path'</span>,<span class="string">'tcp://localhost:6379'</span>);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>配置php.ini，全局生效，配置完记得重启http服务器</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">session.save_handler = redis</span><br><span class="line"><span class="comment">//多节点</span></span><br><span class="line">session.save_path = <span class="string">"tcp://ip:port?auth=secret?weight=1&amp;timeout=2.5,tcp://ip2:port2?weight=2"</span></span><br><span class="line"><span class="comment">//单个节点</span></span><br><span class="line">session.save_path = <span class="string">"tcp://ip:port?auth=secret?weight=1&amp;timeout=2.5"</span></span><br><span class="line"><span class="comment">//socket 方式</span></span><br><span class="line">session.save_path = <span class="string">"unix:///var/run/redis/redis.sock?persistent=1&amp;weight=1&amp;database=0"</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<blockquote>
-<p>上面两种配置方式，可以根据自己的需求进行配置。</p>
-</blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/12/14/php_session_redis/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1607,7 +1598,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-count">58</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
