@@ -270,6 +270,137 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2017/12/05/docker_base/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Flyertutor">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/face.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Flyertutor">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/05/docker_base/" itemprop="url">Docker 入门</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-05T10:00:00+08:00">
+                2017-12-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p>Docker 包括三个基本概念</p>
+<ol>
+<li>镜像（Image）</li>
+<li>容器（Container）</li>
+<li>仓库（Repository）<br>理解了这三个概念，就理解了 Docker 的整个生命周期。</li>
+</ol>
+<p>镜像（Image） 和容器（Container） 的关系，就像是面向对象程序设计中的 类 和 实例 一样，镜像是静态的定义，容器是镜像运行时的实体。容器可以被创建、启动、停止、删除、暂停等。<br>仓库（Repository）是一个集中存储，分发镜像的服务。分为公开服务和私有服务，最常使用的 Registry 公开服务是官方的 Docker Hub，这也是默认的 Registry，并拥有大量的高质量的官方镜像。私有服务的话可以自行搭建。</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>安装我这里就不作介绍了，直接安装官网方式进行安装就可以。<a href="https://docs.docker.com/engine/installation/" target="_blank" rel="external">地址</a></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/05/docker_base/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2017/11/08/phpstorm_set/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1444,137 +1575,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2017/01/10/php_redis_list/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Flyertutor">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/face.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Flyertutor">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/01/10/php_redis_list/" itemprop="url">phpredis List</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-10T20:10:00+08:00">
-                2017-01-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Redis 列表是简单的字符串列表，按照插入顺序排序。你可以添加一个元素导列表的头部（左边）或者尾部（右边） LPUSH 命令插入一个新的元素导头部, 而 RPUSH 插入一个新元素导尾部。</p>
-<h1 id="lInsert"><a href="#lInsert" class="headerlink" title="lInsert"></a>lInsert</h1><p>在列表中元素的前面或后面插入元素。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$redis-&gt;del(<span class="string">'l'</span>);</span><br><span class="line"></span><br><span class="line">$redis-&gt;lPush(<span class="string">'l'</span>, <span class="string">'A'</span>);</span><br><span class="line">$redis-&gt;lPush(<span class="string">'l'</span>, <span class="string">'B'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在 A 后面添加 a</span></span><br><span class="line">$redis-&gt;lInsert(<span class="string">'l'</span>, Redis::AFTER, <span class="string">'A'</span>, <span class="string">'a'</span>);</span><br><span class="line">print_r($redis-&gt;lRange(<span class="string">'l'</span>, <span class="number">0</span>, <span class="number">-1</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在 A 的前面添加 b</span></span><br><span class="line">$redis-&gt;lInsert(<span class="string">'l'</span>, Redis::BEFORE, <span class="string">'A'</span>, <span class="string">'b'</span>);</span><br><span class="line">print_r($redis-&gt;lRange(<span class="string">'l'</span>, <span class="number">0</span>, <span class="number">-1</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果元素不存在，插入失败</span></span><br><span class="line">$redis-&gt;lInsert(<span class="string">'l'</span>, Redis::BEFORE, <span class="string">'C'</span>, <span class="string">'b'</span>);</span><br><span class="line">print_r($redis-&gt;lRange(<span class="string">'l'</span>, <span class="number">0</span>, <span class="number">-1</span>));</span><br></pre></td></tr></table></figure></p>
-<h1 id="lLen-amp-lSize"><a href="#lLen-amp-lSize" class="headerlink" title="lLen &amp; lSize"></a>lLen &amp; lSize</h1><p>获取列表的元素长度。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$redis-&gt;del(<span class="string">'l'</span>);</span><br><span class="line">$redis-&gt;lPush(<span class="string">'l'</span>, <span class="number">1</span>);</span><br><span class="line">$redis-&gt;lPush(<span class="string">'l'</span>, <span class="number">2</span>);</span><br><span class="line"><span class="keyword">echo</span> $redis-&gt;lLen(<span class="string">'l'</span>);  <span class="comment">// 2</span></span><br></pre></td></tr></table></figure></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/01/10/php_redis_list/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1620,7 +1625,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">60</span>
+                <span class="site-state-item-count">61</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

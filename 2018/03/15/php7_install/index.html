@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="PHP,PHP数据类型" />
+  <meta name="keywords" content="PHP,安装 PHP7" />
 
 
 
@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="四种标量类型：  boolean （布尔型） integer （整型） float （浮点型, 也称作 double) string （字符串）  两种复合类型：  array （数组） object （对象）  两种特殊类型：  resource　（资源） NULL　（NULL）  下面详细讲解定义和类型获取，以及如何判断是否是其类型。 整形 integer123$num = 100; // 定">
-<meta name="keywords" content="PHP,PHP数据类型">
+<meta name="description" content="今天倒腾 php7 ，想在一台 centos7 的服务器上面安装，这里我采用的是源码编译的方式进行安装。 源码编译安装，必须要安装 gcc 编译环境，安装方法自行搜索查找。 下载下载地址 上面找到对应版本，进行下载，下载完之后解压。123wget http://cn2.php.net/distributions/php-7.1.15.tar.gztar -zxvf php-7.1.15.tar.g">
+<meta name="keywords" content="PHP,安装 PHP7">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PHP 数据类型">
-<meta property="og:url" content="http://github.com/flyerboy/2017/03/01/php_var_type/index.html">
+<meta property="og:title" content="安装 PHP7">
+<meta property="og:url" content="http://github.com/flyerboy/2018/03/15/php7_install/index.html">
 <meta property="og:site_name" content="Flyertutor">
-<meta property="og:description" content="四种标量类型：  boolean （布尔型） integer （整型） float （浮点型, 也称作 double) string （字符串）  两种复合类型：  array （数组） object （对象）  两种特殊类型：  resource　（资源） NULL　（NULL）  下面详细讲解定义和类型获取，以及如何判断是否是其类型。 整形 integer123$num = 100; // 定">
+<meta property="og:description" content="今天倒腾 php7 ，想在一台 centos7 的服务器上面安装，这里我采用的是源码编译的方式进行安装。 源码编译安装，必须要安装 gcc 编译环境，安装方法自行搜索查找。 下载下载地址 上面找到对应版本，进行下载，下载完之后解压。123wget http://cn2.php.net/distributions/php-7.1.15.tar.gztar -zxvf php-7.1.15.tar.g">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-03-10T06:08:40.000Z">
+<meta property="og:updated_time" content="2018-03-15T09:46:35.384Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PHP 数据类型">
-<meta name="twitter:description" content="四种标量类型：  boolean （布尔型） integer （整型） float （浮点型, 也称作 double) string （字符串）  两种复合类型：  array （数组） object （对象）  两种特殊类型：  resource　（资源） NULL　（NULL）  下面详细讲解定义和类型获取，以及如何判断是否是其类型。 整形 integer123$num = 100; // 定">
+<meta name="twitter:title" content="安装 PHP7">
+<meta name="twitter:description" content="今天倒腾 php7 ，想在一台 centos7 的服务器上面安装，这里我采用的是源码编译的方式进行安装。 源码编译安装，必须要安装 gcc 编译环境，安装方法自行搜索查找。 下载下载地址 上面找到对应版本，进行下载，下载完之后解压。123wget http://cn2.php.net/distributions/php-7.1.15.tar.gztar -zxvf php-7.1.15.tar.g">
 
 
 
@@ -134,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://github.com/flyerboy/2017/03/01/php_var_type/"/>
+  <link rel="canonical" href="http://github.com/flyerboy/2018/03/15/php7_install/"/>
 
 
 
 
 
-  <title>PHP 数据类型 | Flyertutor</title>
+  <title>安装 PHP7 | Flyertutor</title>
   
 
 
@@ -273,7 +273,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2017/03/01/php_var_type/">
+    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2018/03/15/php7_install/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Flyertutor">
@@ -290,7 +290,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">PHP 数据类型</h1>
+          <h1 class="post-title" itemprop="name headline">安装 PHP7</h1>
         
 
         <div class="post-meta">
@@ -302,8 +302,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-01T20:00:00+08:00">
-                2017-03-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-15T20:00:00+08:00">
+                2018-03-15
               </time>
             
 
@@ -340,38 +340,19 @@
       
 
       
-        <p>四种标量类型：</p>
-<ul>
-<li>boolean （布尔型）</li>
-<li>integer （整型）</li>
-<li>float （浮点型, 也称作 double)</li>
-<li>string （字符串）</li>
-</ul>
-<p>两种复合类型：</p>
-<ul>
-<li>array （数组）</li>
-<li>object （对象）</li>
-</ul>
-<p>两种特殊类型：</p>
-<ul>
-<li>resource　（资源）</li>
-<li>NULL　（NULL）</li>
-</ul>
-<p>下面详细讲解定义和类型获取，以及如何判断是否是其类型。</p>
-<h1 id="整形-integer"><a href="#整形-integer" class="headerlink" title="整形 integer"></a>整形 integer</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$num = <span class="number">100</span>; <span class="comment">// 定义</span></span><br><span class="line">var_dump(gettype($num));    <span class="comment">// 获取类型</span></span><br><span class="line">var_dump(is_int($num));  <span class="comment">// 判断是否整形</span></span><br></pre></td></tr></table></figure>
+        <p>今天倒腾 <code>php7</code> ，想在一台 <code>centos7</code> 的服务器上面安装，这里我采用的是源码编译的方式进行安装。</p>
+<p>源码编译安装，必须要安装 <code>gcc</code> 编译环境，安装方法自行搜索查找。</p>
+<h1 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h1><p><a href="http://php.net/downloads.php" target="_blank" rel="external">下载地址</a> 上面找到对应版本，进行下载，下载完之后解压。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget http://cn2.php.net/distributions/php-7.1.15.tar.gz</span><br><span class="line">tar -zxvf php-7.1.15.tar.gz</span><br><span class="line">cd php-7.1.15</span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
-<h1 id="浮点型-float"><a href="#浮点型-float" class="headerlink" title="浮点型 float"></a>浮点型 float</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$num = <span class="number">100.1</span>; <span class="comment">// 定义</span></span><br><span class="line">var_dump(gettype($num));    <span class="comment">// 获取类型</span></span><br><span class="line">var_dump(is_float($num));  <span class="comment">// 判断是否浮点型</span></span><br></pre></td></tr></table></figure>
-<h1 id="布尔型-boolean"><a href="#布尔型-boolean" class="headerlink" title="布尔型 boolean"></a>布尔型 boolean</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$is = <span class="keyword">true</span>;</span><br><span class="line">var_dump(gettype($is));    <span class="comment">// 获取类型</span></span><br><span class="line">var_dump(is_float($is));  <span class="comment">// 判断是否布尔型</span></span><br></pre></td></tr></table></figure>
-<h1 id="字符串-string"><a href="#字符串-string" class="headerlink" title="字符串 string"></a>字符串 string</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$str = <span class="string">'this is test'</span>;</span><br><span class="line">var_dump(gettype($str));    <span class="comment">// 获取类型</span></span><br><span class="line">var_dump(is_float($str));  <span class="comment">// 判断是否字符串</span></span><br></pre></td></tr></table></figure>
-<h1 id="数组-array"><a href="#数组-array" class="headerlink" title="数组 array"></a>数组 array</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$arr = <span class="keyword">array</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">var_dump(gettype($arr));</span><br><span class="line">var_dump(is_array($arr));</span><br></pre></td></tr></table></figure>
-<h1 id="对象-object"><a href="#对象-object" class="headerlink" title="对象 object"></a>对象 object</h1><p>类实例化返回的数据类型。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">$demo = <span class="keyword">new</span> Demo();</span><br><span class="line">var_dump(gettype($demo));</span><br><span class="line">var_dump(is_object($demo));</span><br></pre></td></tr></table></figure></p>
-<h1 id="资源-resource"><a href="#资源-resource" class="headerlink" title="资源 resource"></a>资源 resource</h1><p>比如说数据库连接，或者文件句柄，都是资源类型。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$fp = fopen(<span class="string">'./test.txt'</span>, <span class="string">'r'</span>);</span><br><span class="line">$str = fread($fp, <span class="number">1024</span>);</span><br><span class="line">var_dump($fp);</span><br><span class="line">var_dump(gettype($fp));</span><br><span class="line">var_dump(is_resource($fp));</span><br><span class="line"><span class="keyword">echo</span> $str;</span><br><span class="line">fclose($fp);</span><br></pre></td></tr></table></figure></p>
-<h1 id="NULL"><a href="#NULL" class="headerlink" title="NULL"></a>NULL</h1><p>未定义的变量都是 NULL，也可以设置变量为 NULL。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$var = <span class="keyword">null</span>;</span><br><span class="line">var_dump(gettype($var));</span><br><span class="line">var_dump(is_null($var));</span><br></pre></td></tr></table></figure></p>
-<p><em>Warning：</em> 不要使用 gettype() 来测试某种类型，因为其返回的字符串在未来的版本中可能需要改变。此外，由于包含了字符串的比较，它的运行也是较慢的。<br>使用 is_* 函数代替。 <a href="http://php.net/manual/zh/function.gettype.php" target="_blank" rel="external">查看</a></p>
+<h1 id="配置编译安装"><a href="#配置编译安装" class="headerlink" title="配置编译安装"></a>配置编译安装</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> ./configure --prefix=/usr/local/php7 \</span><br><span class="line">--with-mysql-sock --with-mysqli \</span><br><span class="line">--enable-fpm \</span><br><span class="line">--with-libxml-dir --with-openssl \</span><br><span class="line">--with-mcrypt --with-mhash \</span><br><span class="line">--with-pcre-regex  --with-zlib \</span><br><span class="line">--enable-bcmath --with-iconv \</span><br><span class="line">--with-bz2 --enable-calendar \</span><br><span class="line">--with-curl --with-cdb --enable-dom \</span><br><span class="line">--enable-exif --enable-fileinfo \</span><br><span class="line">--enable-filter --with-pcre-dir \</span><br><span class="line">--enable-ftp --with-gd \</span><br><span class="line">--with-openssl-dir --with-jpeg-dir \</span><br><span class="line">--with-png-dir --with-zlib-dir \</span><br><span class="line">--with-freetype-dir \</span><br><span class="line">--enable-gd-native-ttf \</span><br><span class="line">--enable-gd-jis-conv --with-gettext \</span><br><span class="line">--with-gmp --with-mhash \</span><br><span class="line">--enable-json --enable-mbstring \</span><br><span class="line">--enable-mbregex \</span><br><span class="line">--enable-mbregex-backtrack \</span><br><span class="line">--with-libmbfl --with-onig \</span><br><span class="line">--enable-pdo --with-pdo-mysql \</span><br><span class="line">--with-zlib-dir  --with-readline \</span><br><span class="line">--enable-session --enable-shmop \</span><br><span class="line">--enable-simplexml --enable-sockets \</span><br><span class="line">--enable-sysvmsg --enable-sysvsem \</span><br><span class="line">--enable-sysvshm --enable-wddx \</span><br><span class="line">--with-libxml-dir  --with-xsl \</span><br><span class="line">--enable-zip \</span><br><span class="line">--enable-mysqlnd-compression-support \</span><br><span class="line">--with-pear --enable-intl</span><br><span class="line"><span class="meta">$</span> make</span><br><span class="line"><span class="meta">$</span> make install</span><br></pre></td></tr></table></figure>
+<p>安装完毕之后，可以使用 <code>/usr/local/php7/bin/php -v</code> 查看<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ /usr/local/php7/bin/php -v</span><br><span class="line">PHP 7.1.15 (cli) (built: Mar  7 2018 16:10:16) ( NTS )</span><br><span class="line">Copyright (c) 1997-2018 The PHP Group</span><br><span class="line">Zend Engine v3.1.0, Copyright (c) 1998-2018 Zend Technologies</span><br></pre></td></tr></table></figure></p>
+<h1 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h1><p>在解压源文件目录下面找到 <code>php.ini-development</code> 文件，复制到 <code>/usr/local/php7/lib/</code> 目录下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp php.ini-development /usr/local/php7/lib/php.ini</span><br></pre></td></tr></table></figure></p>
+<h1 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h1><p>下面就将 <code>php</code> 的相关命令加入到环境变量。编辑 <code>/etc/profile</code> 文件，其后追加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=$PATH:/usr/local/php7/bin</span><br></pre></td></tr></table></figure></p>
+<p>下面就可直接执行 <code>php -v</code> 命令了。</p>
 <blockquote>
 <p>©版权声明：原创作品，允许转载，转载时请务必以超链接形式标明文章 <strong>原始出处</strong> &amp; <strong>作者信息</strong>。</p>
 </blockquote>
-<p><strong>End</strong></p>
+<p><strong>Happy Coding</strong></p>
 
       
     </div>
@@ -431,8 +412,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/13/mysql_join/" rel="next" title="MySQL & JOIN">
-                <i class="fa fa-chevron-left"></i> MySQL & JOIN
+              <a href="/2018/03/15/php_yeild/" rel="next" title="PHP yield 读取大文件">
+                <i class="fa fa-chevron-left"></i> PHP yield 读取大文件
               </a>
             
           </div>
@@ -440,10 +421,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/10/linux_permission/" rel="prev" title="Linux 权限">
-                Linux 权限 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -568,7 +545,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#整形-integer"><span class="nav-number">1.</span> <span class="nav-text">整形 integer</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#浮点型-float"><span class="nav-number">2.</span> <span class="nav-text">浮点型 float</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#布尔型-boolean"><span class="nav-number">3.</span> <span class="nav-text">布尔型 boolean</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串-string"><span class="nav-number">4.</span> <span class="nav-text">字符串 string</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数组-array"><span class="nav-number">5.</span> <span class="nav-text">数组 array</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对象-object"><span class="nav-number">6.</span> <span class="nav-text">对象 object</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#资源-resource"><span class="nav-number">7.</span> <span class="nav-text">资源 resource</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NULL"><span class="nav-number">8.</span> <span class="nav-text">NULL</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#下载"><span class="nav-number">1.</span> <span class="nav-text">下载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置编译安装"><span class="nav-number">2.</span> <span class="nav-text">配置编译安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置文件"><span class="nav-number">3.</span> <span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#环境变量"><span class="nav-number">4.</span> <span class="nav-text">环境变量</span></a></li></ol></div>
             
 
           </div>
