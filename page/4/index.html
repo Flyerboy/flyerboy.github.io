@@ -270,6 +270,266 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/23/mysql_slow/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Flyertutor">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/face.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Flyertutor">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/12/23/mysql_slow/" itemprop="url">MySQL 慢查询设置和分析工具</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-23T10:05:00+08:00">
+                2016-12-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>测试使用 MySQL 版本为 <code>5.7.13</code></p>
+<h1 id="MySQL-配置"><a href="#MySQL-配置" class="headerlink" title="MySQL 配置"></a>MySQL 配置</h1><p>首先可以通过命令查看是否开启慢查询日志<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SHOW VARIABLES LIKE &apos;slow_query%&apos;;</span><br><span class="line">+---------------------+-----------------------------------+</span><br><span class="line">| Variable_name       | Value                             |</span><br><span class="line">|---------------------+-----------------------------------|</span><br><span class="line">| slow_query_log      | ON                                |</span><br><span class="line">| slow_query_log_file | /var/log/mysql/slow.log           |</span><br><span class="line">+---------------------+-----------------------------------+</span><br><span class="line">2 rows in set</span><br><span class="line">Time: 0.005s</span><br><span class="line"></span><br><span class="line">mysql&gt; SHOW VARIABLES LIKE &apos;long_query_time%&apos;;</span><br><span class="line">+-----------------+---------+</span><br><span class="line">| Variable_name   |   Value |</span><br><span class="line">|-----------------+---------|</span><br><span class="line">| long_query_time |       1 |</span><br><span class="line">+-----------------+---------+</span><br><span class="line">1 row in set</span><br><span class="line">Time: 0.004s</span><br></pre></td></tr></table></figure></p>
+<p><code>slow_query_log</code> 表示是否开启慢查询日志，ON 为开启，OFF 为关闭，如果为关闭可以开启。<br><code>slow_query_log_file</code> 表示慢查询日志记录文件<br><code>long_query_time</code> 表示超过多长时间为慢查询，是一个边界值，单位为秒</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/12/23/mysql_slow/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/22/c_socket/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Flyertutor">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/face.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Flyertutor">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/12/22/c_socket/" itemprop="url">C & Socket</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-22T10:00:00+08:00">
+                2016-12-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>说明开发运行环境：OS X Yosemite 10.10.4<br>其他平台没有做测试，如果在其他 Linux 平台的话，可以使用 <code>man</code> 检查对应函数所需要的头文件，引入即可，不然的话，会出现编译错误。 </p>
+<h1 id="Client"><a href="#Client" class="headerlink" title="Client"></a>Client</h1><p>操作步骤：</p>
+<ol>
+<li>创建一个 <code>socket</code> 实例，使用 <code>socket</code> 函数创建</li>
+<li>使用 <code>IP</code> 地址链接服务器，使用 <code>connect</code> 函数</li>
+<li>向服务器发送数据，使用 <code>write</code>，从服务器接收数据，使用 <code>read</code></li>
+</ol>
+<p>开发的时候主要需要引入 <code>socket.h</code> 这个头文件，一般头文件存放在 <code>/usr/include/sys/</code> 这个目录中，首先检查下这个文件是否存在，不然的话在开发中会出现错误。</p>
+<p><code>socket</code> 支持 <code>TCP</code> 和 <code>UDP</code> 协议，在使用 <code>socket</code> 函数创建的时候，可以指定协议。</p>
+<p>在绑定地址的时候，需要将字符串转换为网络地址，这就需要用到 <code>inet_addr</code> 函数，引入头文件 <code>arpa/inet.h</code>。</p>
+<p>下面我们将写个示例展示下 <code>Client</code> 端的开发步骤</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/12/22/c_socket/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/21/c_file/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1292,262 +1552,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/17/php_jsonp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Flyertutor">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/face.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Flyertutor">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/12/17/php_jsonp/" itemprop="url">PHP + Jsonp 跨域举例</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-17T15:00:00+08:00">
-                2016-12-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Jsonp-介绍"><a href="#Jsonp-介绍" class="headerlink" title="Jsonp 介绍"></a>Jsonp 介绍</h1><p>我们在网站开发的时候，经常会出现在 <code>www.aa.com</code> 域名下面请求 <code>www.bb.com</code> 的数据。<br>在 <code>javascript</code> 中，有一个很重要的安全性限制，<strong>同源策略</strong> ，只能访问当前源下的内容。</p>
-<p>源：指，域名，协议，端口相同</p>
-<blockquote>
-<p>同源策略，它是由 Netscape 提出的一个著名的安全策略。现在所有支持 JavaScript 的浏览器都会使用这个策略。所谓同源是指，域名，协议，端口相同。当一个浏览器的两个 tab 页中分别打开来 百度和谷歌的页面当一个百度浏览器执行一个脚本的时候会检查这个脚本是属于哪个源的，即检查是否同源，只有和百度同源的脚本才会被执行</p>
-</blockquote>
-<p>然而我们有很多的开发需求，需要访问其他源的内容，这是就会出现跨域的情况，下面我们介绍一种解决方案 <code>jsonp</code></p>
-<p>我们在 <code>html</code> 里面中经常会用到 <code>script</code> 标签加载文件信息，这里没有限制，可以加载任意域名下的内容。<br>可以利用这个特性实现获取其他源下内容信息</p>
-<p>JSONP 的缺点则是：<br>它只支持 GET 请求，不支持 POST 等其它类型的 HTTP 请求<br>它只支持跨域 HTTP 请求这种情况，不能解决不同域的两个页面之间如何进行 JavaScript 调用的问题</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/12/17/php_jsonp/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/17/php_array/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Flyertutor">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/face.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Flyertutor">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/12/17/php_array/" itemprop="url">PHP array 操作函数</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-17T14:00:00+08:00">
-                2016-12-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="array-map-函数的介绍"><a href="#array-map-函数的介绍" class="headerlink" title="array_map 函数的介绍"></a>array_map 函数的介绍</h1><p>将数组的每个单元使用回调函数<br>格式: <code>array_map(callback, array)</code></p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$arr = [</span><br><span class="line">    [</span><br><span class="line">        <span class="string">'id'</span> =&gt; <span class="number">1</span>,</span><br><span class="line">        <span class="string">'name'</span> =&gt; <span class="string">'zhang'</span>,</span><br><span class="line">    ],</span><br><span class="line">    [</span><br><span class="line">        <span class="string">'id'</span> =&gt; <span class="number">2</span>,</span><br><span class="line">        <span class="string">'name'</span> =&gt; <span class="string">'lisi'</span></span><br><span class="line">    ],</span><br><span class="line">    [</span><br><span class="line">        <span class="string">'id'</span> =&gt; <span class="number">3</span>,</span><br><span class="line">        <span class="string">'name'</span> =&gt; <span class="string">'joe'</span></span><br><span class="line">    ]</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用匿名回调函数，也可以使用自定义函数</span></span><br><span class="line">$res = array_map(<span class="function"><span class="keyword">function</span><span class="params">($val)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> $val[<span class="string">'id'</span>];</span><br><span class="line">&#125;, $arr);</span><br><span class="line"></span><br><span class="line">print_r($arr);</span><br><span class="line"></span><br><span class="line"><span class="comment">// array_map 的回调函数也可以使用 php 函数</span></span><br><span class="line">$arr = [</span><br><span class="line">    <span class="string">'aa'</span>,</span><br><span class="line">    <span class="string">'bc'</span>,</span><br><span class="line">    <span class="string">'Ad'</span></span><br><span class="line">];</span><br><span class="line">$res = array_map(<span class="string">'strtoupper'</span>, $arr);</span><br><span class="line">print_r($res);</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/12/17/php_array/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1598,7 +1602,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-count">60</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

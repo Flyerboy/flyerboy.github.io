@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Linux,Linux 权限管理" />
+  <meta name="keywords" content="Vue,Vue 根据环境配置 API 地址" />
 
 
 
@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="出于安全的考虑，多用户操作系统需要具备保障个人隐私和系统安全的机制。在Linux中，无论是文档还是硬件设备都以文件的形式存在，相应地，安全机制也主要表现为对文件访问权限的控制。 介绍在 Linux 中打开一个目录，使用命令 ls -l 查看某个文件，显示如下：12ls -l-rwxr--r-- 1 root root   395 Nov 17 06:48 demo.php 在这里我们主要看前面的">
-<meta name="keywords" content="Linux,Linux 权限管理">
+<meta name="description" content="我使用的是 Vue + ElementUI 进行构建的项目，在开发过程中，使用的是前后端分离的模式，所以经常会出现多环境配置信息，尤其是 Api 接口地址的配置，如果在代码中使用判断的方式，感觉不友好。 如果你使用的是 webpack，下面我来介绍一种方法可能会帮助到你： 使用 DefinePlugin 来根据不同的环境设置不同的配置信息，具体参考  在 build 目录下面找到12webpack">
+<meta name="keywords" content="Vue,Vue 根据环境配置 API 地址">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux 权限">
-<meta property="og:url" content="http://github.com/flyerboy/2017/03/10/linux_permission/index.html">
+<meta property="og:title" content="Vue 不同环境配置 API 地址">
+<meta property="og:url" content="http://github.com/flyerboy/2018/03/09/vue_global_config/index.html">
 <meta property="og:site_name" content="Flyertutor">
-<meta property="og:description" content="出于安全的考虑，多用户操作系统需要具备保障个人隐私和系统安全的机制。在Linux中，无论是文档还是硬件设备都以文件的形式存在，相应地，安全机制也主要表现为对文件访问权限的控制。 介绍在 Linux 中打开一个目录，使用命令 ls -l 查看某个文件，显示如下：12ls -l-rwxr--r-- 1 root root   395 Nov 17 06:48 demo.php 在这里我们主要看前面的">
+<meta property="og:description" content="我使用的是 Vue + ElementUI 进行构建的项目，在开发过程中，使用的是前后端分离的模式，所以经常会出现多环境配置信息，尤其是 Api 接口地址的配置，如果在代码中使用判断的方式，感觉不友好。 如果你使用的是 webpack，下面我来介绍一种方法可能会帮助到你： 使用 DefinePlugin 来根据不同的环境设置不同的配置信息，具体参考  在 build 目录下面找到12webpack">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-03-10T07:06:49.000Z">
+<meta property="og:updated_time" content="2018-03-09T08:57:44.279Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux 权限">
-<meta name="twitter:description" content="出于安全的考虑，多用户操作系统需要具备保障个人隐私和系统安全的机制。在Linux中，无论是文档还是硬件设备都以文件的形式存在，相应地，安全机制也主要表现为对文件访问权限的控制。 介绍在 Linux 中打开一个目录，使用命令 ls -l 查看某个文件，显示如下：12ls -l-rwxr--r-- 1 root root   395 Nov 17 06:48 demo.php 在这里我们主要看前面的">
+<meta name="twitter:title" content="Vue 不同环境配置 API 地址">
+<meta name="twitter:description" content="我使用的是 Vue + ElementUI 进行构建的项目，在开发过程中，使用的是前后端分离的模式，所以经常会出现多环境配置信息，尤其是 Api 接口地址的配置，如果在代码中使用判断的方式，感觉不友好。 如果你使用的是 webpack，下面我来介绍一种方法可能会帮助到你： 使用 DefinePlugin 来根据不同的环境设置不同的配置信息，具体参考  在 build 目录下面找到12webpack">
 
 
 
@@ -134,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://github.com/flyerboy/2017/03/10/linux_permission/"/>
+  <link rel="canonical" href="http://github.com/flyerboy/2018/03/09/vue_global_config/"/>
 
 
 
 
 
-  <title>Linux 权限 | Flyertutor</title>
+  <title>Vue 不同环境配置 API 地址 | Flyertutor</title>
   
 
 
@@ -273,7 +273,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2017/03/10/linux_permission/">
+    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2018/03/09/vue_global_config/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Flyertutor">
@@ -290,7 +290,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Linux 权限</h1>
+          <h1 class="post-title" itemprop="name headline">Vue 不同环境配置 API 地址</h1>
         
 
         <div class="post-meta">
@@ -302,8 +302,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-10T10:00:00+08:00">
-                2017-03-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-09T10:00:00+08:00">
+                2018-03-09
               </time>
             
 
@@ -340,53 +340,13 @@
       
 
       
-        <p>出于安全的考虑，多用户操作系统需要具备保障个人隐私和系统安全的机制。在Linux中，无论是文档还是硬件设备都以文件的形式存在，相应地，安全机制也主要表现为对文件访问权限的控制。</p>
-<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>在 Linux 中打开一个目录，使用命令 <code>ls -l</code> 查看某个文件，显示如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ls -l</span><br><span class="line">-rwxr--r-- 1 root root   395 Nov 17 06:48 demo.php</span><br></pre></td></tr></table></figure></p>
-<p>在这里我们主要看前面的 <code>rwxr--r--</code>，这里两两分组，分为三组，分别对应了 <code>文件拥有者</code>，<code>文件属组</code>，<code>其他</code>。</p>
-<ul>
-<li>文件所有者 (owner)：文件或文件夹的拥有者，开始创建文件或文件夹时为创建者。</li>
-<li>属组 (group)：文件或文件夹所属的组, 开始创建文件或文件夹时为创建者的所属的组。</li>
-<li>其他 (other)：除了文件或文件夹的所有者和文件或文件夹所属的组的其他成员，剩下的 linux 的用户。</li>
-</ul>
-<p>在这里我们还可以看到三个字母 <code>r</code>, <code>w</code>, <code>x</code>，下面用表格作详细的说明。</p>
-<table>
-<thead>
-<tr>
-<th>权限</th>
-<th>简写</th>
-<th>数字表示</th>
-<th>对普通文件的作用</th>
-<th>对文件夹的作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>读取</td>
-<td>r</td>
-<td>4</td>
-<td>查看文件内容</td>
-<td>列出文件夹中的文件(ls)</td>
-</tr>
-<tr>
-<td>写入</td>
-<td>w</td>
-<td>2</td>
-<td>修改文件内容</td>
-<td>在文件夹中删除、添加或重命名文件(夹)</td>
-</tr>
-<tr>
-<td>执行</td>
-<td>x</td>
-<td>1</td>
-<td>文件可以作为程序执行</td>
-<td>cd 到文件夹</td>
-</tr>
-</tbody>
-</table>
-<a id="more"></a>
-<h1 id="修改文件的权限"><a href="#修改文件的权限" class="headerlink" title="修改文件的权限"></a>修改文件的权限</h1><p>chmod 权限 文件<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">chmod u+w test   // 修改 test 文件所有者增加权限可写</span><br><span class="line">chmod u-w test   // 修改 test 文件所有者减去权限可写</span><br><span class="line">chmod g+w test   // 修改 test 文件属组增加权限可写</span><br><span class="line">chmod g-w test   // 修改 test 文件属组减去权限可写</span><br><span class="line">chmod o+w test   // 修改 test 文件其他增加权限可写</span><br><span class="line">chmod o-w test   // 修改 test 文件其他减去权限可写</span><br><span class="line">chmod 600 test  // 使用数字表示，一次性就可以设置三个组的权限</span><br></pre></td></tr></table></figure></p>
-<h1 id="修改文件的拥有者"><a href="#修改文件的拥有者" class="headerlink" title="修改文件的拥有者"></a>修改文件的拥有者</h1><p>chown username file<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown root test // 修改 test 文件的拥有者为 root</span><br></pre></td></tr></table></figure></p>
-<h1 id="修改文件的所属组"><a href="#修改文件的所属组" class="headerlink" title="修改文件的所属组"></a>修改文件的所属组</h1><p>chgrp root file<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chgrp root test    // 修改 test 属组为 root</span><br></pre></td></tr></table></figure></p>
+        <p>我使用的是 <code>Vue + ElementUI</code> 进行构建的项目，在开发过程中，使用的是前后端分离的模式，所以经常会出现多环境配置信息，尤其是 <code>Api</code> 接口地址的配置，如果在代码中使用判断的方式，感觉不友好。</p>
+<p>如果你使用的是 <code>webpack</code>，下面我来介绍一种方法可能会帮助到你：</p>
+<p>使用 <code>DefinePlugin</code> 来根据不同的环境设置不同的配置信息，<a href="https://webpack.js.org/plugins/define-plugin/" target="_blank" rel="external">具体参考</a> </p>
+<p>在 <code>build</code> 目录下面找到<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">webpack.dev.conf.js</span><br><span class="line">webpack.prod.conf.js</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># webpack.dev.conf.js</span><br><span class="line">...</span><br><span class="line">plugins: [</span><br><span class="line">  <span class="keyword">new</span> webpack.DefinePlugin(&#123;</span><br><span class="line">    <span class="string">'process.env'</span>: <span class="built_in">require</span>(<span class="string">'../config/dev.env'</span>),</span><br><span class="line">    <span class="string">'process.api'</span>: <span class="string">"'http://www.dev.com/'"</span>  <span class="comment">// 注意这里的写法</span></span><br><span class="line">  &#125;)</span><br><span class="line">]</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"># webpack.prod.conf.js</span><br><span class="line">...</span><br><span class="line">plugins: [</span><br><span class="line">  <span class="keyword">new</span> webpack.DefinePlugin(&#123;</span><br><span class="line">    <span class="string">'process.env'</span>: <span class="built_in">require</span>(<span class="string">'../config/dev.env'</span>),</span><br><span class="line">    <span class="string">'process.api'</span>: <span class="string">"'http://www.prod.com/'"</span>  <span class="comment">// 注意这里的写法</span></span><br><span class="line">  &#125;)</span><br><span class="line">]</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>按照上面方式配置完毕之后，之后你就可以在项目中使用 <code>process.api</code> 进行调用了，打包的时候，会读取不同的配置信息，这样是不是很方便。</p>
+<p>如果你有更好的方法，请在下面评论中留言。</p>
 <blockquote>
 <p>©版权声明：原创作品，允许转载，转载时请务必以超链接形式标明文章 <strong>原始出处</strong> &amp; <strong>作者信息</strong>。</p>
 </blockquote>
@@ -437,7 +397,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Linux/" rel="tag"># Linux</a>
+            <a href="/tags/Vue/" rel="tag"># Vue</a>
           
         </div>
       
@@ -450,8 +410,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/01/php_var_type/" rel="next" title="PHP 数据类型">
-                <i class="fa fa-chevron-left"></i> PHP 数据类型
+              <a href="/2018/03/03/laravel_first_or_create/" rel="next" title="firstOrCreate、firstOrNew、updateOrCreate 方法使用">
+                <i class="fa fa-chevron-left"></i> firstOrCreate、firstOrNew、updateOrCreate 方法使用
               </a>
             
           </div>
@@ -460,8 +420,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/04/19/shell_base/" rel="prev" title="Shell 基础">
-                Shell 基础 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/03/15/php_yeild/" rel="prev" title="PHP yield 读取大文件">
+                PHP yield 读取大文件 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -514,17 +474,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/face.jpg"
@@ -577,22 +528,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#修改文件的权限"><span class="nav-number">2.</span> <span class="nav-text">修改文件的权限</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#修改文件的拥有者"><span class="nav-number">3.</span> <span class="nav-text">修改文件的拥有者</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#修改文件的所属组"><span class="nav-number">4.</span> <span class="nav-text">修改文件的所属组</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
