@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="PHP,安装 PHP7" />
+  <meta name="keywords" content="Go,Go 结构体" />
 
 
 
@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="今天倒腾 php7 ，想在一台 centos7 的服务器上面安装，这里我采用的是源码编译的方式进行安装。 源码编译安装，必须要安装 gcc 编译环境，安装方法自行搜索查找。 下载下载地址 上面找到对应版本，进行下载，下载完之后解压。123wget http://cn2.php.net/distributions/php-7.1.15.tar.gztar -zxvf php-7.1.15.tar.g">
-<meta name="keywords" content="PHP,安装 PHP7">
+<meta name="description" content="结构体的定义结构体是一种聚合的数据类型，是由零个或多个任意类型的值聚合成的实体。下面我们来定义一个人类的结构体：1234type Person struct &amp;#123;  name string  // 姓名  age int  // 年龄&amp;#125; 使用初始化12345var p Personvar p Person&amp;#123;&quot;wang&quot;, 20&amp;#125;p := Person&amp;#123">
+<meta name="keywords" content="Go,Go 结构体">
 <meta property="og:type" content="article">
-<meta property="og:title" content="安装 PHP7">
-<meta property="og:url" content="http://github.com/flyerboy/2018/03/12/php7_install/index.html">
+<meta property="og:title" content="Go 结构体">
+<meta property="og:url" content="http://github.com/flyerboy/2018/02/28/go_struct/index.html">
 <meta property="og:site_name" content="Flyertutor">
-<meta property="og:description" content="今天倒腾 php7 ，想在一台 centos7 的服务器上面安装，这里我采用的是源码编译的方式进行安装。 源码编译安装，必须要安装 gcc 编译环境，安装方法自行搜索查找。 下载下载地址 上面找到对应版本，进行下载，下载完之后解压。123wget http://cn2.php.net/distributions/php-7.1.15.tar.gztar -zxvf php-7.1.15.tar.g">
+<meta property="og:description" content="结构体的定义结构体是一种聚合的数据类型，是由零个或多个任意类型的值聚合成的实体。下面我们来定义一个人类的结构体：1234type Person struct &amp;#123;  name string  // 姓名  age int  // 年龄&amp;#125; 使用初始化12345var p Personvar p Person&amp;#123;&quot;wang&quot;, 20&amp;#125;p := Person&amp;#123">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-15T09:54:41.855Z">
+<meta property="og:updated_time" content="2018-03-30T08:41:55.955Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="安装 PHP7">
-<meta name="twitter:description" content="今天倒腾 php7 ，想在一台 centos7 的服务器上面安装，这里我采用的是源码编译的方式进行安装。 源码编译安装，必须要安装 gcc 编译环境，安装方法自行搜索查找。 下载下载地址 上面找到对应版本，进行下载，下载完之后解压。123wget http://cn2.php.net/distributions/php-7.1.15.tar.gztar -zxvf php-7.1.15.tar.g">
+<meta name="twitter:title" content="Go 结构体">
+<meta name="twitter:description" content="结构体的定义结构体是一种聚合的数据类型，是由零个或多个任意类型的值聚合成的实体。下面我们来定义一个人类的结构体：1234type Person struct &amp;#123;  name string  // 姓名  age int  // 年龄&amp;#125; 使用初始化12345var p Personvar p Person&amp;#123;&quot;wang&quot;, 20&amp;#125;p := Person&amp;#123">
 
 
 
@@ -134,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://github.com/flyerboy/2018/03/12/php7_install/"/>
+  <link rel="canonical" href="http://github.com/flyerboy/2018/02/28/go_struct/"/>
 
 
 
 
 
-  <title>安装 PHP7 | Flyertutor</title>
+  <title>Go 结构体 | Flyertutor</title>
   
 
 
@@ -273,7 +273,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2018/03/12/php7_install/">
+    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2018/02/28/go_struct/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Flyertutor">
@@ -290,7 +290,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">安装 PHP7</h1>
+          <h1 class="post-title" itemprop="name headline">Go 结构体</h1>
         
 
         <div class="post-meta">
@@ -302,8 +302,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-12T20:00:00+08:00">
-                2018-03-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-28T21:00:00+08:00">
+                2018-02-28
               </time>
             
 
@@ -340,19 +340,15 @@
       
 
       
-        <p>今天倒腾 <code>php7</code> ，想在一台 <code>centos7</code> 的服务器上面安装，这里我采用的是源码编译的方式进行安装。</p>
-<p>源码编译安装，必须要安装 <code>gcc</code> 编译环境，安装方法自行搜索查找。</p>
-<h1 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h1><p><a href="http://php.net/downloads.php" target="_blank" rel="external">下载地址</a> 上面找到对应版本，进行下载，下载完之后解压。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget http://cn2.php.net/distributions/php-7.1.15.tar.gz</span><br><span class="line">tar -zxvf php-7.1.15.tar.gz</span><br><span class="line">cd php-7.1.15</span><br></pre></td></tr></table></figure></p>
+        <h1 id="结构体的定义"><a href="#结构体的定义" class="headerlink" title="结构体的定义"></a>结构体的定义</h1><p>结构体是一种聚合的数据类型，是由零个或多个任意类型的值聚合成的实体。<br>下面我们来定义一个人类的结构体：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Person <span class="keyword">struct</span> &#123;</span><br><span class="line">  name <span class="keyword">string</span>  <span class="comment">// 姓名</span></span><br><span class="line">  age <span class="keyword">int</span>  <span class="comment">// 年龄</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>初始化<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p Person</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p Person&#123;<span class="string">"wang"</span>, <span class="number">20</span>&#125;</span><br><span class="line"></span><br><span class="line">p := Person&#123;<span class="string">"wang"</span>, <span class="number">20</span>&#125;</span><br></pre></td></tr></table></figure></p>
+<p>访问成员采用 <code>.</code> 的方式，具体如下：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fmt.Printf(<span class="string">"name=%s, age=%d"</span>, p.name, p.age)</span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
-<h1 id="配置编译安装"><a href="#配置编译安装" class="headerlink" title="配置编译安装"></a>配置编译安装</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/usr/local/php7 \</span><br><span class="line">--with-mysql-sock --with-mysqli \</span><br><span class="line">--enable-fpm \</span><br><span class="line">--with-libxml-dir --with-openssl \</span><br><span class="line">--with-mcrypt --with-mhash \</span><br><span class="line">--with-pcre-regex  --with-zlib \</span><br><span class="line">--enable-bcmath --with-iconv \</span><br><span class="line">--with-bz2 --enable-calendar \</span><br><span class="line">--with-curl --with-cdb --enable-dom \</span><br><span class="line">--enable-exif --enable-fileinfo \</span><br><span class="line">--enable-filter --with-pcre-dir \</span><br><span class="line">--enable-ftp --with-gd \</span><br><span class="line">--with-openssl-dir --with-jpeg-dir \</span><br><span class="line">--with-png-dir --with-zlib-dir \</span><br><span class="line">--with-freetype-dir \</span><br><span class="line">--enable-gd-native-ttf \</span><br><span class="line">--enable-gd-jis-conv --with-gettext \</span><br><span class="line">--with-gmp --with-mhash \</span><br><span class="line">--enable-json --enable-mbstring \</span><br><span class="line">--enable-mbregex \</span><br><span class="line">--enable-mbregex-backtrack \</span><br><span class="line">--with-libmbfl --with-onig \</span><br><span class="line">--enable-pdo --with-pdo-mysql \</span><br><span class="line">--with-zlib-dir  --with-readline \</span><br><span class="line">--enable-session --enable-shmop \</span><br><span class="line">--enable-simplexml --enable-sockets \</span><br><span class="line">--enable-sysvmsg --enable-sysvsem \</span><br><span class="line">--enable-sysvshm --enable-wddx \</span><br><span class="line">--with-libxml-dir  --with-xsl \</span><br><span class="line">--enable-zip \</span><br><span class="line">--enable-mysqlnd-compression-support \</span><br><span class="line">--with-pear --enable-intl</span><br></pre></td></tr></table></figure>
-<p>编译安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure></p>
-<p>安装完毕之后，可以使用 <code>/usr/local/php7/bin/php -v</code> 查看<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/php7/bin/php -v</span><br><span class="line"></span><br><span class="line">PHP 7.1.15 (cli) (built: Mar  7 2018 16:10:16) ( NTS )</span><br><span class="line">Copyright (c) 1997-2018 The PHP Group</span><br><span class="line">Zend Engine v3.1.0, Copyright (c) 1998-2018 Zend Technologies</span><br></pre></td></tr></table></figure></p>
-<h1 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h1><p>在解压源文件目录下面找到 <code>php.ini-development</code> 文件，复制到 <code>/usr/local/php7/lib/</code> 目录下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp php.ini-development /usr/local/php7/lib/php.ini</span><br></pre></td></tr></table></figure></p>
-<h1 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h1><p>下面就将 <code>php</code> 的相关命令加入到环境变量。编辑 <code>/etc/profile</code> 文件，其后追加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=$PATH:/usr/local/php7/bin</span><br></pre></td></tr></table></figure></p>
-<p>下面就可直接执行 <code>php -v</code> 命令了。</p>
-<blockquote>
-<p>©版权声明：原创作品，允许转载，转载时请务必以超链接形式标明文章 <strong>原始出处</strong> &amp; <strong>作者信息</strong>。</p>
-</blockquote>
+<h1 id="结构体比较"><a href="#结构体比较" class="headerlink" title="结构体比较"></a>结构体比较</h1><p>如果结构体的全部成员都是可以比较的，那么结构体也是可以比较的，那样的话两个结构体将可以使用==或!=运算符进行比较。相等比较运算符==将比较两个结构体的每个成员，因此下面两个比较的表达式是等价的</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">p1 := Person&#123;<span class="string">"wang"</span>, <span class="number">20</span>&#125;</span><br><span class="line">p2 := Person&#123;<span class="string">"wang"</span>, <span class="number">30</span>&#125;</span><br><span class="line">fmt.Println(p1.name == p2.name &amp;&amp; p1.age == p2.age)  <span class="comment">// false</span></span><br><span class="line">fmt.Println(p1 == p2)  <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<h1 id="结构体嵌入和匿名成员"><a href="#结构体嵌入和匿名成员" class="headerlink" title="结构体嵌入和匿名成员"></a>结构体嵌入和匿名成员</h1><p>下面我们再定义一个学生的结构体，结构体中嵌入 Person。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 定义</span><br><span class="line"><span class="keyword">type</span> Student <span class="keyword">struct</span> &#123;</span><br><span class="line">  Person</span><br><span class="line">  school <span class="keyword">string</span>  <span class="comment">// 学校</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 初始化</span><br><span class="line">s := Student&#123;Person: Person&#123;<span class="string">"li"</span>, <span class="number">30</span>&#125;, <span class="string">"beida"</span>&#125;</span><br><span class="line"></span><br><span class="line"># 访问成员</span><br><span class="line">fmt.Sprintf(<span class="string">"name=%s, age=%d, school=%s\n"</span>, s.name, s.age, s.school)</span><br></pre></td></tr></table></figure></p>
+<h1 id="代码汇总"><a href="#代码汇总" class="headerlink" title="代码汇总"></a>代码汇总</h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">type</span> Person <span class="keyword">struct</span> &#123;</span><br><span class="line">  name   <span class="keyword">string</span></span><br><span class="line">  age    <span class="keyword">int</span></span><br><span class="line">  gender <span class="keyword">byte</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Student <span class="keyword">struct</span> &#123;</span><br><span class="line">  Person</span><br><span class="line">  school <span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  p1 := Person&#123;<span class="string">"wang"</span>, <span class="number">20</span>, <span class="string">'m'</span>&#125;</span><br><span class="line">  p2 := Person&#123;<span class="string">"wang"</span>, <span class="number">20</span>, <span class="string">'m'</span>&#125;</span><br><span class="line"></span><br><span class="line">  fmt.Printf(<span class="string">"name=%s,age=%d\n"</span>, p1.name, p1.age)</span><br><span class="line"></span><br><span class="line">  fmt.Println(p1 == p2)</span><br><span class="line">  fmt.Println(p1.name == p2.name &amp;&amp; p1.age == p2.age)</span><br><span class="line"></span><br><span class="line">  s := Student&#123;Person: Person&#123;<span class="string">"li"</span>, <span class="number">30</span>, <span class="string">'m'</span>&#125;, school: <span class="string">"beida"</span>&#125;</span><br><span class="line">  fmt.Printf(<span class="string">"name=%s, age=%d, school=%s\n"</span>, s.name, s.age, s.    school)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> ©版权声明：原创作品，允许转载，转载时请务必以超链接形式标明文章 <strong>原始出处</strong> &amp; <strong>作者信息</strong>。</p>
 <p><strong>Happy Coding</strong></p>
 
       
@@ -400,7 +396,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/PHP/" rel="tag"># PHP</a>
+            <a href="/tags/Go/" rel="tag"># Go</a>
           
         </div>
       
@@ -413,8 +409,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/09/vue_global_config/" rel="next" title="Vue 不同环境配置 API 地址">
-                <i class="fa fa-chevron-left"></i> Vue 不同环境配置 API 地址
+              <a href="/2018/02/14/element_ui_start/" rel="next" title="Vue Elememt-UI 构建管理后台">
+                <i class="fa fa-chevron-left"></i> Vue Elememt-UI 构建管理后台
               </a>
             
           </div>
@@ -423,8 +419,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/03/15/php_yeild/" rel="prev" title="PHP yield 读取大文件">
-                PHP yield 读取大文件 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/03/03/laravel_first_or_create/" rel="prev" title="firstOrCreate、firstOrNew、updateOrCreate 方法使用">
+                firstOrCreate、firstOrNew、updateOrCreate 方法使用 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -550,7 +546,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#下载"><span class="nav-number">1.</span> <span class="nav-text">下载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置编译安装"><span class="nav-number">2.</span> <span class="nav-text">配置编译安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置文件"><span class="nav-number">3.</span> <span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#环境变量"><span class="nav-number">4.</span> <span class="nav-text">环境变量</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#结构体的定义"><span class="nav-number">1.</span> <span class="nav-text">结构体的定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用"><span class="nav-number">2.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结构体比较"><span class="nav-number">3.</span> <span class="nav-text">结构体比较</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结构体嵌入和匿名成员"><span class="nav-number">4.</span> <span class="nav-text">结构体嵌入和匿名成员</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码汇总"><span class="nav-number">5.</span> <span class="nav-text">代码汇总</span></a></li></ol></div>
             
 
           </div>
