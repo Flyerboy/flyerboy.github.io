@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="Flyertutor">
 <meta property="og:description" content="基本概念Docker 包括三个基本概念  镜像（Image） 容器（Container） 仓库（Repository）理解了这三个概念，就理解了 Docker 的整个生命周期。  镜像（Image） 和容器（Container） 的关系，就像是面向对象程序设计中的 类 和 实例 一样，镜像是静态的定义，容器是镜像运行时的实体。容器可以被创建、启动、停止、删除、暂停等。仓库（Repository）是">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-04T06:03:26.113Z">
+<meta property="og:updated_time" content="2018-04-10T07:48:18.690Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker 入门">
 <meta name="twitter:description" content="基本概念Docker 包括三个基本概念  镜像（Image） 容器（Container） 仓库（Repository）理解了这三个概念，就理解了 Docker 的整个生命周期。  镜像（Image） 和容器（Container） 的关系，就像是面向对象程序设计中的 类 和 实例 一样，镜像是静态的定义，容器是镜像运行时的实体。容器可以被创建、启动、停止、删除、暂停等。仓库（Repository）是">
@@ -231,6 +231,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -313,6 +323,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -360,7 +392,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker bulid -t ubuntu_nginx .</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>构建完之后，可以运行镜像生成容器。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run -p 80:80 --name mynginx</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> -p 80:80：将容器的80端口映射到主机的80端口</span><br><span class="line"><span class="meta">#</span> --name mynginx：将容器命名为mynginx</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run -p 80:80 --name mynginx</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> -p 80:80：将容器的80端口映射到主机的80端口</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> --name mynginx：将容器命名为mynginx</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>查看容器启动情况</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
@@ -526,6 +558,15 @@
             </div>
           
 
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
           
 
           

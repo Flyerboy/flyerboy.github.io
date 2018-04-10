@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="PHP,Yii," />
+  <meta name="keywords" content="Yii2 自定义 Widget" />
 
 
 
@@ -95,14 +95,14 @@
 
 
 <meta name="description" content="使用 widgetyii 的小组件是为了实现视图的可重用，例如一些常用的日期组件、弹框插件等，yii 巧妙的使用了 widget 将其封装，在视图中可简单调用，这样良好的封装减少我们开发重复代码，是一种优秀的设计。下面我们做个示例。 例如面包屑组件的使用12345678910// 在视图文件中引入 breadcrumb 组件use yii\widgets\Breadcrumbs;Breadcrum">
-<meta name="keywords" content="PHP,Yii">
+<meta name="keywords" content="Yii2 自定义 Widget">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Yii2 自定义 Widget">
 <meta property="og:url" content="http://github.com/flyerboy/2016/12/18/yii_create_widget/index.html">
 <meta property="og:site_name" content="Flyertutor">
 <meta property="og:description" content="使用 widgetyii 的小组件是为了实现视图的可重用，例如一些常用的日期组件、弹框插件等，yii 巧妙的使用了 widget 将其封装，在视图中可简单调用，这样良好的封装减少我们开发重复代码，是一种优秀的设计。下面我们做个示例。 例如面包屑组件的使用12345678910// 在视图文件中引入 breadcrumb 组件use yii\widgets\Breadcrumbs;Breadcrum">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2016-12-18T13:17:18.000Z">
+<meta property="og:updated_time" content="2018-04-10T07:52:45.819Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Yii2 自定义 Widget">
 <meta name="twitter:description" content="使用 widgetyii 的小组件是为了实现视图的可重用，例如一些常用的日期组件、弹框插件等，yii 巧妙的使用了 widget 将其封装，在视图中可简单调用，这样良好的封装减少我们开发重复代码，是一种优秀的设计。下面我们做个示例。 例如面包屑组件的使用12345678910// 在视图文件中引入 breadcrumb 组件use yii\widgets\Breadcrumbs;Breadcrum">
@@ -231,6 +231,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -312,6 +322,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Yii2/" itemprop="url" rel="index">
+                    <span itemprop="name">Yii2</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -515,6 +547,15 @@
             </div>
           
 
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
           
 
           

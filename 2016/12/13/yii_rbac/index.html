@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="PHP,Yii," />
+  <meta name="keywords" content="Yii2 使用 RBAC" />
 
 
 
@@ -95,14 +95,14 @@
 
 
 <meta name="description" content="今天突然想到改写一下公司的权限系统，想到了 rbac 的权限认证系统，就用 yii2 实现了一个例子，具体如下: 由于 yii2 自带 rbac 的实现，所以我只是稍做处理就实现了简单的权限认证 配置123456789101112# 如果使用 base 模板的话，打开 config/web.php# 如果使用 advance 模板的话，打开 common/config/main.php添加配置&apos;c">
-<meta name="keywords" content="PHP,Yii">
+<meta name="keywords" content="Yii2 使用 RBAC">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Yii2 使用 RBAC">
 <meta property="og:url" content="http://github.com/flyerboy/2016/12/13/yii_rbac/index.html">
 <meta property="og:site_name" content="Flyertutor">
 <meta property="og:description" content="今天突然想到改写一下公司的权限系统，想到了 rbac 的权限认证系统，就用 yii2 实现了一个例子，具体如下: 由于 yii2 自带 rbac 的实现，所以我只是稍做处理就实现了简单的权限认证 配置123456789101112# 如果使用 base 模板的话，打开 config/web.php# 如果使用 advance 模板的话，打开 common/config/main.php添加配置&apos;c">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2016-12-18T13:17:23.000Z">
+<meta property="og:updated_time" content="2018-04-10T07:52:53.718Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Yii2 使用 RBAC">
 <meta name="twitter:description" content="今天突然想到改写一下公司的权限系统，想到了 rbac 的权限认证系统，就用 yii2 实现了一个例子，具体如下: 由于 yii2 自带 rbac 的实现，所以我只是稍做处理就实现了简单的权限认证 配置123456789101112# 如果使用 base 模板的话，打开 config/web.php# 如果使用 advance 模板的话，打开 common/config/main.php添加配置&apos;c">
@@ -231,6 +231,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
@@ -312,6 +322,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Yii2/" itemprop="url" rel="index">
+                    <span itemprop="name">Yii2</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -508,6 +540,15 @@
             </div>
           
 
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
           
 
           
