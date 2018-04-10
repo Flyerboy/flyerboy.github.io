@@ -1489,8 +1489,8 @@
       
         
           <p>Shell 在日常开发和维护中十分的常用，掌握它会给我们带来很多的便利，下面来简单的了解下。</p>
-<h1 id="变量定义"><a href="#变量定义" class="headerlink" title="变量定义"></a>变量定义</h1><p>变量定义十分的简单，直接使用变量名，然后赋值，但要格外注意的是，变量两边不能有空格。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line"></span><br><span class="line">a=1</span><br><span class="line">b=2.1</span><br><span class="line">c="a"</span><br></pre></td></tr></table></figure></p>
-<h1 id="数学运算"><a href="#数学运算" class="headerlink" title="数学运算"></a>数学运算</h1><p>我这里只是用加法做演示，在 <code>shell</code> 中，如果单纯的使用 <code>+</code> 号，那么会直接输出，不会做运算，这是一种方法就是借助 <code>expr</code>，另外一种是使用双括号的方式。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line"></span><br><span class="line">a=1</span><br><span class="line">b=2</span><br><span class="line"></span><br><span class="line">echo $a+$b # 直接显示 1+2</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 方法一</span><br><span class="line">c=$(expr $a + $b)</span><br><span class="line">echo $c</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 方法二</span><br><span class="line">c=$(($a + $b))</span><br><span class="line"></span><br><span class="line">echo $c</span><br></pre></td></tr></table></figure></p>
+<h1 id="变量定义"><a href="#变量定义" class="headerlink" title="变量定义"></a>变量定义</h1><p>变量定义十分的简单，直接使用变量名，然后赋值，但要格外注意的是，变量两边不能有空格。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">a=1</span><br><span class="line">b=2.1</span><br><span class="line">c="a"</span><br></pre></td></tr></table></figure></p>
+<h1 id="数学运算"><a href="#数学运算" class="headerlink" title="数学运算"></a>数学运算</h1><p>我这里只是用加法做演示，在 <code>shell</code> 中，如果单纯的使用 <code>+</code> 号，那么会直接输出，不会做运算，这是一种方法就是借助 <code>expr</code>，另外一种是使用双括号的方式。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">a=1</span><br><span class="line">b=2</span><br><span class="line"></span><br><span class="line">echo $a+$b # 直接显示 1+2</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 方法一</span></span><br><span class="line">c=$(expr $a + $b)</span><br><span class="line">echo $c</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 方法二</span></span><br><span class="line">c=$(($a + $b))</span><br><span class="line"></span><br><span class="line">echo $c</span><br></pre></td></tr></table></figure></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/04/19/shell_base/#more" rel="contents">
@@ -1802,6 +1802,19 @@
         
 
         <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Flyerboy" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
           
         </div>
 
