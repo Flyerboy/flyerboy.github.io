@@ -283,6 +283,157 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2018/04/18/redis_geo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Flyertutor">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/face.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Flyertutor">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/18/redis_geo/" itemprop="url">Redis 实现附近的人</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-18T22:10:00+08:00">
+                2018-04-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index">
+                    <span itemprop="name">PHP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>利用 <code>redis</code> 实现附近的人功能，主要使用的是 <code>redis</code> 的 <code>geo</code> 数据类型，需要注意的是 <code>redis</code> 的版本。</p>
+<p>软件和环境<br>centOS7, Redis4, phpredis3.1.4, PHP7</p>
+<p>PHP的扩展我使用的是 <code>phpredis</code> ，如果你使用的是 <code>predis</code> 的话，请自行查找 api 文档，基本操作方法相似。</p>
+<h1 id="连接redis"><a href="#连接redis" class="headerlink" title="连接redis"></a>连接redis</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$redis = <span class="keyword">new</span> Redis();</span><br><span class="line">$redis-&gt;connect(<span class="string">'127.0.0.1'</span>, <span class="number">6379</span>);</span><br><span class="line"><span class="comment">// 如果有密码的话，使用 auth</span></span><br></pre></td></tr></table></figure>
+<h1 id="记录用户定位信息"><a href="#记录用户定位信息" class="headerlink" title="记录用户定位信息"></a>记录用户定位信息</h1><p>我这里主要用 user:{id} 来做标记记录坐标信息<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$redis-&gt;geoAdd(<span class="string">"users"</span>, <span class="number">116.365</span>, <span class="number">39.976</span>, <span class="string">"user:1"</span>);</span><br><span class="line">$redis-&gt;geoAdd(<span class="string">"users"</span>, <span class="number">116.366</span>, <span class="number">39.975</span>, <span class="string">"user:2"</span>);</span><br><span class="line">$redis-&gt;geoAdd(<span class="string">"users"</span>, <span class="number">116.364</span>, <span class="number">39.977</span>, <span class="string">"user:3"</span>);</span><br></pre></td></tr></table></figure></p>
+<h1 id="搜索附近的人"><a href="#搜索附近的人" class="headerlink" title="搜索附近的人"></a>搜索附近的人</h1><p>使用自己的坐标来搜索周边固定位置的用户<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 搜索附近 5km 的用户，并且返回距离</span></span><br><span class="line">$options = [<span class="string">'WITHDIST'</span>];</span><br><span class="line">$lists = $redis-&gt;geoRadius(<span class="string">'users'</span>, <span class="number">116.36</span>, <span class="number">39.96</span>, <span class="number">5</span>, <span class="string">'km'</span>, $options);</span><br></pre></td></tr></table></figure></p>
+<h1 id="获取用户列表"><a href="#获取用户列表" class="headerlink" title="获取用户列表"></a>获取用户列表</h1><p>根据上述获取的列表，可以将其进行分页展示。具体可以找 <code>phpredis</code> <a href="https://github.com/phpredis/phpredis">文档</a> 阅读详情。</p>
+<p>我这里只是讲解了一个大概的思路，在具体的业务逻辑中，做具体的处理。</p>
+<p> ©版权声明：原创作品，允许转载，转载时请务必以超链接形式标明文章 <strong>原始出处</strong> &amp; <strong>作者信息</strong>。</p>
+<p><strong>Happy Coding</strong></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2018/04/12/go_gin_1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1645,158 +1796,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2018/03/03/laravel_first_or_create/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Flyertutor">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/face.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Flyertutor">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/03/laravel_first_or_create/" itemprop="url">firstOrCreate、firstOrNew、updateOrCreate 方法使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-03T20:00:00+08:00">
-                2018-03-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Laravel/" itemprop="url" rel="index">
-                    <span itemprop="name">Laravel</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>在日常开发的过程中，经常会遇到判断一条记录是否存在、存在更新、不存在新建记录这种场景，在 <code>Laravel</code> 中提供了方法支持，那么下面就看下具体的方法；</p>
-<blockquote>
-<p>使用时请注意版本，下面介绍的函数 <code>firstOrCreate</code> 和 <code>firstOrNew</code> 跟版本有很大的关系</p>
-</blockquote>
-<h1 id="firstOrCreate"><a href="#firstOrCreate" class="headerlink" title="firstOrCreate"></a>firstOrCreate</h1><p>firstOrCreate 方法将会使用指定的字段 =&gt; 值对，来尝试寻找数据库中的记录。如果在数据库中找不到，<code>5.3</code> 以下版本会使用属性来添加一条记录，<code>5.3</code> 及以上版本则将使用第一个参数中的属性以及可选的第二个参数中的属性插入记录</p>
-<p>用法：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">User::firstOrCreate([<span class="string">'name'</span> =&gt; <span class="string">'Lisi'</span>]);</span><br><span class="line">User::firstOrCreate([<span class="string">'name'</span> =&gt; <span class="string">'Lisi'</span>], [<span class="string">'age'</span> =&gt; <span class="number">20</span>]);  <span class="comment">// 5.3及以上版本支持</span></span><br></pre></td></tr></table></figure></p>
-<p>查看源码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 小于 5.3 版本，只有一个参数</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">firstOrCreate</span><span class="params">(array $attributes)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (! is_null($instance = <span class="keyword">$this</span>-&gt;where($attributes)-&gt;first())) &#123;</span><br><span class="line">        <span class="keyword">return</span> $instance;</span><br><span class="line">    &#125;</span><br><span class="line">    $instance = <span class="keyword">$this</span>-&gt;model-&gt;newInstance($attributes);</span><br><span class="line">    $instance-&gt;save();</span><br><span class="line">    <span class="keyword">return</span> $instance;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5.5 版本</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">firstOrCreate</span><span class="params">(array $attributes, array $values = [])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 判断是否存在,如果存在,返回实例</span></span><br><span class="line">    <span class="keyword">if</span> (! is_null($instance = <span class="keyword">$this</span>-&gt;where($attributes)-&gt;first())) &#123;</span><br><span class="line">        <span class="keyword">return</span> $instance;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 不存在创建，此代码简化就是 $this-&gt;newModelInstance($attributes + $values)-&gt;save();</span></span><br><span class="line">    <span class="keyword">return</span> tap(<span class="keyword">$this</span>-&gt;newModelInstance($attributes + $values), <span class="function"><span class="keyword">function</span> <span class="params">($instance)</span> </span>&#123;</span><br><span class="line">        $instance-&gt;save();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/03/laravel_first_or_create/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1847,7 +1846,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-count">69</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
