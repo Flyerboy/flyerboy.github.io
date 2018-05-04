@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Linux," />
+  <meta name="keywords" content="Go, Go Http服务器" />
 
 
 
@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="设置acl12setfacl -m u:user:rx  dir   // 给目录dir 设置用户 user 拥有rx权限setfacl -m g:group:rx dir   // 给目录dir 设置用户组 group 拥有rx权限 查看acl12getfacl dir  // 查看  dir 目录的 acl 权限getfacl file // 查看  file 文件的 acl 权限">
-<meta name="keywords" content="Linux">
+<meta name="description" content="http 协议用于 web 开发，Go 语言中也实现了他，下面我们就来看下如何使用他。 hello world12345678910111213package mainimport (  &quot;net/http&quot;  &quot;log&quot;)func main() &amp;#123;  http.HandleFunc(&quot;/&quot;, func(writer http.ResponseWriter, request *http.">
+<meta name="keywords" content="Go, Go Http服务器">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux ACL">
-<meta property="og:url" content="http://github.com/flyerboy/2016/12/08/linux-acl/index.html">
+<meta property="og:title" content="Go Http服务器">
+<meta property="og:url" content="http://github.com/flyerboy/2018/04/23/go_http/index.html">
 <meta property="og:site_name" content="Flyertutor">
-<meta property="og:description" content="设置acl12setfacl -m u:user:rx  dir   // 给目录dir 设置用户 user 拥有rx权限setfacl -m g:group:rx dir   // 给目录dir 设置用户组 group 拥有rx权限 查看acl12getfacl dir  // 查看  dir 目录的 acl 权限getfacl file // 查看  file 文件的 acl 权限">
+<meta property="og:description" content="http 协议用于 web 开发，Go 语言中也实现了他，下面我们就来看下如何使用他。 hello world12345678910111213package mainimport (  &quot;net/http&quot;  &quot;log&quot;)func main() &amp;#123;  http.HandleFunc(&quot;/&quot;, func(writer http.ResponseWriter, request *http.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-10T07:49:32.275Z">
+<meta property="og:updated_time" content="2018-05-04T09:13:18.054Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux ACL">
-<meta name="twitter:description" content="设置acl12setfacl -m u:user:rx  dir   // 给目录dir 设置用户 user 拥有rx权限setfacl -m g:group:rx dir   // 给目录dir 设置用户组 group 拥有rx权限 查看acl12getfacl dir  // 查看  dir 目录的 acl 权限getfacl file // 查看  file 文件的 acl 权限">
+<meta name="twitter:title" content="Go Http服务器">
+<meta name="twitter:description" content="http 协议用于 web 开发，Go 语言中也实现了他，下面我们就来看下如何使用他。 hello world12345678910111213package mainimport (  &quot;net/http&quot;  &quot;log&quot;)func main() &amp;#123;  http.HandleFunc(&quot;/&quot;, func(writer http.ResponseWriter, request *http.">
 
 
 
@@ -134,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://github.com/flyerboy/2016/12/08/linux-acl/"/>
+  <link rel="canonical" href="http://github.com/flyerboy/2018/04/23/go_http/"/>
 
 
 
 
 
-  <title>Linux ACL | Flyertutor</title>
+  <title>Go Http服务器 | Flyertutor</title>
   
 
 
@@ -283,7 +283,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/08/linux-acl/">
+    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2018/04/23/go_http/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Flyertutor">
@@ -300,7 +300,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Linux ACL</h1>
+          <h1 class="post-title" itemprop="name headline">Go Http服务器</h1>
         
 
         <div class="post-meta">
@@ -312,8 +312,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-08T10:14:13+08:00">
-                2016-12-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-23T20:00:00+08:00">
+                2018-04-23
               </time>
             
 
@@ -335,8 +335,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
+                  <a href="/categories/Go/" itemprop="url" rel="index">
+                    <span itemprop="name">Go</span>
                   </a>
                 </span>
 
@@ -372,17 +372,18 @@
       
 
       
-        <h1 id="设置acl"><a href="#设置acl" class="headerlink" title="设置acl"></a>设置acl</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">setfacl -m u:user:rx  dir   // 给目录dir 设置用户 user 拥有rx权限</span><br><span class="line">setfacl -m g:group:rx dir   // 给目录dir 设置用户组 group 拥有rx权限</span><br></pre></td></tr></table></figure>
-<h1 id="查看acl"><a href="#查看acl" class="headerlink" title="查看acl"></a>查看acl</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">getfacl dir  // 查看  dir 目录的 acl 权限</span><br><span class="line">getfacl file // 查看  file 文件的 acl 权限</span><br></pre></td></tr></table></figure>
+        <p>http 协议用于 web 开发，Go 语言中也实现了他，下面我们就来看下如何使用他。</p>
+<h1 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world"></a>hello world</h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"net/http"</span></span><br><span class="line">  <span class="string">"log"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  http.HandleFunc(<span class="string">"/"</span>, <span class="function"><span class="keyword">func</span><span class="params">(writer http.ResponseWriter, request *http.Request)</span></span> &#123;</span><br><span class="line">    writer.Write([]<span class="keyword">byte</span>(<span class="string">"hello world"</span>))</span><br><span class="line">  &#125;)</span><br><span class="line">  log.Fatal(http.ListenAndServe(<span class="string">":8000"</span>, <span class="literal">nil</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go run http.go</span><br></pre></td></tr></table></figure></p>
+<p>打开浏览器 <code>http://localhost:8000</code> 就可以看到效果了，是不是很简单。</p>
 <a id="more"></a>
-<h1 id="删除acl"><a href="#删除acl" class="headerlink" title="删除acl"></a>删除acl</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">setfacl -x u:user dir // 删除用户user 在目录 dir 上的acl权限</span><br><span class="line">setfacl -b dir // 删除目录dir 上面全部acl权限</span><br></pre></td></tr></table></figure>
-<h1 id="修改acl-的-mask值"><a href="#修改acl-的-mask值" class="headerlink" title="修改acl 的 mask值"></a>修改acl 的 mask值</h1><p>mask只对其他用户和组的权限有影响，而对owner和other的权限是没有任何影响的<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setfacl -m m:rx dir // 设置目录dir  acl的mask值为rx,用户最终权限为 user+mask acl权限的交集</span><br></pre></td></tr></table></figure></p>
-<h1 id="acl递归权限"><a href="#acl递归权限" class="headerlink" title="acl递归权限"></a>acl递归权限</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setfacl -m -R u:user:rx dir // 递归整个目录设置acl权限</span><br></pre></td></tr></table></figure>
-<h1 id="设置默认acl权限"><a href="#设置默认acl权限" class="headerlink" title="设置默认acl权限"></a>设置默认acl权限</h1><p><em>如果给父目录设置了默认权限，那么子目录就默认具有默认acl权限</em><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setfacl -m d:user:rx dir</span><br></pre></td></tr></table></figure></p>
+<h1 id="使用-html-模板"><a href="#使用-html-模板" class="headerlink" title="使用 html 模板"></a>使用 html 模板</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">  &quot;net/http&quot;</span><br><span class="line">  &quot;log&quot;</span><br><span class="line">  &quot;html/template&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">  http.HandleFunc(&quot;/&quot;, func(writer http.ResponseWriter, request *http.Request) &#123;</span><br><span class="line">    tmpl, _ := template.ParseFiles(&quot;index.html&quot;)</span><br><span class="line">    data := make(map[string]interface&#123;&#125;)</span><br><span class="line">    data[&quot;Title&quot;] = &quot;Title&quot;</span><br><span class="line">    tmpl.ExecuteTemplate(writer, &quot;index&quot;, data)</span><br><span class="line">  &#125;)</span><br><span class="line">  log.Fatal(http.ListenAndServe(&quot;:8000&quot;, nil))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>index.html<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;define "index"&#125;&#125;</span><br><span class="line"><span class="meta">&lt;!doctype html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">content</span>=<span class="string">"width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    &#123;&#123;.Title&#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line">&#123;&#123;end&#125;&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="加载静态-css-js-文件"><a href="#加载静态-css-js-文件" class="headerlink" title="加载静态 css/js 文件"></a>加载静态 css/js 文件</h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"net/http"</span></span><br><span class="line">  <span class="string">"log"</span></span><br><span class="line">  <span class="string">"html/template"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  http.Handle(<span class="string">"/css/"</span>, http.FileServer(http.Dir(<span class="string">"static"</span>)))</span><br><span class="line">  http.Handle(<span class="string">"/js/"</span>, http.FileServer(http.Dir(<span class="string">"static"</span>)))</span><br><span class="line">  </span><br><span class="line">  http.HandleFunc(<span class="string">"/"</span>, <span class="function"><span class="keyword">func</span><span class="params">(writer http.ResponseWriter, request *http.Request)</span></span> &#123;   </span><br><span class="line">    tmpl, _ := template.ParseFiles(<span class="string">"index.html"</span>)</span><br><span class="line">    data := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">interface</span>&#123;&#125;)</span><br><span class="line">    data[<span class="string">"Title"</span>] = <span class="string">"Title"</span></span><br><span class="line">    tmpl.ExecuteTemplate(writer, <span class="string">"index"</span>, data)</span><br><span class="line">  &#125;)</span><br><span class="line">  log.Fatal(http.ListenAndServe(<span class="string">":8000"</span>, <span class="literal">nil</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>©版权声明：原创作品，允许转载，转载时请务必以超链接形式标明文章 <strong>原始出处</strong> &amp; <strong>作者信息</strong>。</p>
 </blockquote>
-<p><strong>End</strong></p>
+<p><strong>Happy Coding</strong></p>
 
       
     </div>
@@ -429,7 +430,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Linux/" rel="tag"># Linux</a>
+            <a href="/tags/Go/" rel="tag"># Go</a>
           
         </div>
       
@@ -442,8 +443,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/07/php_guzzle/" rel="next" title="PHP 使用 Guzzle 抓取网页">
-                <i class="fa fa-chevron-left"></i> PHP 使用 Guzzle 抓取网页
+              <a href="/2018/04/18/redis_geo/" rel="next" title="Redis 实现附近的人">
+                <i class="fa fa-chevron-left"></i> Redis 实现附近的人
               </a>
             
           </div>
@@ -451,10 +452,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/12/09/linux_command/" rel="prev" title="Linux 最常用一些命令">
-                Linux 最常用一些命令 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -601,7 +598,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#设置acl"><span class="nav-number">1.</span> <span class="nav-text">设置acl</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查看acl"><span class="nav-number">2.</span> <span class="nav-text">查看acl</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#删除acl"><span class="nav-number">3.</span> <span class="nav-text">删除acl</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#修改acl-的-mask值"><span class="nav-number">4.</span> <span class="nav-text">修改acl 的 mask值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#acl递归权限"><span class="nav-number">5.</span> <span class="nav-text">acl递归权限</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设置默认acl权限"><span class="nav-number">6.</span> <span class="nav-text">设置默认acl权限</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#hello-world"><span class="nav-number">1.</span> <span class="nav-text">hello world</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用-html-模板"><span class="nav-number">2.</span> <span class="nav-text">使用 html 模板</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#加载静态-css-js-文件"><span class="nav-number">3.</span> <span class="nav-text">加载静态 css/js 文件</span></a></li></ol></div>
             
 
           </div>

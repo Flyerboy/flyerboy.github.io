@@ -283,6 +283,159 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/17/php_jsonp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Flyertutor">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/face.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Flyertutor">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/12/17/php_jsonp/" itemprop="url">PHP + Jsonp 跨域举例</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-17T15:00:00+08:00">
+                2016-12-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index">
+                    <span itemprop="name">PHP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Jsonp-介绍"><a href="#Jsonp-介绍" class="headerlink" title="Jsonp 介绍"></a>Jsonp 介绍</h1><p>我们在网站开发的时候，经常会出现在 <code>www.aa.com</code> 域名下面请求 <code>www.bb.com</code> 的数据。<br>在 <code>javascript</code> 中，有一个很重要的安全性限制，<strong>同源策略</strong> ，只能访问当前源下的内容。</p>
+<p>源：指，域名，协议，端口相同</p>
+<blockquote>
+<p>同源策略，它是由 Netscape 提出的一个著名的安全策略。现在所有支持 JavaScript 的浏览器都会使用这个策略。所谓同源是指，域名，协议，端口相同。当一个浏览器的两个 tab 页中分别打开来 百度和谷歌的页面当一个百度浏览器执行一个脚本的时候会检查这个脚本是属于哪个源的，即检查是否同源，只有和百度同源的脚本才会被执行</p>
+</blockquote>
+<p>然而我们有很多的开发需求，需要访问其他源的内容，这是就会出现跨域的情况，下面我们介绍一种解决方案 <code>jsonp</code></p>
+<p>我们在 <code>html</code> 里面中经常会用到 <code>script</code> 标签加载文件信息，这里没有限制，可以加载任意域名下的内容。<br>可以利用这个特性实现获取其他源下内容信息</p>
+<p>JSONP 的缺点则是：<br>它只支持 GET 请求，不支持 POST 等其它类型的 HTTP 请求<br>它只支持跨域 HTTP 请求这种情况，不能解决不同域的两个页面之间如何进行 JavaScript 调用的问题</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/12/17/php_jsonp/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/17/php_array/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1626,169 +1779,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://github.com/flyerboy/2016/12/09/linux_command/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Flyertutor">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/face.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Flyertutor">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/12/09/linux_command/" itemprop="url">Linux 最常用一些命令</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-09T10:10:00+08:00">
-                2016-12-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="grep-文本搜索工具"><a href="#grep-文本搜索工具" class="headerlink" title="grep 文本搜索工具"></a>grep 文本搜索工具</h1><ul>
-<li>-i 忽略大小写</li>
-<li>-v 不显示匹配行</li>
-<li>-c 显示符合条件的行数值</li>
-<li>文本搜索支持正则表达式</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/passwd | grep root // 显示包含root的所有行</span><br><span class="line">cat /etc/passwd | grep -v bash // 显示不包含bansh的所有行</span><br><span class="line">grep 'search' ./ -r //查看当前目录下文件中有 search 的行</span><br></pre></td></tr></table></figure>
-<h1 id="tar-解压缩"><a href="#tar-解压缩" class="headerlink" title="tar 解压缩"></a>tar 解压缩</h1><ul>
-<li>-x 解压文件</li>
-<li>-z 支持giz方式</li>
-<li>-j 支持bzip2方式</li>
-<li>-v 显示操作过程</li>
-<li>-f 制定文件</li>
-<li>-C 解压到指定目录</li>
-<li>-W 确认压缩文件的正确性</li>
-<li>-t 显示压缩文件的内容</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf file.tar.gz // 解压当前文件</span><br><span class="line">tar zxvf file.tar.gz -C /dir   //  解压文件到指定目录</span><br><span class="line">tar zxvf file.tar.gz file // 将file文件解压出来</span><br><span class="line">tar jxvf file.tar.gz2  // 解压giz2压缩的文件</span><br><span class="line"></span><br><span class="line">tar zcvf file.tar.gz source  // 将source 文件压缩,多个文件用空格隔开</span><br><span class="line">tar jcvf file.tar.gz2 source // 将source文件以giz2方式压缩,多个文件用空格隔开</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/12/09/linux_command/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1839,7 +1829,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">69</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
